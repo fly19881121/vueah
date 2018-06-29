@@ -9,6 +9,13 @@
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
 
+
+    <mt-swipe :auto="4000">
+      <mt-swipe-item>1</mt-swipe-item>
+      <mt-swipe-item>2</mt-swipe-item>
+      <mt-swipe-item>3</mt-swipe-item>
+    </mt-swipe>
+
     <h1>{{ msg }} <span>{{msg}}</span></h1>
     <h2>Essential Links</h2>
     <h2>Ecosystem</h2>
@@ -47,5 +54,9 @@ h1{
   span{
     color:blue;
   }
+}
+
+.mint-swipe{
+  height:160px;
 }
 </style>
