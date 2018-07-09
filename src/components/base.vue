@@ -1,14 +1,11 @@
 <template>
 	<div>
-		<mt-header title="还款">
+		<mt-header title="账单">
 			<router-link to="/" slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</router-link>
 		</mt-header>
-		<mt-field label="还款本金" v-model="proname" readonly="readonly"></mt-field>
-		<mt-field label="应付利息" v-model="proname" readonly="readonly"></mt-field>
-		<mt-field label="服务费" v-model="proname" readonly="readonly"></mt-field>
-		<mt-field label="还款总额" v-model="proname" readonly="readonly"></mt-field>
+		
 		
 		
 	</div>
@@ -20,8 +17,7 @@
 		data() {
 			return {
 				items: [],
-				total:"10086.00",
-				proname:"2000.00"
+				total:"10086.00"
 			}
 		},
 		methods: {

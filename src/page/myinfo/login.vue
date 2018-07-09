@@ -81,7 +81,7 @@
 //				pushHistory();
 //
 //				return;
-				_this.$ajaxPost('/v2/movie/top250', "", function(res) {
+				_this.$ajaxGet('api','/v2/movie/top250', "", function(res) {
 
 					console.log(JSON.stringify(res))
 

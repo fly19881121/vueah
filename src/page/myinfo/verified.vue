@@ -176,6 +176,7 @@
 <script src="../../../static/js/dakabase64.js"></script>
 <script>
 	import moment from 'moment'
+	import axios from 'axios'
 	export default {
 		name: 'hello',
 		data() {
@@ -228,23 +229,6 @@
 			},
 			getpicIdZheng() { //身份证正面照片获取
 				let _this = this;
-
-				let param = {
-					"file": _this.$refs.fileIdZheng.files.item(0),
-					"ocrType": 1 // 1身份证正⾯， 2⾏驶证
-				}
-
-				_this.$ajaxGet('config/getSystemConfig', param, function(res) {
-
-					console.log(JSON.stringify(res))
-
-					_this.clearlocalstory();
-					_this.$router.push('/home')
-
-				}, function(e) {
-					console.log(JSON.stringify(e))
-				});
-
 				let url = window.URL.createObjectURL(_this.$refs.fileIdZheng.files.item(0));
 				console.log(JSON.stringify(url))
 				_this.picIdZheng = url;
@@ -334,6 +318,39 @@
 
 			},
 			sureback() {
+				let _this = this;
+				let param = {
+					"customerType": "1",
+					"productSeries": "24",
+					"productType": "3"
+				}
+
+//				var instance = axios.create({
+//					headers: {
+//						'content-type': 'application/x-www-form-urlencoded'
+//					}
+//				});
+//				instance.post('dcapi/loan/queryLoanProduct', param).then(res => res.data);
+//				
+//				
+//				
+//				
+//				
+//				return;
+				
+				
+				
+				
+
+				_this.$ajaxGet('api/config/querySystemConfig', param, function(res) {
+
+					console.log("suc:" + JSON.stringify(res))
+
+				}, function(e) {
+					console.log("fail:" + JSON.stringify(e))
+				});
+
+				return;
 				this.$router.push('/home');
 				pushHistory();
 			}
@@ -350,13 +367,13 @@
 				"userId": 17703
 			}
 
-//			_this.$ajaxLogin(parmer, function(res) {
-//
-//				console.log(JSON.stringify(res))
-//
-//			}, function(e) {
-//				console.log(JSON.stringify(e))
-//			});
+			//			_this.$ajaxLogin(parmer, function(res) {
+			//
+			//				console.log(JSON.stringify(res))
+			//
+			//			}, function(e) {
+			//				console.log(JSON.stringify(e))
+			//			});
 
 			var t = setTimeout(function() {
 				_this.loadding = false;

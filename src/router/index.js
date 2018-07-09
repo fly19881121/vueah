@@ -24,7 +24,7 @@ import suc from '@/components/suc.vue' //申请成功
 import Manager from '@/page/manager/Manager' //个人中心
 import billList from '@/page/manager/billList' //账单列表
 import billInfo from '@/page/manager/billInfo' //账单列表
-
+import repay from '@/page/manager/repay' //账单列表
 
 
 import BankList from '@/page/bankinfo/BankList' //银行卡列表
@@ -152,6 +152,11 @@ const routes=[{
 			path: '/billInfo',
 			name: 'billInfo',
 			component: billInfo
+		},
+		{
+			path: '/repay',
+			name: 'repay',
+			component: repay
 		},
 		{
 			path: '/login',

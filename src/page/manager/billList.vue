@@ -27,7 +27,7 @@
 					</div>
 					<div class="div-3">
 						<span @click="toinfo">查看详情</span>
-						<span>去还款</span>
+						<span @click="torepay">去还款</span>
 					</div>
 				</div>
 
@@ -202,6 +202,14 @@
 			},
 			toinfo(){
 				this.$router.push('/billInfo')
+			},
+			torepay(){
+				
+				this.$router.push('/repay')
+				
+				
+				
+				
 			}
 		},
 		beforeCreate: function() {},
