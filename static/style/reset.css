@@ -1,0 +1,152 @@
+@charset "UTF-8";
+/**
+ *
+ * @authors Your Name (you@example.org)
+ * @date    2018-07-02 14:30:18
+ * @version $Id$
+ */
+/**
+ * html5doctor.com
+Reset Stylesheet v1.6.1
+ * Richard Clark
+ * http://cssreset.com
+ */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+body {
+    line-height:1;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display:block;
+}
+nav ul {
+    list-style:none;
+}
+blockquote, q {
+    quotes:none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+del {
+    text-decoration: line-through;
+}
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+input, select {
+    vertical-align:middle;
+}
+
+@media screen and (min-width:100px){ /*  iPhone 4,5 */
+ html{ font-size: 10px;}
+}
+@media screen and (min-width:320px){ /*  iPhone 4,5 */
+ html{ font-size: 10px;}
+}
+@media screen and (min-width:375px){ /*  iPhone 6 */
+ html{ font-size: 12px;}
+}
+@media screen and (min-width:414px){  /*  iPhone 6 plus */
+ html{ font-size: 12px;}
+}
+@media screen and (min-width:600px){
+    html{ font-size:14px;}
+}
+
+* { touch-action: none; }
+
+body{
+  margin:0;
+  background: #f5f6f7;
+}
+
+
+.mag15{
+    margin:15px;
+}
+.matb{
+    margin:15px 0;
+}
+.malr{
+    margin:0 15px;
+}
+
+.mint-button--large{
+    min-height: 1rem;
+    font-size:.4rem;
+}
+.mint-radiolist-title{
+    padding:.2rem;
+}
+
+body .mint-header{
+    padding:.4rem;
+    height: 1.2rem;
+    font-size:.4rem;
+}
+body .mint-button-icon{
+    line-height: 100%;
+    position: relative;
+    top: -1px;
+}
+body .mint-field .mint-cell-title{
+    width:3rem;
+}
+
+

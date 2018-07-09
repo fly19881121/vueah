@@ -14,10 +14,17 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "core-util-is": "^1.0.2",
     "fastclick": "^1.0.6",
+    "font-awesome": "^4.7.0",
+    "lib-flexible": "^0.3.2",
     "mint-ui": "^2.2.13",
+    "moment": "^2.22.2",
+    "pdfjs-dist": "^2.0.489",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vueshowpdf": "^1.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
