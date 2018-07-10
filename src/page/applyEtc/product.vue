@@ -13,11 +13,11 @@
 				<span><i class="fa fa-angle-right"></i></span>
 			</div>
 			</router-link>
-			
+
 			<div class="divsec">
 				<label class="label-text-show">{{item.desc}}</label>
 			</div>
-			<mt-button size="large" type="primary" class="btn-pro" v-on:click="next">立即申请</mt-button>
+			<mt-button size="small" type="primary" class="btn-pro" v-on:click="next">立即申请</mt-button>
 		</div>
 	</div>
 </template>
@@ -47,44 +47,40 @@
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
 	.maindiv {
-		width: 80%;
-		background-color: white;
-		margin-left: 10%;
-		margin-top: 20px;
-		margin-bottom: 20px;
-		border: 1px solid;
+		padding:0 .3rem .3rem;
+		margin:.5rem;
+		background-color: #fff;
 		border-radius: 5px;
-		-moz-box-shadow: 10px 10px 5px #888888;
-		/* 老的 Firefox */
-		box-shadow: 10px 10px 5px #888888;
+		-moz-box-shadow:0px 0px 14px rgba(0,0,0,.2);
+		-webkit-box-shadow:0px 0px 14px rgba(0,0,0,.2);
+		box-shadow:0px 0px 14px rgba(0,0,0,.2);
+		a{
+			text-decoration:none;
+		}
+		.divsec{
+			line-height:.6rem;
+			text-align:left;
+			padding:.3rem 0;
+		}
+		.label-text-show {
+			color: gray;
+		}
 	}
-	
+
 	.divfir {
 		display: flex;
 		justify-content: space-between;
-		padding: 10px;
-		border-bottom: 1px solid;
-		border-bottom-color: gainsboro;
-		width: 80%;
-		margin-left: 10%;
+		width: 100%;
+		line-height:1rem;
+		border-bottom:1px solid rgba(0,0,0,.2);
+		.lable-title {
+			color: #26a2ff;
+			text-decoration:none;
+		}
 	}
-	
-	.label-text-show {
-		font-size: 10px;
-		color: gray;
-		margin-left: 10%;
-	}
-	
 	.btn-pro {
-		margin-top: 10px;
-		width: 80%;
-		margin-left: 10%;
-		margin-bottom: 10px;
-	}
-	
-	.lable-title {
-		color: #26a2ff;
+		width: 100%;
 	}
 </style>

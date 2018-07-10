@@ -7,27 +7,24 @@
 			<mt-button slot="right" @click="more">添加车辆</mt-button>
 		</mt-header>
 
-		<div class="div-lay" v-for="item in carlist" v-bind:key="item.id">
-			<div class="div1-lay" v-if="item.disabled">
-				<input type="checkbox" disabled="disabled">
-			</div>
-			<div class="div1-lay" v-else>
-				<input type="checkbox">
-			</div>
-			<div class="div2-lay">
-				<div><label>{{item.carno}}</label>
-					<label style="margin-left: 10px;">({{item.applystatus}})</label>
-					<label style="margin-left: 10px;">车牌颜色:{{item.carcolor}}</label>
 
-				</div>
-				<div><label>车辆所有人:{{item.carowner}}</label></div>
-			</div>
-		</div>
-		<div>
-			
+		<!-- <div>
 			<label>已选{{carnum}}辆</label>
 			<mt-button size="large" type="primary" class="button-sure" v-on:click="sureback">确定选择</mt-button>
-		</div>
+		</div> -->
+
+
+
+		<mt-checklist
+      align="left"
+      class="page-part"
+      title="请选择添加车辆"
+      v-model="value4"
+      :options="options4">
+    </mt-checklist>
+
+
+    <mt-button size="large" type="primary" id="btn-locshow" class="btn-locshow" v-on:click="next">立即申请</mt-button>
 	</div>
 </template>
 
@@ -36,45 +33,8 @@
 		name: 'hello',
 		data() {
 			return {
-				carnum: "2",
-				carlist: [{
-						carno: '粤8',
-						applystatus: "待审批",
-						carcolor: "黄色",
-						carowner: "宁汽车贸育溪云",
-						value: 'A',
-						disabled: true, //可以禁用选项
-						id:"01"
-					},
-					{
-						carno: '粤8',
-						applystatus: "待审批",
-						carcolor: "黄色",
-						carowner: "宁汽车贸育溪云",
-						value: 'A',
-						disabled: false , //可以禁用选项
-						id:"02"
-					},
-					{
-						carno: '粤8',
-						applystatus: "待审批",
-						carcolor: "黄色",
-						carowner: "宁汽车贸育溪云",
-						value: 'A',
-						disabled: false , //可以禁用选项
-						id:"03"
-					},
-					{
-						carno: '粤8',
-						applystatus: "待审批",
-						carcolor: "黄色",
-						carowner: "宁汽车贸育溪云",
-						value: 'A',
-						disabled: false , //可以禁用选项
-						id:"04"
-					}
-				]
-
+				value4: [],
+				carnum: '2'
 			}
 		},
 		methods: {
@@ -93,31 +53,43 @@
 				this.setlocalstory("carname","已选两辆")
 				this.$router.go(-1); //返回上一层
 			}
-		}
+		},
+		created() {
+   	 this.options4 = [
+      {
+        label: '京A12345',
+        value: '值F',
+      },
+      {
+        label: '京A12346',
+        value: '选中禁用的值',
+      },
+      {
+        label: '京A12347',
+        value: '值A'
+      },
+      {
+        label: '京A12348',
+        value: '值B'
+      }
+    ];
+  	}
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
 	.div-lay {
 		display: flex;
 		margin-top: 10px;
 		margin-bottom: 10px;
 	}
-	
+
 	.div1-lay {
 		width: 20%;
 	}
-	
-	.div1-lay input {
-		transform: scale(3, 3);
-		margin-top: 15px;
-	}
-	
-	.div2-lay {
-		width: 70%;
-	}
-	.button-sure{
-		width: 70%;
-		float: right;
+
+	#btn-locshow{
+		width:calc(100% - 1rem);
+		margin:.5rem;
 	}
 </style>

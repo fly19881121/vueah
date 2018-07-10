@@ -149,4 +149,20 @@ body .mint-field .mint-cell-title{
     width:3rem;
 }
 
+body .mint-field .mint-cell-text{
+    font-size:.4rem;
+    color:#666;
+}
+.mint-field-core{
+    font-size:.4rem;
+    color:#666;
+}
+
+.text-blue{
+    color:#26a2ff;
+}
+
+body .mint-checklist-label{
+  text-align:left;
+}
 
