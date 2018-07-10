@@ -15,38 +15,31 @@
 		</div>
 
 		<div v-if="divgeren">
-			<div style="height: 105px;margin-top: 10px;">
-				<span class="fileinput-button">
-	            <span>
-	            	<img :src="picIdZheng" class="img-loc"/>
-	            </span>
-				<input type="file" ref="fileIdZheng" v-on:change="getpicIdZheng">
-				</span>
-				<span>
-				<label>请选择身份证正面照片</label>
-			</span>
-				<br />
-				<span class="btn-chose">
-				<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpicId">上传</mt-button>
-			</span>
+			<div class="idpic">
+				<div class="fileinput-button">
+          <span>
+          	<img :src="picIdZheng" class="img-loc"/>
+          </span>
+					<input type="file" ref="fileIdZheng" v-on:change="getpicIdZheng">
+				</div>
+				<p>请上传身份证人面像</p>
+				<div class="btn-chose">
+					<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpicId">上传</mt-button>
+				</div>
 			</div>
-			<div style="height: 105px;margin-top: 10px;">
-				<span class="fileinput-button">
-	            <span>
-	            	<img :src="picIdFan" class="img-loc"/>
-	            </span>
-				<input type="file" ref="fileIdFan" v-on:change="getpicIdFan">
-				</span>
-				<span>
-				<label>请选择身份证反面照片</label>
-			</span>
-				<br />
+			<div class="idpic">
+				<div class="fileinput-button">
+          <span>
+          	<img :src="picIdFan" class="img-loc"/>
+          </span>
+					<input type="file" ref="fileIdFan" v-on:change="getpicIdFan">
+				</div>
+				<p>请上传身份证国徽像</p>
 				<span class="btn-chose">
-				<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpicidfan">上传</mt-button>
-			</span>
+					<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpicidfan">上传</mt-button>
+				</span>
 			</div>
 			<div v-if="divgereninfo" style="margin-top: 20px;">
-
 				<mt-field label="姓名" v-model="sfzname"></mt-field>
 				<mt-field label="性别" v-model="sfzsex"></mt-field>
 				<mt-field label="民族" v-model="sfzfolk"></mt-field>
@@ -76,17 +69,14 @@
 			</div>
 			<div v-if="divqiye2">
 				<!--法人部分-->
-				<div style="height: 105px;margin-top: 10px;">
-					<span class="fileinput-button">
-		            <span>
-		            	<img :src="picfarenzheng" class="img-loc"/>
-		            </span>
-					<input type="file" ref="filefarenzheng" v-on:change="getpicfarenzheng">
-					</span>
-					<span>
-						<label>请选择法人身份证正面照片</label>
-					</span>
-					<br />
+				<div class="idpic">
+					<div class="fileinput-button">
+            <span>
+            	<img :src="picfarenzheng" class="img-loc"/>
+            </span>
+						<input type="file" ref="filefarenzheng" v-on:change="getpicfarenzheng">
+					</div>
+					<p>请选择法人身份证正面照片</p>
 					<span class="btn-chose">
 						<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpicfarenzheng">上传</mt-button>
 					</span>
@@ -100,17 +90,14 @@
 					</div>
 				</div>
 				<!--经办人部分-->
-				<div style="height: 105px;margin-top: 10px;">
-					<span class="fileinput-button">
-		            <span>
-		            	<img :src="picjingbanzheng" class="img-loc"/>
-		            </span>
-					<input type="file" ref="filejingbanrenzheng" v-on:change="getpicjingbanrenzheng">
-					</span>
-					<span>
-						<label>请选择经办人身份证正面照片</label>
-					</span>
-					<br />
+				<div class="idpic">
+					<div class="fileinput-button">
+            <span>
+            	<img :src="picjingbanzheng" class="img-loc"/>
+            </span>
+						<input type="file" ref="filejingbanrenzheng" v-on:change="getpicjingbanrenzheng">
+					</div>
+					<p>请选择经办人身份证正面照片</p>
 					<span class="btn-chose">
 						<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpicjingbanrenzheng">上传</mt-button>
 					</span>
@@ -126,33 +113,27 @@
 				<mt-field label="联系人姓名" v-model="proname"></mt-field>
 				<mt-field label="联系人电话性别" v-model="proname"></mt-field>
 				<!--营业执照-->
-				<div style="height: 105px;margin-top: 10px;">
+				<div class="idpic">
 					<span class="fileinput-button">
 		            <span>
 		            	<img :src="picyingye" class="img-loc"/>
 		            </span>
 					<input type="file" ref="fileyingye" v-on:change="getpicyingye">
 					</span>
-					<span>
-						<label>请选择营业执照照片</label>
-					</span>
-					<br />
+					<p>请选择营业执照照片</p>
 					<span class="btn-chose">
 						<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpicyingye">上传</mt-button>
 					</span>
 				</div>
 
-				<div style="height: 105px;margin-top: 10px;">
+				<div class="idpic">
 					<span class="fileinput-button">
 		            <span>
 		            	<img :src="picfarenfan" class="img-loc"/>
 		            </span>
 					<input type="file" ref="filefarenfan" v-on:change="getpicfarenfan">
 					</span>
-					<span>
-						<label>请选择法人身份证反面照片</label>
-					</span>
-					<br />
+					<p>请选择法人身份证反面照片</p>
 					<span class="btn-chose">
 						<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpicfarenfan">上传</mt-button>
 					</span>
@@ -191,9 +172,14 @@
 				divgereninfo: false, //个人认证中个人详细信息详情div显隐
 				divgereninfofan: false, //个人认证中个人详细信息详情div显隐
 				divgeren: false, //个人认证div显隐
+<<<<<<< HEAD
+				picIdZheng: '../../../static/images/prepic.png', //身份证正面照片
+				picIdFan: '../../../static/images/unprepic.png', //身份证反面照片
+=======
 				picIdZheng: '../../../static/images/addpic.png', //身份证正面照片
 				picIdFan: '../../../static/images/addpic.png', //身份证反面照片
 
+>>>>>>> b2c7803493270316acf84f38abf235c9c2bceacb
 				birdate: '请选择', //出生日期
 				sfzname: "", //姓名
 				sfzsex: "", //身份证性别
@@ -211,17 +197,17 @@
 				divqiye: false, //企业认证div显隐
 				divqiye1: false, //企业第一个页面
 				divqiye2: false, //企业第一个页面
-				picfarenzheng: '../../../static/images/addpic.png', //法人身份证正面照片
+				picfarenzheng: '../../../static/images/prepic.png', //法人身份证正面照片
 				divfareninfozheng: false,
 				farenbirdate: "请选择",
 
-				picjingbanzheng: '../../../static/images/addpic.png', //经办人身份证正面照片
+				picjingbanzheng: '../../../static/images/prepic.png', //经办人身份证正面照片
 				divjingbanzheng: false,
 				jingbanbirdate: "请选择",
 
 				picyingye: '../../../static/images/addpic.png', //营业执照照片
 
-				picfarenfan: '../../../static/images/addpic.png', //法人身份证反面照片
+				picfarenfan: '../../../static/images/unprepic.png', //法人身份证反面照片
 				divfarenfan: false,
 				farenidenddate: "请选择",
 
@@ -498,6 +484,27 @@
 					"productSeries": "24",
 					"productType": "3"
 				}
+<<<<<<< HEAD
+
+//				var instance = axios.create({
+//					headers: {
+//						'content-type': 'application/x-www-form-urlencoded'
+//					}
+//				});
+//				instance.post('dcapi/loan/queryLoanProduct', param).then(res => res.data);
+//
+//
+//
+//
+//
+//				return;
+
+
+
+
+
+=======
+>>>>>>> b2c7803493270316acf84f38abf235c9c2bceacb
 				_this.$ajaxGet('api/config/querySystemConfig', param, function(res) {
 
 					console.log("suc:" + JSON.stringify(res))
@@ -564,80 +571,86 @@
 	}
 </script>
 
-<style>
-	.fileinput-button {
-		position: relative;
-		display: inline-block;
-		overflow: hidden;
-		float: left;
+<style lang="scss" scoped>
+	.button-al{
+		width:calc(100% - 1rem);
+		margin:.5rem auto;
 	}
-	
+	.idpic{
+		margin:.5rem 0;
+		.fileinput-button{
+			display:block;
+			width:70%;
+			border:1px solid #26a2ff;
+			background:#fff;
+			margin:0 auto;
+			position:relative;
+			border-radius:5px;
+		}
+		p{
+			text-align:center;
+			line-height:1rem;
+		}
+	}
+
 	.fileinput-button input {
-		line-height: 30px;
 		position: absolute;
 		right: 0px;
 		top: 0px;
-		line-height: 100px;
 		opacity: 0;
-		-ms-filter: 'alpha(opacity=0)';
+		width:100%;
+		height:100%;
 	}
-	
+
 	.img-loc {
-		width: 100px;
-		height: 100px;
+		width:100%;
+		display:block;
+		margin:0 auto;
 	}
-	
+
 	.btn-chose {
-		position: absolute;
-		z-index: 2;
-		margin-top: 30px;
-		width: 65%;
-		right: 10px;
+
 	}
-	
+
 	.content {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
 	}
-	
+
 	.switch-width {
 		width: 60%;
 	}
-	
+
 	.label-text {
 		margin-top: 8px;
 		color: blue;
 	}
-	
+
 	.fa-loc {
 		position: absolute;
 		top: 190px;
 		right: 20px;
 		z-index: 2;
 	}
-	
+
 	.fa-color {
 		color: blue;
 	}
-	
-	.button-al {
-		margin-top: 30px;
-	}
-	
+
 	.but-login-filter {
 		opacity: 0.5;
 		color: black;
 	}
-	
+
 	.cont-sec {
 		margin-top: 10px;
 	}
-	
+
 	.password-width {
 		width: 70%;
 	}
-	
+
 	.fir-input {
 		float: left;
 		line-height: 30px;
@@ -647,7 +660,7 @@
 		border-right-width: 0px;
 		border-bottom-color: gainsboro
 	}
-	
+
 	.sec-input {
 		float: left;
 		line-height: 30px;
@@ -657,11 +670,11 @@
 		border-right-width: 0px;
 		border-bottom-color: gainsboro
 	}
-	
+
 	.divinput {
 		line-height: 55px;
 	}
-	
+
 	.divinput input {
 		line-height: 40px;
 		border: none;

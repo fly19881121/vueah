@@ -149,7 +149,7 @@ body .mint-field .mint-cell-title{
     width:3rem;
 }
 
-body .mint-field .mint-cell-text{
+body .mint-cell-text,body .mint-cell-value{
     font-size:.4rem;
     color:#666;
 }

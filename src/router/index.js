@@ -48,12 +48,14 @@ Vue.use(Router)
 
 
 const routes=[
+
 		 {
 		 	path: '/',
 		 	name: 'verified',
 		 	component: verified
 		 },
 		
+
 //		{
 //			path: '/login',
 //			name: 'login',

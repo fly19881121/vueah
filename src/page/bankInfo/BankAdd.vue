@@ -4,7 +4,7 @@
 			<router-link to="/" slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</router-link>
-			
+
 		</mt-header>
     <div>
       <mt-field label="账户名称" placeholder="请输入账户名称" v-model="username" type="text"></mt-field>
@@ -24,11 +24,6 @@
       <mt-field label="持卡人身份证" placeholder="请输入持卡人身份证" v-model="idcard"></mt-field>
       <mt-field label="预留手机号" placeholder="请输入预留手机号" type="number" v-model="phonenum"></mt-field>
     </div>
-
-
-
-
-
   </div>
 </template>
 
@@ -43,21 +38,13 @@ export default {
     }
   },
   methods: {
-			handleClose: function(e) {
-				this.$router.go(-1); //返回上一层
-			}
+		handleClose: function(e) {
+			this.$router.go(-1); //返回上一层
 		}
-  
-  
-  
-  
-  
+	}
 }
 </script>
 
 
-<style lang="scss">
-.mint-cell{
-  min-height:1rem;
-}
+<style lang="scss" scoped>
 </style>
