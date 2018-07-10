@@ -47,20 +47,22 @@
 			</div>
 			<div v-if="divgereninfo" style="margin-top: 20px;">
 
-				<mt-field label="姓名" v-model="proname"></mt-field>
-				<mt-field label="性别" v-model="proname"></mt-field>
-				<mt-field label="民族" v-model="proname"></mt-field>
+				<mt-field label="姓名" v-model="sfzname"></mt-field>
+				<mt-field label="性别" v-model="sfzsex"></mt-field>
+				<mt-field label="民族" v-model="sfzfolk"></mt-field>
+				<mt-field label="地址" v-model="sfzaddress"></mt-field>
+				<mt-field label="身份证号" v-model="sfzcardNo"></mt-field>
 				<div @click='openPicker("bir")'>
 					<mt-field label="出生日期" v-model="birdate" readonly="readonly"></mt-field>
 				</div>
 			</div>
 			<div v-if="divgereninfofan">
-				<mt-field label="签发机关" v-model="proname"></mt-field>
+				<mt-field label="签发机关" v-model="sfzissueAuthority"></mt-field>
 				<div @click='openPicker("idend")'>
-					<mt-field label="有效期" v-model="idenddate" readonly="readonly"></mt-field>
+					<mt-field label="有效期" v-model="sfzvalidPeriod" readonly="readonly"></mt-field>
 				</div>
 			</div>
-			<mt-button size="large" type="primary" class="button-al" v-on:click="sureback">提交认证</mt-button>
+			<mt-button size="large" type="primary" class="button-al" v-on:click="submitGeren">提交认证</mt-button>
 		</div>
 
 		<div v-if="divqiye">
@@ -184,14 +186,26 @@
 				loadding: true,
 
 				divchose: false, //第一个选择div显隐
+
+				//				个人认证
 				divgereninfo: false, //个人认证中个人详细信息详情div显隐
 				divgereninfofan: false, //个人认证中个人详细信息详情div显隐
 				divgeren: false, //个人认证div显隐
 				picIdZheng: '../../../static/images/addpic.png', //身份证正面照片
 				picIdFan: '../../../static/images/addpic.png', //身份证反面照片
+
 				birdate: '请选择', //出生日期
-				datetype: "", //当前选择的日期选择器类型
-				idenddate: "请选择",
+				sfzname: "", //姓名
+				sfzsex: "", //身份证性别
+				sfzfolk: "", //民族
+				sfzaddress: "", //地址
+				sfzcardNo: "", //身份证号
+				sfzissueAuthority: "", //签发机关
+				sfzvalidPeriod: "请选择", //当前选择的日期选择器类型
+				filepicIdZheng: "",
+				filepicIdFan: "",
+				uploadpicIdZheng: false,
+				uploadpicIdFan: false,
 
 				//				企业部分
 				divqiye: false, //企业认证div显隐
@@ -229,17 +243,62 @@
 			},
 			getpicIdZheng() { //身份证正面照片获取
 				let _this = this;
-				let url = window.URL.createObjectURL(_this.$refs.fileIdZheng.files.item(0));
-				console.log(JSON.stringify(url))
-				_this.picIdZheng = url;
-				_this.divgereninfo = true;
+				let file = _this.$refs.fileIdZheng.files.item(0);
+
+				let param = new FormData(); //创建form对象
+				param.append('file', file); //通过append向form对象添加数据
+				param.append('type', 1); //添加form表单中其他数据
+
+				_this.$ajaxPost('/api/customer/OCR', param, function(response) {
+					console.log("suc:" + JSON.stringify(response))
+					if(response.data.success == true) {
+						let url = window.URL.createObjectURL(file);
+
+						_this.birdate = response.data.result.idcard.birthday;
+						_this.sfzname = response.data.result.idcard.name;
+						_this.sfzsex = response.data.result.idcard.sex;
+						_this.sfzfolk = response.data.result.idcard.folk;
+						_this.sfzaddress = response.data.result.idcard.address;
+						_this.sfzcardNo = response.data.result.idcard.cardNo;
+
+						_this.filepicIdZheng = file;
+						_this.picIdZheng = url;
+						_this.divgereninfo = true;
+
+					} else {
+						alert("上传失败，请选择清晰图片")
+					}
+
+				}, function(e) {
+					console.log("fail:" + JSON.stringify(e))
+				});
 			},
 			getpicIdFan() { //身份证反面照片获取
 				let _this = this;
-				let url = window.URL.createObjectURL(_this.$refs.fileIdFan.files.item(0));
-				console.log(JSON.stringify(url))
-				_this.picIdFan = url;
-				_this.divgereninfofan = true;
+				let file = _this.$refs.fileIdFan.files.item(0);
+
+				let param = new FormData(); //创建form对象
+				param.append('file', file); //通过append向form对象添加数据
+				param.append('type', 1); //添加form表单中其他数据
+
+				_this.$ajaxPost('/api/customer/OCR', param, function(response) {
+					console.log("suc:" + JSON.stringify(response))
+					if(response.data.success == true) {
+						let url = window.URL.createObjectURL(file);
+						_this.sfzvalidPeriod = response.data.result.idcard.validPeriod.split("-")[0];
+						_this.sfzissueAuthority = response.data.result.idcard.issueAuthority;
+						_this.filepicIdFan = file;
+
+						_this.picIdFan = url;
+						_this.divgereninfofan = true;
+
+					} else {
+						alert("上传失败，请选择清晰图片")
+					}
+
+				}, function(e) {
+					console.log("fail:" + JSON.stringify(e))
+				});
 			},
 			openPicker(type) { //打开日期选择器
 				this.type = type;
@@ -251,7 +310,7 @@
 					this.birdate = date;
 				}
 				if(this.type == 'idend') {
-					this.idenddate = date;
+					this.sfzvalidPeriod = date;
 				}
 				if(this.type == 'farenbir') {
 					this.farenbirdate = date;
@@ -261,9 +320,124 @@
 				}
 			},
 			uploadpicId() { //上传身份证正面
+				let _this = this;
+				let file = _this.filepicIdZheng;
 
+				let param = new FormData(); //创建form对象
+				param.append('files', file); //通过append向form对象添加数据
+
+				_this.$ajaxPost('/api/attachment/uploadAttachmentBatch ', param, function(response) {
+					console.log("suc:" + JSON.stringify(response))
+					if(response.data.success == true) {
+						_this.uploadpicIdZheng = true;
+					} else {
+						alert("上传失败，请选择清晰图片")
+					}
+
+				}, function(e) {
+					console.log("fail:" + JSON.stringify(e))
+				});
 			},
 			uploadpicidfan() { //上传身份证反面
+				let _this = this;
+				let file = _this.filepicIdFan;
+
+				let param = new FormData(); //创建form对象
+				param.append('files', file); //通过append向form对象添加数据
+
+				_this.$ajaxPost('/api/attachment/uploadAttachmentBatch ', param, function(response) {
+					console.log("suc:" + JSON.stringify(response))
+					if(response.data.success == true) {
+						_this.uploadpicIdFan = true;
+					} else {
+						alert("上传失败，请选择清晰图片")
+					}
+
+				}, function(e) {
+					console.log("fail:" + JSON.stringify(e))
+				});
+			},
+			submitGeren() {
+				let _this = this;
+
+				if(!_this.uploadpicIdZheng) {
+					alert("请先上传身份证正面照片");
+					return;
+				} else if(!_this.uploadpicIdFan) {
+					alert("请先上传身份证反面照片");
+					return;
+				}
+
+				//step1 先获取安心签编号
+				let par = {
+					"customerType": 1
+				};
+
+				_this.$ajaxPost('/api/customer/getCustomerAnxinSign', par, function(res) {
+
+					console.log("getCustomerAnxinSign suc:" + JSON.stringify(res))
+					if(!res.data.success) {
+						alert("签约不成功，请重试");
+						return;
+					}
+					let customerNo = res.data.result.customerNo;
+
+					//step2  添加客户基本信息
+					let par2 = {
+						"customerType": "1",
+						"idCard": _this.sfzcardNo,
+						"userName": _this.sfzname,
+						"userId": "17820",
+						"customerNo": customerNo
+					}
+					_this.$ajaxPost('/api/customer/addCustomerAuthInfo', par2, function(resbos) {
+						if(!resbos.data.success) {
+							alert("签约不成功，请重试");
+							return;
+						}
+						console.log("addCustomerAuthInfo suc:" + JSON.stringify(resbos))
+						let objectId = resbos.data.result.objectId;
+						let objectName = resbos.data.result.objectName;
+						//step3  更新客户认证自定义表单
+						let fonimg = "https://ladybird.awservice.net/upload//customer_17891/201 80702152447097001/201807021524470009.jpg";
+						let str1 = '[{\"children\":[{\"key\":\"name\",\"label\":\"姓名\"}, {\"key\":\"sex\",\"label\":\"性别\"},{\"key\":\"folk\",\"label\":\"民族\"}, {\"key\":\"birt\",\"label\":\"出生日期\"},{\"key\":\"address\",\"label\":\"住址\"}, {\"key\":\"num\",\"label\":\"身份证号\"}],\"config\": {\"required\":\"true\"},\"field_value\":' +
+							'\"{\\\"address\\\":\\\"' + _this.sfzaddress + ' \\\",' +
+							'\\\"frontImage\\\":\\\"' + fonimg + '\\\",' +
+							'\\\"sex\\\":\\\"' + _this.sfzsex + '\\\",' +
+							'\\\"birt\\\":\\\"' + _this.birdate + '\\\",' +
+							'\\\"num\\\":\\\"' + _this.sfzcardNo + '\\\",' +
+							'\\\"name\\\":\\\"' + _this.sfzname + '\\\",' +
+							'\\\"folk\\\":\\\"' + _this.sfzfolk + ' \\\"}\",' +
+							'\"key\":\"idCardFront\",\"ocrType\":\"id_customer_front\",\"placeholder\":\" 身份证正面拍照\",\"sample\":\"\",\"title\":\"身份证正面\",\"type\":\"ocr\"}, {\"children\":[{\"key\":\"issue\",\"label\":\"签发机关\"}, {\"key\":\"valid\",\"label\":\"有效期\"}],\"config\": {\"required\":\"true\"},\"field_value\":' +
+							'\"{\\\"issue\\\":\\\"' + _this.sfzissueAuthority + ' \\\",' +
+							'\\\"valid\\\":\\\"' + _this.sfzvalidPeriod + ' \\\"}\",' +
+							'\"key\":\"idCardBack\",\"ocrType\":\"id_back\",\"placeholder\":\"身份证反⾯拍照 \",\"sample\":\"\",\"title\":\"身份证反⾯\",\"type\":\"ocr\"}]';
+
+						let parApply = {
+							"objectName": objectName,
+							"jsonText": str1,
+							"objectId": objectId
+						}
+
+						_this.$ajaxPost('/dcapi/defineForm/addOrModifyDefineForm ', parApply, function(resform) {
+
+							if(!resform.data.success) {
+								alert("签约不成功，请重试");
+								return;
+							}
+							_this.$router.push('/home');
+							pushHistory();
+						}, function(e) {
+							console.log("addCustomerAuthInfo fail:" + JSON.stringify(e))
+						});
+
+					}, function(e) {
+						console.log("addCustomerAuthInfo fail:" + JSON.stringify(e))
+					});
+
+				}, function(e) {
+					console.log("getCustomerAnxinSign fail:" + JSON.stringify(e))
+				});
 
 			},
 			verqiye() { //企业选择
@@ -324,24 +498,6 @@
 					"productSeries": "24",
 					"productType": "3"
 				}
-
-//				var instance = axios.create({
-//					headers: {
-//						'content-type': 'application/x-www-form-urlencoded'
-//					}
-//				});
-//				instance.post('dcapi/loan/queryLoanProduct', param).then(res => res.data);
-//				
-//				
-//				
-//				
-//				
-//				return;
-				
-				
-				
-				
-
 				_this.$ajaxGet('api/config/querySystemConfig', param, function(res) {
 
 					console.log("suc:" + JSON.stringify(res))
@@ -376,9 +532,10 @@
 			//			});
 
 			var t = setTimeout(function() {
+				localStorage.setItem("token", "2_1621d39dc9f521508086cb3227193ffc");
 				_this.loadding = false;
 				_this.divchose = true;
-			}, 2000)
+			}, 1000)
 
 			return;
 

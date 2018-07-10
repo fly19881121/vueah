@@ -19,6 +19,10 @@ import contacts from '@/page/applyEtc/contacts' //etc申请添加联系人
 import contshow from '@/page/applyEtc/contshow' //etc申请查看合同模板
 import addbank from '@/page/applyEtc/addbank' //
 import suc from '@/components/suc.vue' //申请成功
+import base from '@/components/base.vue' //申请成功
+
+
+
 
 
 import Manager from '@/page/manager/Manager' //个人中心
@@ -162,6 +166,11 @@ const routes=[{
 			path: '/login',
 			name: 'login',
 			component: login
+		},
+		{
+			path: '/base',
+			name: 'base',
+			component: base
 		}
 	]
 
