@@ -116,12 +116,14 @@
 		box-sizing:border-box;
 		.item{
 			flex:1;
+			text-align:center;
 			.icon{
 				border:1px solid #26a2ff;
 				width:1.6rem;
 				height:1.6rem;
 				border-radius:100%;
 				margin:0 auto;
+				text-align:center;
 				.fa{
 					font-size:1rem;
 					color:#26a2ff;
@@ -130,8 +132,7 @@
 			}
 		}
 		span{
-			line-height:.8rem;
-			text-align:center;
+			line-height:1.2rem;
 		}
 	}
 	.imginfomainshow {

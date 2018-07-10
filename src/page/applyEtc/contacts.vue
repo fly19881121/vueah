@@ -61,40 +61,9 @@
 
 </script>
 
-<style>
-	.div-loc {
-		margin:.5rem 0;
-	}
-
-	.code-width {
-		width: 70%;
-	}
-
-	.btn-loc {
-		position: absolute;
-		top: 100px;
-		right: 10px;
-		z-index: 2;
-		line-height: 20px;
-	}
-	.fa-loc{
-		position: absolute;
-		top: 90px;
-		right: 20px;
-		z-index: 2;
-	}
-	.fa-loc1{
-		position: absolute;
-		top: 135px;
-		right: 20px;
-		z-index: 2;
-	}
-	.fa-color {
-		color: blue;
-	}
-
-	#btn-locshow{
-		width:calc(100% - 1rem);
-		margin:.5rem;
-	}
+<style lang="scss" scoped>
+#btn-locshow{
+	width:calc(100% - 1rem);
+	margin:.5rem;
+}
 </style>

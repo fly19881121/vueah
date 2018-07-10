@@ -7,20 +7,17 @@
 			</router-link>
 		</mt-header>
 
-		<div class="maindiv1">
-			<div class="div1">
-				<label class="lable-title1">{{proinfo.name}}</label>
-			</div>
-			
-			<div class="div1">
-				<label class="lable-title2">产品介绍</label>
+		<div class="productinfo">
+
+			<header>
+				<span>产品介绍</span>{{proinfo.name}}
+			</header>
+			<div class="main">
+				<p>{{proinfo.desc}}</p>
 			</div>
 
-			<div class="divsec">
-				<label class="label-text-show1">{{proinfo.desc}}</label>
-			</div>
 		</div>
-		<mt-button size="large" type="primary" class="button-al" v-on:click="next">立即申请</mt-button>
+		<mt-button size="large" id="button-al" type="primary" class="button-al" v-on:click="next">立即申请</mt-button>
 	</div>
 </template>
 
@@ -50,48 +47,30 @@
 	}
 </script>
 
-<style>
-	.maindiv1 {
-		width: 80%;
-		background-color: white;
-		margin-left: 10%;
-		margin-top: 20px;
-		margin-bottom: 20px;
-		-moz-box-shadow: 10px 10px 5px #888888;
-		/* 老的 Firefox */
-		box-shadow: 10px 10px 5px #888888;
+<style lang="scss" scoped>
+	.productinfo{
+		padding:0 .3rem .3rem;
+		margin:.5rem;
+		background-color: #fff;
+		border-radius: 5px;
+		-moz-box-shadow:0px 0px 14px rgba(0,0,0,.2);
+		-webkit-box-shadow:0px 0px 14px rgba(0,0,0,.2);
+		box-shadow:0px 0px 14px rgba(0,0,0,.2);
+		header{
+			border-bottom:1px solid rgba(225,225,225,.6);
+			line-height:1rem;
+			text-align:left;
+		}
+		.main{
+			padding:.3rem 0;
+			text-align:left;
+			p{
+				line-height:.8rem;
+			}
+		}
 	}
-	
-	.div1 {
-		display: flex;
-		justify-content: space-between;
-		padding: 10px;
-		border-top: 1px solid;
-		border-top-color: gainsboro;
-		border-bottom: 1px solid;
-		border-bottom-color: gainsboro;
-		width: 80%;
-		margin-left: 10%;
-	}
-	
-	.label-text-show1 {
-		font-size: 20px;
-		color: gray;
-		margin-left: 10%;
-	}
-	
-	.btn-pro1 {
-		position: absolute;
-		z-index: 2;
-		bottom: 10px;
-	}
-	
-	.lable-title1 {
-		color: #26a2ff;
-		font-size: 20px;
-	}
-	.lable-title2 {
-		color: #26a2ff;
-		font-size: 20px;
+	#button-al{
+		width:calc(100% - 1rem);
+		margin:.5rem auto;
 	}
 </style>

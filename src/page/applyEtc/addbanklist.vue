@@ -13,7 +13,7 @@
 						<img :src="item.iconsrc" class="img-loc" />
 					</div>
 					<div class="div-content">
-						<div>
+						<div class="bankname">
 							{{item.name}}
 						</div>
 						<div class="div-bankdesc">
@@ -64,35 +64,34 @@
 
 <style>
 	.maindivbank {
-		width: 80%;
+		padding:0 .3rem;
+		margin:.5rem;
 		background-color: white;
-		margin-left: 10%;
-		margin-top: 20px;
-		margin-bottom: 20px;
-		border: 1px solid;
 		border-radius: 5px;
-		-moz-box-shadow: 10px 10px 5px #888888;
-		/* 老的 Firefox */
-		box-shadow: 10px 10px 5px #888888;
+		-moz-box-shadow:0px 0px 14px rgba(0,0,0,.2);
+		-webkit-box-shadow:0px 0px 14px rgba(0,0,0,.2);
+		box-shadow:0px 0px 14px rgba(0,0,0,.2);
 	}
-	
+
+	.bankname{
+		font-size:.5rem;
+		font-weight:bold;
+	}
 	.img-loc {
-		width: 60px;
-		height: 60px;
-		margin-left: 20px;
-		margin-top: 20px;
+		width: 1.6rem;
+		height: 1.6rem;
 	}
 	.div-all{
-		height: 105px;display: flex;
+		display: flex;
+		padding:.3rem 0;
 	}
 	.div-content {
 		display: flex;
 		flex-direction: column;
-		margin-left: 10px;
-		margin-top: 10px;
 		padding: 10px;
 	}
+
 	.div-bankdesc{
-		margin-top: 10px;
+		line-height:1rem;
 	}
 </style>
