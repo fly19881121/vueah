@@ -22,13 +22,32 @@ Vue.config.productionTip = false
 
 //再次封装axios到vue对象中，直接传参数即可
 import axios from 'axios'
+
+axios.interceptors.request.use(
+      config => {
+        let token = localStorage.getItem("token");
+        if (token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+          config.headers.token = `${token}`;
+        }
+//      if (config.url.indexOf(url) === -1) {
+//        config.url = url + config.url;/*拼接完整请求路径*/
+//      }
+        return config;
+      },
+      err => {
+        return Promise.reject(err);
+      });
+axios.defaults.timeout = 10000; //响应时间
+axios.defaults.headers.post['Content-Type'] = 'form-data'; //配置请求头
+
+
 Vue.prototype.$ajaxGet = function(url, parmer,success,fail){
+	let token=window.localStorage.getItem("token");
 	axios({
 			method: 'get',
 			baseURL: '/api',
 			url: url,
-			data: parmer,
-			timeout:10000
+			data: parmer
 		}).then(function(response) {
 			success(response);
 		})
@@ -37,14 +56,14 @@ Vue.prototype.$ajaxGet = function(url, parmer,success,fail){
 		});
 }
 Vue.prototype.$ajaxPost = function(url, parmer,success,fail){
+	let token=window.localStorage.getItem("token");
 	axios({
 			method: 'post',
 			baseURL: '/api',
 			url: url,
-			data: parmer,
-			timeout:10000
+			data: parmer
 		}).then(function(response) {
-			success("suc:"+response);
+			success(response);
 		})
 		.catch(function(error) {
 			fail("error:"+error);
