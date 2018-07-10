@@ -20,6 +20,9 @@ import contshow from '@/page/applyEtc/contshow' //etc申请查看合同模板
 import addbank from '@/page/applyEtc/addbank' //
 import suc from '@/components/suc.vue' //申请成功
 import base from '@/components/base.vue' //申请成功
+import uploadBankState from '@/page/applyEtc/uploadBankState' //
+import uploadCarRelation from '@/page/applyEtc/uploadCarRelation' //
+import uploadCreditReport from '@/page/applyEtc/uploadCreditReport' //
 
 
 
@@ -45,16 +48,12 @@ Vue.use(Router)
 
 
 const routes=[
-		// {
-		// 	path: '/',
-		// 	name: 'verified',
-		// 	component: verified
-		// },
-		{
-			path: '/',
-			name: 'show',
-			component: show
-		},
+		 {
+		 	path: '/',
+		 	name: 'verified',
+		 	component: verified
+		 },
+		
 //		{
 //			path: '/login',
 //			name: 'login',
@@ -177,6 +176,23 @@ const routes=[
 			path: '/base',
 			name: 'base',
 			component: base
+		},
+		{
+			path: '/uploadBankState',
+			name: 'uploadBankState',
+			component: uploadBankState
+		}
+		,
+		{
+			path: '/uploadCarRelation',
+			name: 'uploadCarRelation',
+			component: uploadCarRelation
+		}
+		,
+		{
+			path: '/uploadCreditReport',
+			name: 'uploadCreditReport',
+			component: uploadCreditReport
 		}
 	]
 

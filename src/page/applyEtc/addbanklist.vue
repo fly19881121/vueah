@@ -31,19 +31,7 @@
 		name: 'hello',
 		data() {
 			return {
-				prolist: [{
-						name: "中国建设银行",
-						desc: "62270006********591",
-						id: "01",
-						iconsrc: "../../../static/images/bankicon/ccb.png"
-					},
-					{
-						name: "中国工商银行",
-						desc: "62270006********591",
-						id: "02",
-						iconsrc: "../../../static/images/bankicon/icbc.png"
-					}
-				]
+				prolist: []
 			}
 		},
 		methods: {
@@ -58,7 +46,58 @@
 				_this.setlocalstory("repaybank",par);
 				this.$router.go(-1); //返回上一层
 			}
-		}
+			
+		},
+		created(){
+				let _this=this;
+				
+				
+				_this.$ajaxGet('/dcapi/bank/queryBankAccout?accountChannel=BAOFOO', "", function(res) {
+					let arr=[];
+					console.log("queryBankAccout suc:" + JSON.stringify(res.data.result))
+					for(let i=0;i<res.data.result.length;i++){
+						let tmp=res.data.result[i];
+						let stricon="";
+						if(tmp.bankName=="中国建设银行"){
+							stricon="../../../static/images/bankicon/ccb.png";
+						}else if(tmp.bankName=="中国工商银行"){
+							stricon="../../../static/images/bankicon/icbc.png";
+						}else if(tmp.bankName=="中国银行"){
+							stricon="../../../static/images/bankicon/boc.png";
+						}else if(tmp.bankName=="兴业银行"){
+							stricon="../../../static/images/bankicon/cib.png";
+						}else if(tmp.bankName=="交通银行"){
+							stricon="../../../static/images/bankicon/bocom.png";
+						}else if(tmp.bankName=="光大银行"){
+							stricon="../../../static/images/bankicon/cvb.png";
+						}else if(tmp.bankName=="浦发银行"){
+							stricon="../../../static/images/bankicon/spdb.png";
+						}else if(tmp.bankName=="平安银行"){
+							stricon="../../../static/images/bankicon/pingan.png";
+						}
+						let jsonstr={
+							"name":tmp.bankName,
+							"desc":tmp.accountNo,
+							"id":tmp.id,
+							"iconsrc":stricon,
+						}
+						arr.push(jsonstr);
+					}
+					_this.prolist=arr;
+				}, function(e) {
+					console.log("queryBankAccout fail:" + JSON.stringify(e))
+				});
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
 	}
 </script>
 
