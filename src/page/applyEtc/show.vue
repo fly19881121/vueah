@@ -10,6 +10,26 @@
 			<img src="../../../static/images/appbanner_qf.jpg" alt style="width: 100%;" />
 		</div>
 
+		<div class="advan-info">
+			<div class="title-line"><span>流程介绍</span></div>
+			<div class="mainshow">
+				<div class="item">
+					<div class="icon"><i class="fa fa-pencil"></i></div>
+					<span>申请办卡</span>
+				</div>
+				<div class="item">
+					<div class="icon"><i class="fa fa-check"></i></div>
+
+					<span>选择产品</span>
+				</div>
+				<div class="item">
+					<div class="icon"><i class="fa fa-file-text-o"></i></div>
+					<span>签订合同</span>
+				</div>
+			</div>
+		</div>
+
+
 		<div class="advantage">
 			<div class="title-line"><span>服务优势</span></div>
 			<p>省钱：超低费率，不限额度，多用多省，联网折扣，发票抵扣</p>
@@ -18,26 +38,12 @@
 			<p>省力：管理升级，数据留存，便于分析决策，实时了解行车消费</p>
 		</div>
 
-		<div class="advantage">
-			<div class="title-line"><span>流程介绍</span></div>
-			<div class="mainshow">
-				<div>
-					<img src="../../../static/images/apply.png" class="imginfomainshow" />
-					<label>申请办卡</label>
-				</div>
-				<div>
-					<img src="../../../static/images/chosepro.png" class="imginfomainshow" /> 选择产品
-				</div>
-				<div>
-					<img src="../../../static/images/cont.png" class="imginfomainshow" /> 签订合同
-				</div>
-			</div>
-		</div>
+
 		<div>
 
 		</div>
 
-		<mt-button size="large" type="primary" class="btn-locshow" v-on:click="next">立即申请</mt-button>
+		<mt-button size="large" type="primary" id="btn-locshow" class="btn-locshow" v-on:click="next">立即申请</mt-button>
 
 	</div>
 </template>
@@ -61,59 +67,79 @@
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
+  .advan-info{
+  	padding:.5rem;
+  }
 	.advantage {
-		padding: 10px 20px;
-		height: 260px;
+		padding: .5rem .5rem 2rem .5em;
+		p{
+			line-height:1.5;
+			font-size:.4rem;
+			text-align:left;
+			margin:.2rem;
+		}
 	}
-	
+
 	.title-line {
 		position: relative;
 		text-align: center;
-		line-height: 30px;
+		margin:0 .5rem .5rem;
+		&:before{
+			content: '';
+			position: absolute;
+			width: 50%;
+			height: 1px;
+			background: #ccc;
+			top: .24rem;
+			left: 25%;
+		}
+		span{
+			background: #f5f6f7;
+			position: relative;
+			z-index: 5;
+			padding: 0 10px;
+			font-size:.5rem;
+		}
 	}
-	
-	.advantage .title-line::before {
-		content: '';
-		position: absolute;
-		width: 50%;
-		height: 1px;
-		background: #ccc;
-		top: 14px;
-		left: 25%;
-	}
-	
-	.advantage .title-line span {
-		background: #fff;
-		position: relative;
-		z-index: 5;
-		padding: 0 10px;
-	}
-	
+
 	.btn-locshow {
 		position: fixed;
 		bottom: 0;
 		z-index: 15;
 	}
-	
+
 	.mainshow {
-		background-color: #fff;
 		width: 100%;
-		/* padding-bottom: 100%; */
-		padding-left: 0.5%;
-		padding-top: 0.5%;
+		padding:0 .5rem;
+		display:flex;
+		box-sizing:border-box;
+		.item{
+			flex:1;
+			.icon{
+				border:1px solid #26a2ff;
+				width:1.6rem;
+				height:1.6rem;
+				border-radius:100%;
+				margin:0 auto;
+				.fa{
+					font-size:1rem;
+					color:#26a2ff;
+					line-height:1.6;
+				}
+			}
+		}
+		span{
+			line-height:.8rem;
+			text-align:center;
+		}
 	}
-	
-	.mainshow>div {
-		width: 15%;
-		border: 1% solid #fff;
-		background-color: #fff;
-		border-radius: 3%;
-		float: left;
-		margin: 1% 5%;
-	}
-	
 	.imginfomainshow {
 		width: 100%;
+	}
+	#btn-locshow{
+		width:calc(100% - 1rem);
+		left:.5rem;
+		bottom:.2rem;
 	}
 </style>

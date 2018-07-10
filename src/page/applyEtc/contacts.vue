@@ -5,21 +5,22 @@
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</router-link>
 		</mt-header>
-		
+
 		<div class="div-loc">
 			<label></label>
 		</div>
-		
+
 		<div class="div-loc">
-			<mt-field placeholder="联系人姓名" v-model="contactsname"></mt-field>
+			<mt-field label="联系人姓名" placeholder="联系人姓名" v-model="contactsname"></mt-field>
+
 		</div>
 
 		<div class="div-loc">
-			<mt-field placeholder="联系人手机号" v-model="contactsphone" class="code-width"></mt-field>
+			<mt-field label="联系人手机号" placeholder="联系人手机号" v-model="contactsphone" class=""></mt-field>
 		</div>
-		
+
 		<div class="div-loc">
-			<mt-button size="large" type="primary" v-on:click="sureback">完成</mt-button>
+			<mt-button size="large" id="btn-locshow" type="primary" v-on:click="sureback">完成</mt-button>
 		</div>
 
 	</div>
@@ -29,11 +30,11 @@
 	export default {
 		name: 'hello',
 		data() {
-			
+
 			let library_id = this.$route.query.library_id;
-			
+
 			return {
-				
+
 				contactsname: '',
 				contactsphone: '',
 				library_id:library_id
@@ -62,13 +63,13 @@
 
 <style>
 	.div-loc {
-		margin-top: 25px;
+		margin:.5rem 0;
 	}
-	
+
 	.code-width {
 		width: 70%;
 	}
-	
+
 	.btn-loc {
 		position: absolute;
 		top: 100px;
@@ -90,5 +91,10 @@
 	}
 	.fa-color {
 		color: blue;
+	}
+
+	#btn-locshow{
+		width:calc(100% - 1rem);
+		margin:.5rem;
 	}
 </style>

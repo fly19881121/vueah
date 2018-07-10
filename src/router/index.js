@@ -40,10 +40,16 @@ Vue.use(Router)
 
 
 
-const routes=[{
+const routes=[
+		// {
+		// 	path: '/',
+		// 	name: 'verified',
+		// 	component: verified
+		// },
+		{
 			path: '/',
-			name: 'verified',
-			component: verified
+			name: 'show',
+			component: show
 		},
 //		{
 //			path: '/login',
@@ -211,19 +217,19 @@ router.beforeEach((to, from, next) => {
 	} else {
 		next()
 	}
-	
-	
-	
+
+
+
 	if(to.meta.allowBack !== undefined) {
 		allowBack = to.meta.allowBack
 	}
 	if(!allowBack) {
 		history.pushState(null, null, location.href)
 	}
-	
-	
-	
-	
+
+
+
+
 	if(to.path !== '/') {
 		indexScrollTop = document.body.scrollTop
 	}

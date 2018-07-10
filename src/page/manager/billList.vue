@@ -16,19 +16,19 @@
 			<mt-tab-container-item id="1">
 				<!--未结清-->
 				<div class="maindivbill" v-for="item in bill1">
-					<div class="div-1">
+					<header>
 						<span>{{item.no}}期</span>
 						<span>{{item.productCate}}产品账单</span>
+					</header>
+					<div class="main">
+						<p><span>产品周期:{{item.dateStart}}--{{item.dateEnd}}</span></p>
+						<p><span>最后还款日:{{item.finalRepayment}}</span></p>
+						<p><span>账单总金额:{{item.currentDateTotal}}</span></p>
 					</div>
-					<div class="div-2">
-						<span>产品周期:{{item.dateStart}}--{{item.dateEnd}}</span>
-						<span>最后还款日:{{item.finalRepayment}}</span>
-						<span>账单总金额:{{item.currentDateTotal}}</span>
-					</div>
-					<div class="div-3">
+					<footer>
 						<span @click="toinfo">查看详情</span>
-						<span @click="torepay">去还款</span>
-					</div>
+						<span @click="torepay" class="text-blue">去还款</span>
+					</footer>
 				</div>
 
 			</mt-tab-container-item>
@@ -36,18 +36,18 @@
 			<mt-tab-container-item id="2">
 				<!--已结清-->
 				<div class="maindivbill" v-for="item in bill2">
-					<div class="div-1">
+					<header>
 						<span>{{item.no}}期</span>
 						<span>{{item.productCate}}产品账单</span>
+					</header>
+					<div class="main">
+						<p><span>产品周期:{{item.dateStart}}--{{item.dateEnd}}</span></p>
+						<p><span>最后还款日:{{item.finalRepayment}}</span></p>
+						<p><span>账单总金额:{{item.currentDateTotal}}</span></p>
 					</div>
-					<div class="div-2">
-						<span>产品周期:{{item.dateStart}}--{{item.dateEnd}}</span>
-						<span>最后还款日:{{item.finalRepayment}}</span>
-						<span>账单总金额:{{item.currentDateTotal}}</span>
-					</div>
-					<div class="div-3">
+					<footer>
 						<span @click="toinfo">查看详情</span>
-					</div>
+					</footer>
 				</div>
 			</mt-tab-container-item>
 
@@ -204,12 +204,7 @@
 				this.$router.push('/billInfo')
 			},
 			torepay(){
-				
 				this.$router.push('/repay')
-				
-				
-				
-				
 			}
 		},
 		beforeCreate: function() {},
@@ -217,48 +212,40 @@
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
 	.maindivbill {
-		width: 80%;
-		/*height: 100px;*/
+		padding:0 .3rem;
+		margin:.5rem;
 		background-color: white;
-		margin-left: 10%;
-		margin-top: 20px;
-		margin-bottom: 20px;
-		border: 1px solid;
 		border-radius: 5px;
-		-moz-box-shadow: 10px 10px 5px #888888;
-		/* 老的 Firefox */
-		box-shadow: 10px 10px 5px #888888;
+		-moz-box-shadow:0px 0px 14px rgba(0,0,0,.2);
+		-webkit-box-shadow:0px 0px 14px rgba(0,0,0,.2);
+		box-shadow:0px 0px 14px rgba(0,0,0,.2);
 	}
-	
-	.div-1 {
-		border-bottom: 1px solid;
-		border-bottom-color: gainsboro;
-		padding: 10px;
+
+	header{
+		border-bottom:1px solid rgba(225,225,225,.6);
+		line-height:1rem;
+		text-align:left;
 	}
-	
-	.div-1 span {
-		font-size: 20px;
+
+	.main{
+		padding:.3rem 0;
+		text-align:left;
+		border-bottom:1px solid rgba(225,225,225,.6);
+		p{
+			line-height:.8rem;
+		}
 	}
-	.div-2{
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		border-bottom: 1px solid;
-		border-bottom-color: gainsboro;
-	}
-	.div-2 span {
-		font-size: 15px;
-		float: left;
-		margin-top: 5px;
-		margin-bottom: 5px;
-	}
-	.div-3 {
-		padding: 10px;
-	}
-	.div-3 span{
-		font-size: 18px;
-		color: #26a2ff;
+	footer{
+		display:flex;
+		width:100%;
+		span{
+			flex:1;
+			line-height:1rem;
+			&:nth-child(n+2){
+				border-left:1px solid rgba(225,225,225,.6);
+			}
+		}
 	}
 </style>

@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Mint from 'mint-ui'
-import FastClick from 'fastclick'
+// import FastClick from 'fastclick'
 
 import 'mint-ui/lib/style.css'
 import 'font-awesome/css/font-awesome.min.css'
@@ -16,7 +16,7 @@ Vue.use(Mint)
 import func from '../static/js/func.js'
 Vue.use(func);
 
-FastClick.attach(document.body)
+// FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 
@@ -68,7 +68,7 @@ window.addEventListener('popstate', function (e) {
 //	alert("xyz")
 //	window.history.pushState('forward', null, '#');
 //  window.history.forward(1);
-	
+
 	let path=location.href.split("/");
 	let flag=path[path.length-1];
 	if(flag=="home"||flag==""){

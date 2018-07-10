@@ -1,17 +1,19 @@
 <template>
 	<div>
-		<mt-header title="账单">
+		<mt-header title="账单明细">
 			<router-link to="/" slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</router-link>
 		</mt-header>
-		<div class="div-0" v-for="item in items">
-			<div class="div-title">车牌号 {{item.cardNO}}</div>
-			<div class="div-info"> 出口:{{item.out}} {{item.outTime}}</div>
-			<div class="div-info"> 入口:{{item.entry}} {{item.entryTime}}</div>
-			<div class="div-info"> 金额:{{item.total}}</div>
+		<div class="itemlist" v-for="item in items">
+			<header>车牌号 {{item.cardNO}}</header>
+			<div class="main">
+				<p>出口:{{item.out}} {{item.outTime}}</p>
+				<p>入口:{{item.entry}} {{item.entryTime}}</p>
+				<p>金额:{{item.total}}</p>
+			</div>
 		</div>
-		
+
 		<div class="div-info">
 			<div class="div-info-1">
 				{{total}}
@@ -100,38 +102,42 @@
 	}
 </script>
 
-<style>
-	.div-title {
-		font-size: 20px;
-		border-bottom: 1px solid;
-		border-bottom-color: gainsboro;
-		margin: 10px;
+<style lang="scss" scoped>
+	.mint-header-title{
+		text-align:center;
 	}
-	.div-info{
-		font-size: 18px;
-		margin: 10px;
-	}
-	.div-0 {
-		width: 80%;
-		/*height: 100px;*/
+  .itemlist{
+  	padding:0 .3rem;
+		margin:.5rem;
 		background-color: white;
-		margin-left: 10%;
-		margin-top: 20px;
-		margin-bottom: 20px;
-		border: 1px solid;
 		border-radius: 5px;
-		-moz-box-shadow: 10px 10px 5px #888888;
-		/* 老的 Firefox */
-		box-shadow: 10px 10px 5px #888888;
+		-moz-box-shadow:0px 0px 14px rgba(0,0,0,.2);
+		-webkit-box-shadow:0px 0px 14px rgba(0,0,0,.2);
+		box-shadow:0px 0px 14px rgba(0,0,0,.2);
 	}
-	.div-info{
-		display: flex;
+	header{
+		border-bottom:1px solid rgba(225,225,225,.6);
+		line-height:1rem;
+		text-align:left;
 	}
-	.div-info-1{
-		width: 35%;
-		margin-top: 10px;
+
+	.main{
+		padding:.3rem 0;
+		text-align:left;
+		border-bottom:1px solid rgba(225,225,225,.6);
+		p{
+			line-height:.8rem;
+		}
 	}
-	.footer-btn{
-		width: 60%;
+	footer{
+		display:flex;
+		width:100%;
+		span{
+			flex:1;
+			line-height:1rem;
+			&:nth-child(n+2){
+				border-left:1px solid rgba(225,225,225,.6);
+			}
+		}
 	}
 </style>

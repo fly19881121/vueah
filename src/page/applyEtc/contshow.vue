@@ -10,7 +10,7 @@
 		</div>
 		<canvas v-for="page in pages" :id="'the-canvas'+page" :key="page"></canvas>
 		<div v-if="!loadding">
-			<mt-button size="large" type="primary" class="button-al" v-on:click="submit">我同意以上合同要求</mt-button>
+			<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="submit">我同意以上合同要求</mt-button>
 		</div>
 	</div>
 </template>
@@ -82,9 +82,13 @@
 	}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	canvas {
 		display: block;
 		border-bottom: 1px solid black;
 	}
+	#button-al{
+  	width:calc(100% - 1rem);
+  	margin:.5rem auto;
+  }
 </style>
