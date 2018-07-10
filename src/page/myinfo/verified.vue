@@ -172,14 +172,10 @@
 				divgereninfo: false, //个人认证中个人详细信息详情div显隐
 				divgereninfofan: false, //个人认证中个人详细信息详情div显隐
 				divgeren: false, //个人认证div显隐
-<<<<<<< HEAD
+
 				picIdZheng: '../../../static/images/prepic.png', //身份证正面照片
 				picIdFan: '../../../static/images/unprepic.png', //身份证反面照片
-=======
-				picIdZheng: '../../../static/images/addpic.png', //身份证正面照片
-				picIdFan: '../../../static/images/addpic.png', //身份证反面照片
 
->>>>>>> b2c7803493270316acf84f38abf235c9c2bceacb
 				birdate: '请选择', //出生日期
 				sfzname: "", //姓名
 				sfzsex: "", //身份证性别
@@ -484,27 +480,7 @@
 					"productSeries": "24",
 					"productType": "3"
 				}
-<<<<<<< HEAD
 
-//				var instance = axios.create({
-//					headers: {
-//						'content-type': 'application/x-www-form-urlencoded'
-//					}
-//				});
-//				instance.post('dcapi/loan/queryLoanProduct', param).then(res => res.data);
-//
-//
-//
-//
-//
-//				return;
-
-
-
-
-
-=======
->>>>>>> b2c7803493270316acf84f38abf235c9c2bceacb
 				_this.$ajaxGet('api/config/querySystemConfig', param, function(res) {
 
 					console.log("suc:" + JSON.stringify(res))
