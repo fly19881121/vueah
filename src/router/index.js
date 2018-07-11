@@ -23,7 +23,7 @@ import base from '@/components/base.vue' //申请成功
 import uploadBankState from '@/page/applyEtc/uploadBankState' //
 import uploadCarRelation from '@/page/applyEtc/uploadCarRelation' //
 import uploadCreditReport from '@/page/applyEtc/uploadCreditReport' //
-
+import choseBankName from '@/page/applyEtc/choseBankName' //
 
 
 
@@ -195,6 +195,11 @@ const routes=[
 			path: '/uploadCreditReport',
 			name: 'uploadCreditReport',
 			component: uploadCreditReport
+		},
+		{
+			path: '/choseBankName',
+			name: 'choseBankName',
+			component: choseBankName
 		}
 	]
 

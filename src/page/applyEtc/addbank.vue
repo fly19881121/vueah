@@ -15,7 +15,9 @@
 		</div>
 
 		<div @click="sheetbankname = true">
-			<mt-field label="开户银行" v-model="bankname" placeholder="请选择开户行"></mt-field>
+			<mt-field label="开户银行" v-model="bankname" placeholder="请选择开户行">
+				<span><i class="fa fa-angle-right"></i></span>
+			</mt-field>
 		</div>
 
 		<div>
@@ -82,7 +84,6 @@
 						}
 						console.log("confirmBind参数:" + JSON.stringify(paramsub))
 						_this.$ajaxPost('/api/payment/confirmBind', paramsub, function(ressub) {
-
 							console.log("confirmBind suc:" + JSON.stringify(ressub))
 							_this.$router.push('/addbanklist')
 						}, function(esub) {

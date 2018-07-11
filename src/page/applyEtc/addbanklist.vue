@@ -36,7 +36,7 @@
 		},
 		methods: {
 			handleClose: function(e) {
-				this.$router.go(-1); //返回上一层
+				_this.$router.push('/apply')
 			},
 			more() {
 				this.$router.push('/addbank')
