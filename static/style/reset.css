@@ -166,3 +166,8 @@ body .mint-checklist-label{
   text-align:left;
 }
 
+.loading{
+    text-align:center;
+    margin-top:2rem;
+}
+

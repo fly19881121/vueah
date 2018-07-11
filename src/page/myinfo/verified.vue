@@ -5,7 +5,7 @@
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</router-link>-->
 		</mt-header>
-		<div v-if="loadding">
+		<div v-if="loadding" class="loading">
 			<img src="../../../static/images/loading.gif" />
 		</div>
 		<div v-if="divchose">
@@ -24,7 +24,7 @@
 				</div>
 				<p>请上传身份证人面像</p>
 				<div class="btn-chose">
-					<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpicId">上传</mt-button>
+					<mt-button size="small" type="primary" class="submit_img" v-on:click="uploadpicId">上传</mt-button>
 				</div>
 			</div>
 			<div class="idpic">
@@ -35,9 +35,9 @@
 					<input type="file" ref="fileIdFan" v-on:change="getpicIdFan">
 				</div>
 				<p>请上传身份证国徽像</p>
-				<span class="btn-chose">
-					<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpicidfan">上传</mt-button>
-				</span>
+				<div class="btn-chose">
+					<mt-button size="small" type="primary" class="submit_img" v-on:click="uploadpicidfan">上传</mt-button>
+				</div>
 			</div>
 			<div v-if="divgereninfo" style="margin-top: 20px;">
 				<mt-field label="姓名" v-model="sfzname"></mt-field>
@@ -59,12 +59,12 @@
 		</div>
 
 		<div v-if="divqiye">
-			<div v-if="divqiye1">
-				<mt-field label="企业姓名" v-model="proname"></mt-field>
-				<mt-field label="营业执照号" v-model="proname"></mt-field>
-				<mt-field label="法人姓名" v-model="proname"></mt-field>
-				<mt-field label="法人身份证号" v-model="proname"></mt-field>
-				<mt-field label="操作者姓名" v-model="proname"></mt-field>
+			<div v-if="divqiye1" class="company">
+				<mt-field placeholder="请输入企业姓名" label="企业姓名" v-model="proname"></mt-field>
+				<mt-field placeholder="请输入企业营业执照号" label="营业执照号" v-model="proname"></mt-field>
+				<mt-field placeholder="请输入企业法人姓名" label="法人姓名" v-model="proname"></mt-field>
+				<mt-field placeholder="请输入法人身份证号" label="法人身份证号" v-model="proname"></mt-field>
+				<mt-field placeholder="请输入经办人姓名" label="经办人姓名" v-model="proname"></mt-field>
 				<mt-button size="large" type="primary" class="button-al" v-on:click="qiyenext1">下一步</mt-button>
 			</div>
 			<div v-if="divqiye2">
@@ -578,14 +578,28 @@
 		height:100%;
 	}
 
+
+	.btn-chose{
+		width:70%;
+		margin:0 auto;
+	}
+
+	.submit_img{
+		width:100%;
+	}
+
+
+
+	.company{
+		>a{
+			border-bottom:1px solid rgba(225,225,225,1);
+		}
+	}
+
 	.img-loc {
 		width:100%;
 		display:block;
 		margin:0 auto;
-	}
-
-	.btn-chose {
-
 	}
 
 	.content {
