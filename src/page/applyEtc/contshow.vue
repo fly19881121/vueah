@@ -6,7 +6,7 @@
 			</router-link>
 		</mt-header>
 		<div v-if="loadding">
-			<img src="../../../static/images/loading.gif"/>
+			<img src="../../../static/images/loading.gif" />
 		</div>
 		<canvas v-for="page in pages" :id="'the-canvas'+page" :key="page"></canvas>
 		<div v-if="!loadding">
@@ -72,7 +72,41 @@
 				this.$router.go(-1); //返回上一层
 			},
 			submit() {
-					this.$router.push('/suc')
+				let _this = this;
+				let par = {
+					"applyNo": _this.getlocalstory("cano")
+				}
+				console.log("creditlineApplyAfter 申请："+JSON.stringify(par))
+				_this.$ajaxPost('/api/creditline/creditlineApplyAfter', par, function(res) {
+					console.log("creditlineApplyAfter suc:"+JSON.stringify(res))
+					if(!res.data.success) {
+						alert("申请失败，请重试");
+						return;
+					}
+					if(_this.getlocalstory("caflag")) {
+						//触发风控
+						let parmer = {
+							"method": "aws.mobile.cg.etc.vehicle.risk.trigger",
+							"param": {
+								"creditApplyNo": _this.getlocalstory("cano")
+							}
+						}
+						_this.$ajaxPost('/router/local/rest ', parmer, function(res) {
+							console.log("trigger suc:" + JSON.stringify(res))
+							if(!res.data.success) {
+								alert("申请失败，请重试");
+								return;
+							}
+							_this.$router.push('/suc')
+						}, function(e) {
+							console.log("trigger fail:" + JSON.stringify(e))
+						});
+					}else{
+						_this.$router.push('/suc')
+					}
+				}, function(e) {
+					console.log("creditlineApplyAfter fail:" + JSON.stringify(e))
+				});
 			}
 		},
 		mounted() {
@@ -87,8 +121,9 @@
 		display: block;
 		border-bottom: 1px solid black;
 	}
-	#button-al{
-  	width:calc(100% - 1rem);
-  	margin:.5rem auto;
-  }
+	
+	#button-al {
+		width: calc(100% - 1rem);
+		margin: .5rem auto;
+	}
 </style>

@@ -197,7 +197,7 @@
 						"registDate": _this.redate
 					}
 				}
-
+				console.log("vehicle.add sub:"+JSON.stringify(param))
 				_this.$ajaxPost('/router/local/rest', param, function(res) {
 
 					console.log("suc:" + JSON.stringify(res))

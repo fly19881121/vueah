@@ -20,6 +20,7 @@ import contshow from '@/page/applyEtc/contshow' //etc申请查看合同模板
 import addbank from '@/page/applyEtc/addbank' //
 import suc from '@/components/suc.vue' //申请成功
 import base from '@/components/base.vue' //申请成功
+import waiting from '@/components/waiting.vue' //等待
 import uploadBankState from '@/page/applyEtc/uploadBankState' //
 import uploadCarRelation from '@/page/applyEtc/uploadCarRelation' //
 import uploadCreditReport from '@/page/applyEtc/uploadCreditReport' //
@@ -200,6 +201,11 @@ const routes=[
 			path: '/choseBankName',
 			name: 'choseBankName',
 			component: choseBankName
+		},
+		{
+			path: '/waiting',
+			name: 'waiting',
+			component: waiting
 		}
 	]
 

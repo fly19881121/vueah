@@ -8,7 +8,7 @@
 		</mt-header>
 
 		<div class="maindivbank" v-for="item in prolist" v-bind:key="item.id">
-			<div class="div-all" @click='back(item.name)'>
+			<div class="div-all" @click='back(item)'>
 					<div>
 						<img :src="item.iconsrc" class="img-loc" />
 					</div>
@@ -43,7 +43,8 @@
 			},
 			back(par){
 				let _this=this;
-				_this.setlocalstory("repaybank",par);
+				_this.setlocalstory("repaybank",par.name);
+				_this.setlocalstory("repaybankid",par.id);
 				_this.$router.push('/apply')
 			}
 			

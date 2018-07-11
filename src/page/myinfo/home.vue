@@ -71,8 +71,9 @@
 		created(){
 			let _this=this;
 			/*讲获取到的个人信息存入缓存中使用*/  //17891
-			_this.setlocalstory("userId","2");
-			_this.setlocalstory("token","2_30ed60bc6a4a835a2f1d6c6d3300af76");
+			_this.setlocalstory("userId","17931");
+			_this.setlocalstory("customerType","2");
+			_this.setlocalstory("token","17860_a7bde526cef1cfb42838be8c4bea98dc");
 			
 			
 			

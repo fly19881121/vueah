@@ -26,9 +26,10 @@
 				this.$router.go(-1); //返回上一层
 			},
 			test() {
-				let token = "2_85f4d6048a53875cb590f7758330057b";
-				window.localStorage.setItem("token", token);
 				let _this = this;
+				let token = "17801_045f6c6f991341386da578955a1dafff";
+				//alert(_this.$getHost());
+				_this.setlocalstory("token",token);
 				let param = {
 					"objectName": "cus_customer_cer_per",
 					"objectId": "17891"
@@ -38,12 +39,12 @@
 
 				//$ajaxPost
 				//$ajaxGet
-				_this.$ajaxPost('/api/customer/getCustomerAnxinSign', param, function(res) {
+				_this.$ajaxGet('/dcapi/defineForm/getDefineTemplateDetail/230', "", function(res) {
 
-					console.log("suc:" + JSON.stringify(res))
+					console.log("224 suc:" + JSON.stringify(res))
 
 				}, function(e) {
-					console.log("fail:" + JSON.stringify(e))
+					console.log("224 fail:" + JSON.stringify(e))
 				});
 
 			}

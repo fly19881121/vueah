@@ -41,10 +41,6 @@
 			more() {
 				let _this = this;
 				_this.$router.push('/addcar')
-			},
-			sureback() {
-				this.setlocalstory("carname", "已选两辆")
-				this.$router.go(-1); //返回上一层
 			}
 		},
 		created() {
@@ -58,7 +54,7 @@
 			}
 			_this.$ajaxPost('/router/local/rest ', param, function(res) {
 
-				//console.log("suc:" + JSON.stringify(res))
+				console.log("car.query  suc:" + JSON.stringify(res))
 				
 				let listCar=res.data.result;
 				let arr=[];
@@ -73,6 +69,7 @@
 					arr.push(jsonStr)
 				}
 				_this.options4=arr;
+				_this.setlocalstory("carTotal",arr.length);
 				
 			}, function(e) {
 				console.log("fail:" + JSON.stringify(e))
