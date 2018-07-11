@@ -44,7 +44,7 @@
 			back(par){
 				let _this=this;
 				_this.setlocalstory("repaybank",par);
-				this.$router.go(-1); //返回上一层
+				_this.$router.push('/apply')
 			}
 			
 		},
