@@ -27,21 +27,19 @@
 			},
 			test() {
 				let _this = this;
-				let token = "17801_045f6c6f991341386da578955a1dafff";
+				let token = "17860_ba92d540c9cb0be79dad26d5b8061ffe";
 				//alert(_this.$getHost());
-				_this.setlocalstory("token",token);
-				let param = {
-					"objectName": "cus_customer_cer_per",
-					"objectId": "17891"
-				}
+				//_this.setlocalstory("token",token);
+				let param = {	"customerType":	1 }
+
 
 				//api/config/querySystemConfig true
 
 				//$ajaxPost
 				//$ajaxGet
-				_this.$ajaxGet('/dcapi/defineForm/getDefineTemplateDetail/230', "", function(res) {
+				_this.$ajaxPost('/api/customer/getCustomerAnxinSign', param, function(res) {
 
-					console.log("224 suc:" + JSON.stringify(res))
+					console.log("base suc:" + JSON.stringify(res))
 
 				}, function(e) {
 					console.log("224 fail:" + JSON.stringify(e))

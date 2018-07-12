@@ -70,17 +70,6 @@
 		},
 		created(){
 			let _this=this;
-			/*讲获取到的个人信息存入缓存中使用*/  //17891
-			_this.setlocalstory("userId","17931");
-			_this.setlocalstory("customerType","2");
-			_this.setlocalstory("token","17860_a7bde526cef1cfb42838be8c4bea98dc");
-			
-			
-			
-			
-			
-			
-			
 		}
 	}
 	

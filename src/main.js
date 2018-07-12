@@ -44,7 +44,6 @@ const hosturl="https://ladybird.awservice.net";
 Vue.prototype.$getHost = function (){
 	return hosturl;
 }
-
 Vue.prototype.$ajaxGet = function(url, parmer,success,fail){
 	axios({
 			method: 'get',
@@ -73,10 +72,6 @@ Vue.prototype.$ajaxPost = function(url, parmer,success,fail){
 }
 
 window.addEventListener('popstate', function (e) {
-//	alert("xyz")
-//	window.history.pushState('forward', null, '#');
-//  window.history.forward(1);
-
 	let path=location.href.split("/");
 	let flag=path[path.length-1];
 	if(flag=="home"||flag==""){
@@ -93,8 +88,6 @@ window.addEventListener('popstate', function (e) {
 		}
 		window.history.pushState(state, "title", "#");
 	}
-//	window.history.go(1);
-//操作
 });
 
 /* eslint-disable no-new */

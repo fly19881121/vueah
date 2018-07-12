@@ -9,7 +9,7 @@
 			<img src="../../../static/images/loading.gif" />
 		</div>
 		<div v-if="!loadding" class="maindiv" v-for="item in prolist" v-bind:key="item.creditFormId">
-			<router-link :to="{ path: '/productinfo',query:{library_id:item.creditFormId} }">
+			<router-link :to="{ path: '/productinfo',query:{item:item} }">
 				<div class="divfir">
 					<label class="lable-title">{{item.productName}}</label>
 					<span><i class="fa fa-angle-right"></i></span>

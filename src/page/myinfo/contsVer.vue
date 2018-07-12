@@ -8,7 +8,10 @@
 		<div v-if="loadding">
 			<img src="../../../static/images/loading.gif" />
 		</div>
+		<!--<canvas v-for="page in pages" :id="'the-canvas'+page" :key="page"></canvas>-->
+
 		<iframe :src="pdfurl" class="ifram-show"></iframe>
+
 		<div v-if="!loadding">
 			<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="submit">我同意以上合同要求</mt-button>
 		</div>
@@ -25,7 +28,7 @@
 				pdfDoc: null,
 				loadding: true,
 				pages: 0,
-				pdfurl:""
+				pdfurl: ""
 			}
 		},
 		methods: {
@@ -35,39 +38,19 @@
 			submit() {
 				let _this = this;
 				let par = {
-					"applyNo": _this.getlocalstory("cano")
+					"customerNo": _this.$route.query.customerNo
 				}
-				console.log("creditlineApplyAfter 申请："+JSON.stringify(par))
-				_this.$ajaxPost('/api/creditline/creditlineApplyAfter', par, function(res) {
-					console.log("creditlineApplyAfter suc:"+JSON.stringify(res))
-					if(!res.data.success) {
-						alert("申请失败，请重试");
-						return;
-					}
-					if(_this.getlocalstory("caflag")) {
-						//触发风控
-						let parmer = {
-							"method": "aws.mobile.cg.etc.vehicle.risk.trigger",
-							"param": {
-								"creditApplyNo": _this.getlocalstory("cano")
-							}
-						}
-						_this.$ajaxPost('/router/local/rest ', parmer, function(res) {
-							console.log("trigger suc:" + JSON.stringify(res))
-							if(!res.data.success) {
-								alert("申请失败，请重试");
-								return;
-							}
-							_this.$router.push('/suc')
-						}, function(e) {
-							console.log("trigger fail:" + JSON.stringify(e))
-						});
-					}else{
-						_this.$router.push('/suc')
-					}
+				console.log(JSON.stringify(par))
+				_this.$ajaxPost('/api/customer/addCustomerAuthInfoAfter', par, function(res) {
+
+					console.log("base suc:" + JSON.stringify(res))
+					_this.$router.push('/home');
+					pushHistory();
+
 				}, function(e) {
-					console.log("creditlineApplyAfter fail:" + JSON.stringify(e))
+					console.log("224 fail:" + JSON.stringify(e))
 				});
+
 			}
 		},
 		mounted() {
@@ -75,6 +58,14 @@
 			this.pdfurl = url;
 			this.loadding = false
 		}
+	}
+
+	function pushHistory() {
+		var state = {
+			title: "title",
+			url: "/home"
+		}
+		window.history.pushState(state, "title", "#");
 	}
 </script>
 
@@ -88,6 +79,7 @@
 		width: calc(100% - 1rem);
 		margin: .5rem auto;
 	}
+	
 	.ifram-show {
 		width: 100%;
 		height: 300px;
