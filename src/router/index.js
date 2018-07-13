@@ -41,8 +41,8 @@ const routes = [
 
 	{
 		path: '/',
-		name: 'verified',
-		component: verified
+		name: 'index',
+		component: index
 	},
 	{
 		path: '/home',
