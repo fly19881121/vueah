@@ -1,17 +1,24 @@
 <template>
+<div>
+{{hello}}
+</div>
 </template>
 
 <script>
+	alert("index al")
 	export default {
 		name: 'hello',
 		data() {
-			return {}
+			return {
+				hello:"hello world!"
+			}
 		},
 		methods: {
 
 		},
 		mounted() {
 			console.log("window")
+			alert("index")
 			let _this = this;
 			try {
 				
@@ -63,10 +70,9 @@
 				//			window.sessionStorage.setItem('systemVersion', _mobile.systemVersion);
 				//			window.sessionStorage.setItem('SUPPORTNATIVEPAY', _mobile.supportNativePay);
 			} catch(e) {
+				alert("未获取到用户信息")
 				console.log('未获取到用户信息');
-
 			}
-
 		}
 	}
 </script>
