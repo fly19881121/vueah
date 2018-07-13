@@ -6,17 +6,16 @@
 			</router-link>
 		</mt-header>
 		<div class="applymain">
-			<div id="" v-for="item in items">
-				<mt-field label="银行名称" v-model="item.name" readonly="readonly"></mt-field>
-			</div>
-			
+			<mt-radio
+				title="选择开户行"
+				v-model="value"
+				:options="items">
+			</mt-radio>
 
-			
 
-			
-
+			<mt-button size="large" id="button-al" type="primary" class="button-al" v-on:click="next">立即申请</mt-button>
 		</div>
-		
+
 
 	</div>
 </template>
@@ -26,8 +25,24 @@
 		name: 'hello',
 		data() {
 			return {
-				items: [{name:"asd"},{name:"msd"}],
-				total: "10086.00"
+				items: [
+					{
+						label: '招商银行',
+						value: '招商银行',
+					},
+					{
+						label: '建设银行',
+						value: '建设银行',
+					},
+					{
+						label: '农业银行',
+						value: '农业银行',
+					},
+					{
+						label: '工商银行',
+						value: '工商银行',
+					}
+				]
 			}
 		},
 		methods: {
@@ -56,7 +71,7 @@
 			}
 		}
 	}
-	
+
 	#button-al {
 		width: calc(100% - 1rem);
 		margin: .5rem auto;
