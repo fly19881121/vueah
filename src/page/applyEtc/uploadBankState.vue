@@ -5,17 +5,14 @@
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</router-link>
 		</mt-header>
-		<div style="height: 105px;">
-			<span class="fileinput-button">
-	            <span>
-	            	<img :src="addpicsrc" class="img-loc"/>
-	            </span>
-			<input type="file" ref="file" v-on:change="getpic">
-			</span>
-			<span>
-				<label>请选择银行卡流水账单</label>
-			</span>
-
+		<div class="idpic">
+			<div class="fileinput-button">
+        <span>
+        	<img :src="addpicsrc" class="img-loc"/>
+        </span>
+				<input type="file" ref="file" v-on:change="getpic">
+			</div>
+			<p>请选择银行卡流水账单</p>
 		</div>
 		<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic">确定添加</mt-button>
 	</div>
@@ -29,7 +26,6 @@
 				addpicsrc: "../../../static/images/addpic.png",
 				filePic: "",
 				filePath: ""
-
 			}
 		},
 		methods: {
@@ -71,34 +67,33 @@
 	}
 </script>
 
-<style>
-	.fileinput-button {
-		position: relative;
-		display: inline-block;
-		overflow: hidden;
-		float: left;
+<style lang="scss" scoped>
+	.button-al{
+		width:calc(100% - 1rem);
+		margin:.5rem auto;
 	}
-	
+	.idpic{
+		margin:.5rem 0;
+		.fileinput-button{
+			display:block;
+			width:70%;
+			border:1px solid #26a2ff;
+			background:#fff;
+			margin:0 auto;
+			position:relative;
+			border-radius:5px;
+		}
+		p{
+			text-align:center;
+			line-height:1rem;
+		}
+	}
 	.fileinput-button input {
-		line-height: 30px;
 		position: absolute;
 		right: 0px;
 		top: 0px;
-		line-height: 100px;
 		opacity: 0;
-		-ms-filter: 'alpha(opacity=0)';
-	}
-	
-	.img-loc {
-		width: 100px;
-		height: 100px;
-	}
-	
-	.btn-chose {
-		position: absolute;
-		z-index: 2;
-		margin-top: 30px;
-		width: 65%;
-		right: 10px;
+		width:100%;
+		height:100%;
 	}
 </style>
