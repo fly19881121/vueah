@@ -3,7 +3,7 @@
 		<mt-header title="账单">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
-			</router-link>
+			</div>
 		</mt-header>
 
 		<mt-navbar v-model="selected">

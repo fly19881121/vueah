@@ -3,7 +3,7 @@
 		<mt-header title="ETC办卡">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
-			</router-link>
+			</div>
 		</mt-header>
 		<div v-if="loadding">
 			<img src="../../../static/img/loading.gif" />

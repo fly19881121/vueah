@@ -3,7 +3,7 @@
 		<mt-header title="还款">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
-			</router-link>
+			</div>
 		</mt-header>
 		<div class="pay">
 			<mt-field label="还款人姓名" v-model="proname" readonly="readonly"></mt-field>

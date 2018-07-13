@@ -3,7 +3,7 @@
 		<mt-header title="银行卡列表">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
-			</router-link>
+			</div>
 			<mt-button slot="right" @click="more">添加账户</mt-button>
 		</mt-header>
 

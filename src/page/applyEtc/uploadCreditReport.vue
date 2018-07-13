@@ -3,7 +3,7 @@
 		<mt-header title="上传个人征信报告">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
-			</router-link>
+			</div>
 		</mt-header>
 		<div class="idpic">
 			<div class="fileinput-button">

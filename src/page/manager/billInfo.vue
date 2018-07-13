@@ -3,7 +3,7 @@
 		<mt-header title="账单明细">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
-			</router-link>
+			</div>
 		</mt-header>
 		<div class="itemlist" v-for="item in items">
 			<header>车牌号 {{item.cardNO}}</header>
