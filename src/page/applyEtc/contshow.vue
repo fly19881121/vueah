@@ -6,7 +6,7 @@
 			</router-link>
 		</mt-header>
 		<div v-if="loadding">
-			<img src="../../../static/images/loading.gif" />
+			<img src="../../../static/img/loading.gif" />
 		</div>
 		<iframe :src="pdfurl" class="ifram-show"></iframe>
 		<div v-if="!loadding">

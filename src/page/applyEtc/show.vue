@@ -1,13 +1,13 @@
 <template>
 	<div>
 		<mt-header title="ETC办卡">
-			<router-link to="/" slot="left">
-				<mt-button icon="back" @click="handleClose">返回</mt-button>
+			<router-link to="/home" slot="left">
+				<mt-button icon="back">返回</mt-button>
 			</router-link>
 		</mt-header>
 
 		<div style="width: 100%;">
-			<img src="../../../static/images/appbanner_qf.jpg" alt style="width: 100%;" />
+			<img src="../../../static/img/appbanner_qf.jpg" alt style="width: 100%;" />
 		</div>
 
 		<div class="advan-info">
@@ -29,7 +29,6 @@
 			</div>
 		</div>
 
-
 		<div class="advantage">
 			<div class="title-line"><span>服务优势</span></div>
 			<p>省钱：超低费率，不限额度，多用多省，联网折扣，发票抵扣</p>
@@ -37,7 +36,6 @@
 			<p>省心：纯信用、无抵押，后付费，账单统一，便于管理</p>
 			<p>省力：管理升级，数据留存，便于分析决策，实时了解行车消费</p>
 		</div>
-
 
 		<div>
 
@@ -68,24 +66,25 @@
 </script>
 
 <style lang="scss" scoped>
-  .advan-info{
-  	padding:.5rem;
-  }
+	.advan-info {
+		padding: .5rem;
+	}
+	
 	.advantage {
 		padding: .5rem .5rem 2rem .5em;
-		p{
-			line-height:1.5;
-			font-size:.4rem;
-			text-align:left;
-			margin:.2rem;
+		p {
+			line-height: 1.5;
+			font-size: .4rem;
+			text-align: left;
+			margin: .2rem;
 		}
 	}
-
+	
 	.title-line {
 		position: relative;
 		text-align: center;
-		margin:0 .5rem .5rem;
-		&:before{
+		margin: 0 .5rem .5rem;
+		&:before {
 			content: '';
 			position: absolute;
 			width: 50%;
@@ -94,53 +93,55 @@
 			top: .24rem;
 			left: 25%;
 		}
-		span{
+		span {
 			background: #f5f6f7;
 			position: relative;
 			z-index: 5;
 			padding: 0 10px;
-			font-size:.5rem;
+			font-size: .5rem;
 		}
 	}
-
+	
 	.btn-locshow {
 		position: fixed;
 		bottom: 0;
 		z-index: 15;
 	}
-
+	
 	.mainshow {
 		width: 100%;
-		padding:0 .5rem;
-		display:flex;
-		box-sizing:border-box;
-		.item{
-			flex:1;
-			text-align:center;
-			.icon{
-				border:1px solid #26a2ff;
-				width:1.6rem;
-				height:1.6rem;
-				border-radius:100%;
-				margin:0 auto;
-				text-align:center;
-				.fa{
-					font-size:1rem;
-					color:#26a2ff;
-					line-height:1.6;
+		padding: 0 .5rem;
+		display: flex;
+		box-sizing: border-box;
+		.item {
+			flex: 1;
+			text-align: center;
+			.icon {
+				border: 1px solid #26a2ff;
+				width: 1.6rem;
+				height: 1.6rem;
+				border-radius: 100%;
+				margin: 0 auto;
+				text-align: center;
+				.fa {
+					font-size: 1rem;
+					color: #26a2ff;
+					line-height: 1.6;
 				}
 			}
 		}
-		span{
-			line-height:1.2rem;
+		span {
+			line-height: 1.2rem;
 		}
 	}
+	
 	.imginfomainshow {
 		width: 100%;
 	}
-	#btn-locshow{
-		width:calc(100% - 1rem);
-		left:.5rem;
-		bottom:.2rem;
+	
+	#btn-locshow {
+		width: calc(100% - 1rem);
+		left: .5rem;
+		bottom: .2rem;
 	}
 </style>

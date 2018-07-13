@@ -6,7 +6,7 @@
 			</router-link>
 		</mt-header>
 		<div v-if="loadding">
-			<img src="../../../static/images/loading.gif" />
+			<img src="../../../static/img/loading.gif" />
 		</div>
 		<!--<canvas v-for="page in pages" :id="'the-canvas'+page" :key="page"></canvas>-->
 

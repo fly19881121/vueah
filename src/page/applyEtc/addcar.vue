@@ -63,7 +63,7 @@
 				carinfoflag: false,
 
 				carname: "请选择车辆 ",
-				addpicsrc: "../../../static/images/prepic.png",
+				addpicsrc: "../../../static/img/prepic.png",
 				dateTime: '',
 
 				startDate: new Date(),

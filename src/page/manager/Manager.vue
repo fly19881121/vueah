@@ -8,7 +8,7 @@
     </mt-header>
     <div class="user-info clearfix">
       <div class="avtor-icon">
-        <img src="../../../static/images/avtor.jpg" alt="">
+        <img src="../../../static/img/avtor.jpg" alt="">
       </div>
       <div class="user-des">
         <h6>{{user.name}}</h6>

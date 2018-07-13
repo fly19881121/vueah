@@ -9,18 +9,31 @@
 		</div>
 		<div class="div-banner">
 			<mt-swipe :auto="0" :show-indicators="false">
-				<mt-swipe-item v-for="item in picinfo" v-bind:key="item.id">
-					<img :src="item.picsrc" width="100%">
+				<mt-swipe-item>
+					<img src="../../../static/img/banner01.jpg" width="100%">
 				</mt-swipe-item>
+				<mt-swipe-item>
+					<img src="../../../static/img/banner01.jpg" width="100%">
+				</mt-swipe-item>
+				<mt-swipe-item>
+					<img src="../../../static/img/banner01.jpg" width="100%">
+				</mt-swipe-item>
+				
 			</mt-swipe>
 		</div>
 
 		<div class="main">
-			<div v-for="item in menu" v-bind:key="item.id">
-				<router-link :to="{ path: item.jumpUrl }">
-					<img :src="item.icon" class="imginfo" />
+			<div>
+				<router-link :to="{ path: '../applyEtc' }">
+					<img src="../../../static/img/ETC.png" class="imginfo" />
 				</router-link>
-				{{item.name}}
+				etc办卡
+			</div>
+			<div>
+				<router-link :to="{ path: '' }">
+					<img src="../../../static/img/calculator.png" class="imginfo" />
+				</router-link>
+				还款计算器
 			</div>
 		</div>
 	</div>
@@ -30,32 +43,8 @@
 		name: 'hello',
 		data() {
 			return {
-				picinfo: [{
-					picsrc: "../../../static/images/banner01.jpg",
-					id: "01"
-				}, {
-					picsrc: "../../../static/images/banner01.jpg",
-					id: "011"
-				}, {
-					picsrc: "../../../static/images/banner01.jpg",
-					id: "0111"
-				}, {
-					picsrc: "../../../static/images/banner01.jpg",
-					id: "01111"
-				}],
-				menu: [{
-					name: "etc办卡",
-					jumpUrl: "../applyEtc",
-					isactive: true,
-					icon: "../../../static/images/ETC.png",
-					id: "1"
-				}, {
-					name: "还款计算器",
-					jumpUrl: "",
-					isactive: false,
-					icon: "../../../static/images/calculator.png",
-					id: "11"
-				}]
+				picinfo: [],
+				menu: []
 			}
 		},
 		methods: {

@@ -6,7 +6,7 @@
 			</router-link>
 		</mt-header>
 		<div v-if="loadding">
-			<img src="../../../static/images/loading.gif" />
+			<img src="../../../static/img/loading.gif" />
 		</div>
 		<div v-if="!loadding" class="maindiv" v-for="item in prolist" v-bind:key="item.creditFormId">
 			<router-link :to="{ path: '/productinfo',query:{item:item} }">

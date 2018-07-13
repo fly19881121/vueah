@@ -1,6 +1,6 @@
 <template>
 	<div class="div-bg">
-		<img src="../../static/images/waiting.gif" style="width: 100%;"/>
+		<img src="../../static/img/waiting.gif" style="width: 100%;"/>
 		<span class="span-font">您的认证还没有通过，请耐心等待</span>
 		<mt-button size="large" type="primary" class="btn-wait" v-on:click="handleClose">返回</mt-button>
 	</div>

@@ -6,7 +6,7 @@
 			</router-link>-->
 		</mt-header>
 		<div v-if="loadding" class="loading">
-			<img src="../../../static/images/loading.gif" />
+			<img src="../../../static/img/loading.gif" />
 		</div>
 		<div v-if="divchose">
 			<mt-button size="large" type="primary" class="button-al" v-on:click="vergeren">我是个人账户</mt-button>
@@ -173,8 +173,8 @@
 				divgereninfofan: false, //个人认证中个人详细信息详情div显隐
 				divgeren: false, //个人认证div显隐
 
-				picIdZheng: '../../../static/images/prepic.png', //身份证正面照片
-				picIdFan: '../../../static/images/unprepic.png', //身份证反面照片
+				picIdZheng: './static/img/prepic.png', //身份证正面照片
+				picIdFan: './static/img/unprepic.png', //身份证反面照片
 
 				birdate: '请选择', //出生日期
 				sfzname: "", //姓名
@@ -204,7 +204,7 @@
 				customerName: "", //企业名称
 
 				//法人部分
-				picfarenzheng: '../../../static/images/prepic.png', //法人身份证正面照片
+				picfarenzheng: './static/img/prepic.png', //法人身份证正面照片
 				divfareninfozheng: false, //法人信息详情是否展示
 				farenbirdate: "请选择",
 				farenbir: "",
@@ -216,7 +216,7 @@
 				uploadfarenurl: "",
 
 				//经办人部分
-				picjingbanzheng: '../../../static/images/prepic.png', //经办人身份证正面照片
+				picjingbanzheng: './static/img/prepic.png', //经办人身份证正面照片
 				divjingbanzheng: false,
 				jingbanbirdate: "请选择",
 				jbrbir: "",
@@ -229,12 +229,12 @@
 				filepicjbrzheng: "", //要上传的经办人身份证正面
 				uploadjbrurl: "",
 
-				picyingye: '../../../static/images/addpic.png', //营业执照照片
+				picyingye: './static/img/addpic.png', //营业执照照片
 				filepicyingye: "", //要上传的营业执照
 				uploadpicyingye: false,
 				uploadyingyeurl: "",
 
-				picfarenfan: '../../../static/images/unprepic.png', //法人身份证反面照片
+				picfarenfan: './static/img/unprepic.png', //法人身份证反面照片
 				divfarenfan: false,
 				filepicfarenfan: "", //要上传的法人身份证反面照片
 				farenidenddate: "请选择",

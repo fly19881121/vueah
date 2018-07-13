@@ -44,11 +44,16 @@ const hosturl="https://ladybird.awservice.net";
 Vue.prototype.$getHost = function (){
 	return hosturl;
 }
+const baseURLDev = '/api'
+const baseURLQa = ''
+var baseURL = ''
+process.env.NODE_ENV === 'development' ? baseURL = baseURLDev : baseURL = baseURLQa
+
 Vue.prototype.$ajaxGet = function(url, parmer,success,fail){
 	axios({
 			method: 'get',
-			baseURL: '/api',
 			url: url,
+			baseURL: baseURL,
 			data: parmer
 		}).then(function(response) {
 			success(response);
@@ -60,8 +65,8 @@ Vue.prototype.$ajaxGet = function(url, parmer,success,fail){
 Vue.prototype.$ajaxPost = function(url, parmer,success,fail){
 	axios({
 			method: 'post',
-			baseURL: '/api',
 			url: url,
+			baseURL: baseURL,
 			data: parmer
 		}).then(function(response) {
 			success(response);

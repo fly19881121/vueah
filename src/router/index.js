@@ -217,21 +217,9 @@ router.beforeEach((to, from, next) => {
 		//拦截判断是否已经认证
 		let customerState = window.localStorage.getItem("customerState");
 		let comeHomeFlag = window.localStorage.getItem("comeHomeFlag");
-		//1未认证 2认证中 3认证成功 4认证失败 5草稿 6已注销
+		//1未认证 2认证中 3认证成功 4认证失败 5草稿 6已注销 -1
 		console.log("customerState:" + customerState+"x"+comeHomeFlag)
-		if(customerState == 1 || customerState == 5 || customerState == 6) {
-			if(comeHomeFlag=="true" && to.path == "/home") {
-				next()
-			} else {
-				alert("您还没有认证，请先认证")
-				next({
-					path: '/verified',
-					query: {
-						redirect: to.path
-					}
-				})
-			}
-		} else if(customerState == 3||customerState == 2) {
+		if(customerState == 3||customerState == 2) {
 			next()
 		} else if(customerState == 4) {
 			if(to.path == "/home") {
@@ -246,10 +234,21 @@ router.beforeEach((to, from, next) => {
 				})
 			}
 
+		}else {
+			if(comeHomeFlag=="true" && to.path == "/home") {
+				next()
+			} else {
+				alert("您还没有认证，请先认证")
+				next({
+					path: '/verified',
+					query: {
+						redirect: to.path
+					}
+				})
+			}
 		}
 
 	} else {
-		alert(to.path)
 		next()
 	}
 
