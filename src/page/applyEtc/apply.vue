@@ -111,7 +111,7 @@
 			}
 
 			let repaybank = this.getlocalstory("repaybank"); //从缓存中取出数据
-			if(repaytype == null || repaytype == undefined||repaybank==""||repaybank=="null") {
+			if(repaytype == null || repaytype == undefined || repaybank == "" || repaybank == "null") {
 				repaybank = "请选择"
 			}
 
@@ -161,6 +161,11 @@
 			let uploadBankState = _this.getlocalstory("uploadBankState"); //从缓存中取出数据
 			if(uploadBankState == null || uploadBankState == undefined) {
 				uploadBankState = "请选择"
+			}
+
+			let repaybankid = _this.getlocalstory("repaybankid"); //从缓存中取出数据
+			if(repaybankid == null || repaybankid == undefined) {
+				repaybankid = ""
 			}
 
 			return {
@@ -256,12 +261,147 @@
 				this.removelocalstory("productId");
 				this.removelocalstory("creditFormId");
 				this.removelocalstory("productName");
+				this.removelocalstory("repaybankid");
+				this.removelocalstory("contactsSpouseInfo");
+				this.removelocalstory("contacts1Info");
+				this.removelocalstory("contacts2Info");
+				this.removelocalstory("cano");
+				this.removelocalstory("caflag");
+				this.removelocalstory("carTotal");
+				this.removelocalstory("uploadBankState");
+				this.removelocalstory("uploadCarRelation");
+				this.removelocalstory("uploadCreditReport");
 			},
 			apply() {
 				let _this = this;
 				if(_this.checkAll()) {
+					//step1 获取ca编号
 
-					alert("sub")
+					_this.$ajaxGet('/api/creditline/creditlineApplyBefor ', "", function(res) {
+
+						console.log("creditlineApplyBefor suc:" + JSON.stringify(res))
+
+						if(!res.data.success) {
+							alert("申请失败，请重试");
+							return;
+						}
+
+						//step2 基本信息添加申请	
+						let paymentChannel = "";
+						if(_this.repaytype == "代扣") {
+							paymentChannel = 2;
+						} else {
+							paymentChannel = 0;
+						}
+
+						let carlist = _this.getlocalstory("carlist");
+
+						let par = {
+							"withholdingAccountId": _this.getlocalstory("repaybankid"),
+							"productId": _this.getlocalstory("productId"),
+							"applyNo": res.data.result,
+							"applyCreditline": "0",
+							"paymentChannel": paymentChannel, //0是线下支付   2是代扣
+							"vehicleIds": carlist.split(",")
+						}
+						console.log("creditlineApply申请参数：" + JSON.stringify(par));
+						_this.$ajaxPost('/api/creditline/creditlineApply ', par, function(res2) {
+							console.log("creditlineApply suc:" + JSON.stringify(res2))
+							if(!res2.data.success) {
+								alert("申请失败，请重试");
+								return;
+							}
+							let objectId = res2.data.result.objectId;
+							let objectName = res2.data.result.objectName;
+							let contactsSpouseInfo = _this.getlocalstory("contactsSpouseInfo");
+							let contacts1Info = _this.getlocalstory("contacts1Info");
+							let contacts2Info = _this.getlocalstory("contacts2Info");
+
+							//step3 添加返回模板信息
+							//15 221模板
+							let parstr = '[{\"config\":{\"required\":\"true\"},\"field_value\":\"' +
+								_this.getEtcType + '\",\"key\":\"cardIssueMethod\",\"options\":[\"快递(到付)\",\"营业厅/现场领取 \"],\"placeholder\":\"请选择领取ETC卡片方式\",\"title\":\"ETC卡领取⽅式\",\"type\":\"radio\"},' +
+								'{\"config\":{\"required\":\"false\"},\"field_value\":\"' +
+								_this.addr + '\",\"key\":\"sxsq_address\",\"placeholder\":\"ETC卡收件地址(勿⽤标点符 号)\",\"title\":\"联系地址\",\"type\":\"textarea\"}' ;
+								
+							let parstr1=',{\"config\": {\"required\":\"false\"},\"field_value\":\"' +
+								_this.ismarry + '\",\"key\":\"isMarried\",\"options\": [\"已婚\",\"未婚\"],\"placeholder\":\"请选择婚姻状况\",\"title\":\"是否已婚 \",\"type\":\"radio\"},' +
+								'{\"config\":{\"required\":\"false\"},\"field_value\":\"' +
+								contactsSpouseInfo + '\",\"key\":\"spouseContact\",\"placeholder\":\"已婚时需填写 \",\"title\":\"配偶联系⽅式\",\"type\":\"contact\"},' +
+								'{\"config\":{\"required\":\"false\"},\"field_value\":\"' +
+								contacts1Info + '\",\"key\":\"contact1\",\"placeholder\":\"紧急联系⼈1联系⽅式 \",\"title\":\"紧急联系⼈1\",\"type\":\"contact\"},' +
+								'{\"config\":{\"required\":\"false\"},\"field_value\":\"' +
+								contacts2Info + '\",\"key\":\"contact2\",\"placeholder\":\"(请勿重复)联系⼈ 2\",\"title\":\"紧急联系⼈2\",\"type\":\"contact\"}';
+							
+							if(_this.getlocalstory("productId")=="15"||_this.getlocalstory("productId")=="16"||_this.getlocalstory("productId")=="18"||_this.getlocalstory("productId")=="20"){
+								parstr=parstr+parstr1;
+							}
+								
+								
+								
+								
+								
+
+							let str1 = ',{\"config\": {\"required\":\"false\"},\"field_value\":\"https://ladybird.awservice.net/upload//cus tomer_17891/20180702160714055001/201807021607140015.jpg\",\"key\":\"vehicleRelationsh ip\",\"placeholder\":\"[必须]挂靠协议/分期购⻋付款凭证/证明承运关系的其他材料(三选⼀)，可拍摄多张 \",\"sample\":\"https://qf.awservice.net/upload//customer_2/20171013182132431001/2017 10131821320004.jpg\",\"title\":\"⻋辆关系证明\",\"type\":\"file\"}';
+							let str2 = ',{\"config\": {\"required\":\"false\"},\"key\":\"sxsq_grzxbg\",\"placeholder\":\"[可选]仅申请5辆⻋以上 时需要，可拍摄多张 \",\"sample\":\"https://qf.awservice.net/upload//customer_2/20171013182024066001/2017 10131820240003.jpg\",\"title\":\"个⼈征信报告照⽚\",\"type\":\"file\"}';
+							let str3 = ',{\"config\": {\"required\":\"false\"},\"key\":\"sxsq_yinhangliushui\",\"placeholder\":\"[可选]仅申 请5辆⻋以上时需要，可拍摄多张 \",\"sample\":\"https://qf.awservice.net/upload//customer_2/20171013181937287001/2017 10131819370019.jpg\",\"title\":\"银⾏卡流⽔账单\",\"type\":\"file\"}';
+
+							if(_this.carrel) {
+								_this.setlocalstory("caflag", _this.carrel); //触发风控标志
+								parstr = parstr + str1;
+							}
+							if(_this.gerenzhengxin) {
+								_this.setlocalstory("caflag", _this.gerenzhengxin); //触发风控标志
+								parstr = parstr + str2;
+							}
+							if(_this.cardliushui) {
+								_this.setlocalstory("caflag", _this.cardliushui); //触发风控标志
+								parstr = parstr + str3;
+							}
+							parstr = parstr + "]";
+							let par3 = {
+								"objectName": objectName,
+								"objectId": objectId,
+								"jsonText": parstr
+							}
+							_this.$ajaxPost('/dcapi/defineForm/addOrModifyDefineForm ', par3, function(res3) {
+
+								console.log("addOrModifyDefineForm  suc:" + JSON.stringify(res3))
+
+								if(!res3.data.success) {
+									alert("申请失败，请重试");
+									return;
+								}
+								console.log(res.data.result)
+								//step4 进入pdf查看页面
+								let pdfDownUrl = "/api/loan/downloadLoanContract?templateId=3&customerNo=" + res.data.result;
+								let cano = res.data.result;
+								_this.setlocalstory("cano", cano);
+								_this.$ajaxGet(pdfDownUrl, "", function(res) {
+
+									console.log("suc:" + JSON.stringify(res))
+									let url = _this.$getHost() + '/pdf/web/viewer.html?' + _this.$getHost() + '/download/contract/' + cano + ".pdf";
+									url = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
+									_this.$router.push({
+										name: 'contshow',
+										query: {
+											url: Base64.encode(url)
+										}
+									})
+								}, function(e) {
+									console.log("fail:" + JSON.stringify(e))
+								});
+							}, function(e3) {
+								console.log("fail:" + JSON.stringify(e3))
+							});
+						}, function(e2) {
+							console.log("creditlineApply fail:" + JSON.stringify(e2))
+						});
+
+					}, function(e) {
+						console.log("fail:" + JSON.stringify(e))
+					});
+
 				}
 
 				return;
@@ -280,20 +420,20 @@
 				if(_this.carname == "请选择车辆") {
 					alert("请先选择车辆");
 					return false;
-				} 
+				}
 				if(_this.repaytype == "请选择") {
 					alert("请先选择保证金/还款方式");
 					return false;
 				} else if(_this.repaytype == "代扣") {
-					if(_this.repaybank == "请选择"||_this.repaybank== ""||_this.repaybank== null) {
+					if(_this.repaybank == "请选择" || _this.repaybank == "" || _this.repaybank == null) {
 						alert("请先选择还款银行");
 						return false;
 					}
-				} 
+				}
 				if(_this.getEtcType == "请选择") {
 					alert("请先选择Etc卡领取方式");
 					return false;
-				}else if(_this.getEtcType == "快递(到付)") {
+				} else if(_this.getEtcType == "快递(到付)") {
 					if(_this.addr == "") {
 						alert("请先填写收件地址");
 						return false;
@@ -362,6 +502,27 @@
 			_this.cardliushui = config.cardliushui;
 			_this.isbaozhengjin = config.isbaozhengjin;
 			_this.ismar = config.ismar;
+
+			let arr = config.repaytype;
+			console.log(arr)
+			let arrAct = [];
+			for(let i = 0; i < arr.length; i++) {
+				let jsonstr = {
+					"name": arr[i],
+					"method":_this.onDateChange
+				}
+				arrAct.push(jsonstr);
+			}
+			_this.actionsRepayType=arrAct;
+
+
+			let carsum = _this.getlocalstory("carTotal");
+			if(carsum > 5) {
+				_this.gerenzhengxin = true;
+				_this.cardliushui = true;
+				_this.carrel = true;
+			}
+
 		}
 	}
 </script>

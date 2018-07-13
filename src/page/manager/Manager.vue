@@ -52,12 +52,6 @@ export default {
           value: ''
         },
         {
-          name: '重置密码',
-          link: 'forgetpw',
-          isLink: true,
-          value: ''
-        },
-        {
           name: '联系客服',
           link: 'bankList',
           isLink: false,

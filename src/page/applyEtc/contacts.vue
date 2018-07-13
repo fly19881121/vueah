@@ -47,12 +47,16 @@
 			},
 			sureback() {
 				let _this=this;
+				let info=_this.contactsname+","+_this.contactsphone;
 				if(_this.library_id=="marry"){
 					_this.setlocalstory("contactsSpouse","已添加");
+					_this.setlocalstory("contactsSpouseInfo",info);
 				}else if(_this.library_id=="1"){
 					_this.setlocalstory("contacts1","已添加");
+					_this.setlocalstory("contacts1Info",info);
 				}else if(_this.library_id=="2"){
 					_this.setlocalstory("contacts2","已添加");
+					_this.setlocalstory("contacts2Info",info);
 				}
 				this.$router.go(-1); //返回上一层
 			}

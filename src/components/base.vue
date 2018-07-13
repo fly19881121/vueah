@@ -26,13 +26,12 @@
 				this.$router.go(-1); //返回上一层
 			},
 			test() {
-				let token = "2_85f4d6048a53875cb590f7758330057b";
-				window.localStorage.setItem("token", token);
 				let _this = this;
-				let param = {
-					"objectName": "cus_customer_cer_per",
-					"objectId": "17891"
-				}
+				let token = "17860_ba92d540c9cb0be79dad26d5b8061ffe";
+				//alert(_this.$getHost());
+				//_this.setlocalstory("token",token);
+				let param = {	"customerType":	1 }
+
 
 				//api/config/querySystemConfig true
 
@@ -40,10 +39,10 @@
 				//$ajaxGet
 				_this.$ajaxPost('/api/customer/getCustomerAnxinSign', param, function(res) {
 
-					console.log("suc:" + JSON.stringify(res))
+					console.log("base suc:" + JSON.stringify(res))
 
 				}, function(e) {
-					console.log("fail:" + JSON.stringify(e))
+					console.log("224 fail:" + JSON.stringify(e))
 				});
 
 			}

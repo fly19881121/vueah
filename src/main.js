@@ -11,6 +11,7 @@ import 'font-awesome/css/font-awesome.min.css'
 import '../static/style/reset.css'
 import 'lib-flexible/flexible.js'
 
+
 Vue.use(Mint)
 
 import func from '../static/js/func.js'
@@ -39,10 +40,11 @@ axios.interceptors.request.use(
       });
 axios.defaults.timeout = 10000; //响应时间
 axios.defaults.headers.post['Content-Type'] = 'form-data'; //配置请求头
-
-
+const hosturl="https://ladybird.awservice.net";
+Vue.prototype.$getHost = function (){
+	return hosturl;
+}
 Vue.prototype.$ajaxGet = function(url, parmer,success,fail){
-	let token=window.localStorage.getItem("token");
 	axios({
 			method: 'get',
 			baseURL: '/api',
@@ -56,7 +58,6 @@ Vue.prototype.$ajaxGet = function(url, parmer,success,fail){
 		});
 }
 Vue.prototype.$ajaxPost = function(url, parmer,success,fail){
-	let token=window.localStorage.getItem("token");
 	axios({
 			method: 'post',
 			baseURL: '/api',
@@ -69,25 +70,8 @@ Vue.prototype.$ajaxPost = function(url, parmer,success,fail){
 			fail("error:"+error);
 		});
 }
-Vue.prototype.$ajaxLogin = function(parmer,success,fail){
-	axios({
-			method: 'aws.dk.login',
-			baseURL: '/api',
-			data: parmer,
-			timeout:10000
-		}).then(function(response) {
-			success("suc:"+response);
-		})
-		.catch(function(error) {
-			fail("error:"+error);
-		});
-}
 
 window.addEventListener('popstate', function (e) {
-//	alert("xyz")
-//	window.history.pushState('forward', null, '#');
-//  window.history.forward(1);
-
 	let path=location.href.split("/");
 	let flag=path[path.length-1];
 	if(flag=="home"||flag==""){
@@ -104,8 +88,6 @@ window.addEventListener('popstate', function (e) {
 		}
 		window.history.pushState(state, "title", "#");
 	}
-//	window.history.go(1);
-//操作
 });
 
 /* eslint-disable no-new */
