@@ -1,7 +1,7 @@
 <template>
 	<div class="BankAdd">
 		<mt-header title="添加银行卡">
-			<router-link to="/" slot="left">
+			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</router-link>
 

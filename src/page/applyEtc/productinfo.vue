@@ -2,9 +2,9 @@
 
 	<div>
 		<mt-header title="产品详情">
-			<router-link to="/" slot="left">
+			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
-			</router-link>
+			</div>
 		</mt-header>
 
 		<div class="productinfo">

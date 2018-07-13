@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<mt-header title="还款账户">
-			<router-link to="/" slot="left">
+			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
-			</router-link>
+			</div>
 			<mt-button slot="right" @click="more">添加账户</mt-button>
 		</mt-header>
 
@@ -36,7 +36,7 @@
 		},
 		methods: {
 			handleClose: function(e) {
-				_this.$router.push('/apply')
+				this.$router.push('/apply')
 			},
 			more() {
 				this.$router.push('/addbank')

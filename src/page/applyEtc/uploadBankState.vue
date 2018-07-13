@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<mt-header title="上传银行卡流水账单">
-			<router-link to="/" slot="left">
+			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
-			</router-link>
+			</div>
 		</mt-header>
 		<div class="idpic">
 			<div class="fileinput-button">

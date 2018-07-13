@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<mt-header title="申请办理">
-			<router-link to="/" slot="left">
+			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</router-link>
 		</mt-header>
@@ -44,6 +44,7 @@
 				_this.$ajaxPost('/api/customer/addCustomerAuthInfoAfter', par, function(res) {
 
 					console.log("base suc:" + JSON.stringify(res))
+					_this.setlocalstory("comeHomeFlag",true);
 					_this.$router.push('/home');
 					pushHistory();
 

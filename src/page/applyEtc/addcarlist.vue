@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<mt-header title="选择车辆">
-			<router-link to="/" slot="left">
+			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
-			</router-link>
+			</div>
 			<mt-button slot="right" @click="more">添加车辆</mt-button>
 		</mt-header>
 
@@ -45,7 +45,7 @@
 		},
 		created() {
 			let _this = this;
-			let customerId=_this.getlocalstory("userId");
+			let customerId=_this.getlocalstory("customerId");
 			let param = {
 				"method": "aws.cg.etc.car.query",
 				"param": {

@@ -30,14 +30,17 @@
 				let token = "17860_ba92d540c9cb0be79dad26d5b8061ffe";
 				//alert(_this.$getHost());
 				//_this.setlocalstory("token",token);
-				let param = {	"customerType":	1 }
-
+				let param = {
+					"productId": "18",
+					"customerSignType": 0,
+					"signType": 0
+				}
 
 				//api/config/querySystemConfig true
 
 				//$ajaxPost
 				//$ajaxGet
-				_this.$ajaxPost('/api/customer/getCustomerAnxinSign', param, function(res) {
+				_this.$ajaxPost('/api/loanProduct/queryProductSignRule ', param, function(res) {
 
 					console.log("base suc:" + JSON.stringify(res))
 
