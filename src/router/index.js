@@ -208,6 +208,7 @@ const router = new Router({
 
 let indexScrollTop = 0
 let allowBack = true
+alert("x")
 router.beforeEach((to, from, next) => {
 	let customerState = window.localStorage.getItem("customerState");
 	console.log("customerState:" + customerState)

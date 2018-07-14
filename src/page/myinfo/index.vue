@@ -16,18 +16,19 @@
 
 		},
 		mounted() {
+			console.log("x")
 			let _this = this;
 			try {
-//				let userId="c0573332-e35e-4a0f-b918-9f4f2d4189d3";
-//				let userName="18802420006";
-//				let tokenId="BFCFAC3BB3551C68D2D2D3AEB2986BB7"
+				let userId="c0573332-e35e-4a0f-b918-9f4f2d4189d3";
+				let userName="18802420006";
+				let tokenId="BFCFAC3BB3551C68D2D2D3AEB2986BB7"
 				
 //				打包测试版本的时候放开下面的代码
-				let _mobile = JSON.parse(_this.utf8to16(_this.base64decode(window.daka.getMobileApp())));
+//				let _mobile = JSON.parse(_this.utf8to16(_this.base64decode(window.daka.getMobileApp())));
 //				alert("_mobile："+JSON.stringify(_mobile))
-				let userId = _mobile.userId;
-				let tokenId = _mobile.tokenId;
-				let userName = _mobile.userName;
+//				let userId = _mobile.userId;
+//				let tokenId = _mobile.tokenId;
+//				let userName = _mobile.userName;
 //					
 				
 				let param = {
