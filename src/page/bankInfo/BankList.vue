@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mt-header title="银行卡列表">
+		<mt-header title="还款账户">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
@@ -8,7 +8,7 @@
 		</mt-header>
 
 		<div class="maindivbank" v-for="item in prolist" v-bind:key="item.id">
-			<div class="div-all" @click='back(item.name)'>
+			<div class="div-all">
 					<div>
 						<img :src="item.iconsrc" class="img-loc" />
 					</div>
@@ -31,19 +31,7 @@
 		name: 'hello',
 		data() {
 			return {
-				prolist: [{
-						name: "中国建设银行",
-						desc: "62270006********591",
-						id: "01",
-						iconsrc: "../../../static/images/bankicon/ccb.png"
-					},
-					{
-						name: "中国工商银行",
-						desc: "62270006********591",
-						id: "02",
-						iconsrc: "../../../static/images/bankicon/icbc.png"
-					}
-				]
+				prolist: []
 			}
 		},
 		methods: {
@@ -51,18 +39,60 @@
 				this.$router.go(-1); //返回上一层
 			},
 			more() {
-				this.$router.push('/bankadd')
+				this.$router.push('/BankAdd')
 			},
 			back(par){
 				let _this=this;
-				_this.setlocalstory("repaybank",par);
-//				this.$router.go(-1); //返回上一层
+				_this.setlocalstory("repaybank",par.name);
+				_this.setlocalstory("repaybankid",par.id);
+				_this.$router.push('/apply')
 			}
-		}
+			
+		},
+		created(){
+				let _this=this;
+				
+				
+				_this.$ajaxGet('/dcapi/bank/queryBankAccout?accountChannel=BAOFOO', "", function(res) {
+					let arr=[];
+					console.log("queryBankAccout suc:" + JSON.stringify(res.data.result))
+					for(let i=0;i<res.data.result.length;i++){
+						let tmp=res.data.result[i];
+						let stricon="";
+						if(tmp.bankName=="中国建设银行"){
+							stricon="../../../static/img/ccb.png";
+						}else if(tmp.bankName=="中国工商银行"){
+							stricon="../../../static/img/icbc.png";
+						}else if(tmp.bankName=="中国银行"){
+							stricon="../../../static/img/boc.png";
+						}else if(tmp.bankName=="兴业银行"){
+							stricon="../../../static/img/cib.png";
+						}else if(tmp.bankName=="交通银行"){
+							stricon="../../../static/img/bocom.png";
+						}else if(tmp.bankName=="光大银行"){
+							stricon="../../../static/img/cvb.png";
+						}else if(tmp.bankName=="浦发银行"){
+							stricon="../../../static/img/spdb.png";
+						}else if(tmp.bankName=="平安银行"){
+							stricon="../../../static/img/pingan.png";
+						}
+						let jsonstr={
+							"name":tmp.bankName,
+							"desc":tmp.accountNo,
+							"id":tmp.id,
+							"iconsrc":stricon,
+						}
+						arr.push(jsonstr);
+					}
+					_this.prolist=arr;
+				}, function(e) {
+					console.log("queryBankAccout fail:" + JSON.stringify(e))
+				});
+			}
 	}
 </script>
 
-<style lang="scss" scoped>
+<style>
 	.maindivbank {
 		padding:0 .3rem;
 		margin:.5rem;
