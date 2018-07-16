@@ -60,21 +60,21 @@
 						let tmp=res.data.result[i];
 						let stricon="";
 						if(tmp.bankName=="中国建设银行"){
-							stricon="../../../static/img/ccb.png";
+							stricon="./static/img/ccb.png";
 						}else if(tmp.bankName=="中国工商银行"){
-							stricon="../../../static/img/icbc.png";
+							stricon="./static/img/icbc.png";
 						}else if(tmp.bankName=="中国银行"){
-							stricon="../../../static/img/boc.png";
+							stricon="./static/img/boc.png";
 						}else if(tmp.bankName=="兴业银行"){
-							stricon="../../../static/img/cib.png";
+							stricon="./static/img/cib.png";
 						}else if(tmp.bankName=="交通银行"){
-							stricon="../../../static/img/bocom.png";
+							stricon="./static/img/bocom.png";
 						}else if(tmp.bankName=="光大银行"){
-							stricon="../../../static/img/cvb.png";
+							stricon="./static/img/cvb.png";
 						}else if(tmp.bankName=="浦发银行"){
-							stricon="../../../static/img/spdb.png";
+							stricon="./static/img/spdb.png";
 						}else if(tmp.bankName=="平安银行"){
-							stricon="../../../static/img/pingan.png";
+							stricon="./static/img/pingan.png";
 						}
 						let jsonstr={
 							"name":tmp.bankName,

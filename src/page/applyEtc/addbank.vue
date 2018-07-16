@@ -8,30 +8,30 @@
 		</mt-header>
 		<div v-if="divInfo">
 			<div>
-			<mt-field label="账户名称" placeholder="请输入账户名称" v-model="username" type="text"></mt-field>
-		</div>
+				<mt-field label="账户名称" placeholder="请输入账户名称" v-model="username" type="text"></mt-field>
+			</div>
 
-		<div>
-			<mt-field label="银行卡号" placeholder="请输入银行卡号" type="number" v-model="banknum"></mt-field>
-		</div>
+			<div>
+				<mt-field label="银行卡号" placeholder="请输入银行卡号" type="number" v-model="banknum"></mt-field>
+			</div>
 
-		<div @click="sheetbankname = true">
-			<mt-field label="开户银行" v-model="bankname" placeholder="请选择开户行">
-				<span><i class="fa fa-angle-right"></i></span>
-			</mt-field>
-		</div>
+			<div @click="sheetbankname = true">
+				<mt-field label="开户银行" v-model="bankname" placeholder="请选择开户行">
+					<span><i class="fa fa-angle-right"></i></span>
+				</mt-field>
+			</div>
 
-		<div>
-			<mt-field label="持卡人身份证" placeholder="请输入持卡人身份证" v-model="idcard"></mt-field>
-		</div>
+			<div>
+				<mt-field label="持卡人身份证" placeholder="请输入持卡人身份证" v-model="idcard"></mt-field>
+			</div>
 
-		<div>
-			<mt-field label="预留手机号" placeholder="请输入预留手机号" type="number" v-model="phonenum"></mt-field>
-		</div>
+			<div>
+				<mt-field label="预留手机号" placeholder="请输入预留手机号" type="number" v-model="phonenum"></mt-field>
+			</div>
 
-		<mt-actionsheet :actions="actionsbankname" v-model="sheetbankname">
-		</mt-actionsheet>
-		<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="sureback">申请办卡</mt-button>
+			<mt-actionsheet :actions="actionsbankname" v-model="sheetbankname">
+			</mt-actionsheet>
+			<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="sureback">申请办卡</mt-button>
 		</div>
 		<div v-if="divCode">
 			<div class="page-part" v-if="showcode">
@@ -64,7 +64,7 @@
 				smsCode: "",
 				tradeNo: "",
 				divCode: false,
-				divInfo:true
+				divInfo: true
 			}
 		},
 		methods: {
@@ -89,10 +89,10 @@
 					console.log("applyBind suc:" + JSON.stringify(res))
 					if(res.data.success) {
 						_this.tradeNo = res.data.result
-						if(_this.showcode){
-							_this.divCode=true;
-							_this.divInfo=false;
-						}else{
+						if(_this.showcode) {
+							_this.divCode = true;
+							_this.divInfo = false;
+						} else {
 							_this.sureBank();
 						}
 					}
@@ -107,8 +107,8 @@
 					alert("请先填写手机验证码")
 					return false;
 				}
-				if(!_this.showcode){
-					_this.smsCode="111111";
+				if(!_this.showcode) {
+					_this.smsCode = "111111";
 				}
 				let paramsub = {
 					"tradeNo": _this.tradeNo,
@@ -197,5 +197,26 @@
 	#button-al {
 		width: calc(100% - 1rem);
 		margin: .5rem auto;
+	}
+	
+	.mint-actionsheet {
+		position: fixed;
+		background: #e0e0e0;
+		width: 100%;
+		text-align: center;
+		bottom: 0;
+		left: 50%;
+		-webkit-transform: translate3d(-50%, 0, 0);
+		transform: translate3d(-50%, 0, 0);
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		-webkit-transition: -webkit-transform .3s ease-out;
+		transition: -webkit-transform .3s ease-out;
+		-o-transition: transform .3s ease-out;
+		transition: transform .3s ease-out;
+		transition: transform .3s ease-out, -webkit-transform .3s ease-out;
+		overscroll-behavior-y: yes;
+		overflow: auto;
+		height: 500px;
 	}
 </style>

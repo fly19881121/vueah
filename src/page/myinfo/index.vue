@@ -16,7 +16,6 @@
 
 		},
 		mounted() {
-			console.log("x")
 			let _this = this;
 			try {
 				let userId="c0573332-e35e-4a0f-b918-9f4f2d4189d3";
@@ -54,6 +53,13 @@
 					_this.setlocalstory("customerType",res.data.result.customerType);
 					_this.setlocalstory("token",res.data.result.token);
 					_this.setlocalstory("customerId",res.data.result.customerId);
+					
+					let customerName=res.data.result.customerName;
+					_this.setlocalstory("customerName",customerName);
+					
+					
+					
+					
 //					window.localStorage.setItem("comeHomeFlag", false);
 //					window.localStorage.setItem("customerState", 3);
 //					window.localStorage.setItem("userId", "17931");

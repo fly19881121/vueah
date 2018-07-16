@@ -35,7 +35,7 @@
 		},
 		methods: {
 			handleClose: function(e) {
-				this.$router.go(-1); //返回上一层
+				this.$router.push('/applyEtc')
 			},
 			next(obj) {
 				let _this = this;

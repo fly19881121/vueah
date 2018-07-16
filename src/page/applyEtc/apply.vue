@@ -223,7 +223,7 @@
 			},
 			handleClose: function(e) {
 				this.clearApplyLocal();
-				this.$router.go(-1); //返回上一层
+				this.$router.push('/product')
 			},
 			next() {
 				let _this = this;

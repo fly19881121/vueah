@@ -33,21 +33,20 @@
 				<mt-field label="发证日期" v-model="startdate" readonly="readonly"></mt-field>
 			</div>
 		</div>
-		<div class="select" @click="popupVisible = true;colorflag='chepai'">
+		<div class="select" @click="sheetchepai = true">
 			<mt-field label="车牌颜色" v-model="carcolor"></mt-field>
 		</div>
-		<div class="select" @click="popupVisible = true;colorflag='chetou'">
+		<div class="select" @click="sheetchetou = true">
 			<mt-field label="车头颜色" v-model="chetoucolor"></mt-field>
 		</div>
-		<mt-popup v-model="popupVisible" position="bottom">
-			<div>
-				<div style="width: 300px;height: 60px;">
-					<mt-button size="large" type="primary" style="width: 130px;float: left;" @click="onDateCcncel">取消</mt-button>
-					<mt-button size="large" type="primary" style="width: 130px;float: right;" @click="onDateChange">确定</mt-button>
-				</div>
-				<mt-picker :slots="dataList" ref="pickerColor"></mt-picker>
-			</div>
-		</mt-popup>
+		
+		
+		<mt-actionsheet :actions="actionschepai" v-model="sheetchepai">
+		</mt-actionsheet>
+		
+		<mt-actionsheet :actions="actionschetou" v-model="sheetchetou">
+		</mt-actionsheet>
+		
 		<mt-datetime-picker type="date" ref="picker" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="handleConfirm" :startDate="startDate">
 		</mt-datetime-picker>
 		<mt-button size="large" type="primary" class="button-al" v-on:click="sureback">确定添加</mt-button>
@@ -59,11 +58,10 @@
 		name: 'hello',
 		data() {
 			return {
-				popupVisible: false,
 				carinfoflag: false,
 
 				carname: "请选择车辆 ",
-				addpicsrc: "../../../static/img/prepic.png",
+				addpicsrc: "./static/img/prepic.png",
 				dateTime: '',
 
 				startDate: new Date(),
@@ -76,6 +74,38 @@
 					className: 'slot1',
 					textAlign: 'left'
 				}],
+				
+				actionschepai: [{
+					name: '蓝色',
+					method: this.onDateChange
+				},{
+					name: '黄色',
+					method: this.onDateChange
+				},{
+					name: '黑色',
+					method: this.onDateChange
+				},{
+					name: '白色',
+					method: this.onDateChange
+				}],
+				sheetchepai:false,
+				
+				actionschetou: [{
+					name: '蓝色',
+					method: this.onDateChangeT
+				},{
+					name: '黄色',
+					method: this.onDateChangeT
+				},{
+					name: '黑色',
+					method: this.onDateChangeT
+				},{
+					name: '白色',
+					method: this.onDateChangeT
+				}],
+				sheetchetou:false,
+				
+				
 				carcolor: "请选择",
 				chetoucolor: "请选择",
 				colorflag: "",
@@ -164,17 +194,11 @@
 					this.startdate = date;
 				}
 			},
-			onDateChange(picker, values) {
-				if(this.colorflag == "chepai") {
-					this.carcolor = this.$refs.pickerColor.getValues()[0]
-				}
-				if(this.colorflag == "chetou") {
-					this.chetoucolor = this.$refs.pickerColor.getValues()[0]
-				}
-				this.popupVisible = false
+			onDateChange(actions, index) {
+				this.carcolor = actions.name;
 			},
-			onDateCcncel() {
-				this.popupVisible = false
+			onDateChangeT(actions, index) {
+				this.chetoucolor = actions.name;
 			},
 			sureback() {
 				let _this = this;

@@ -32,11 +32,30 @@
 export default {
   name: 'manager',
   data () {
+  	
+  	let customerName=this.getlocalstory("customerName");
+  	let customerState=this.getlocalstory("customerState");
+  	//1未认证 2认证中 3认证成功 4认证失败 5草稿 6已注销 -1
+  	let customerStateFlag="";
+  	if(customerState=="1"||customerState=="-1"){
+  		customerStateFlag="未认证";
+  	}else if(customerState=="2"){
+  		customerStateFlag="认证中";
+  	}else if(customerState=="3"){
+  		customerStateFlag="认证成功";
+  	}else if(customerState=="4"){
+  		customerStateFlag="认证失败";
+  	}else if(customerState=="5"){
+  		customerStateFlag="草稿";
+  	}else if(customerState=="6"){
+  		customerStateFlag="已注销";
+  	}
+  	
     return {
       user: {
-        name: '张三',
+        name: customerName,
         company: '太斯特有限公司',
-        status: '已认证'
+        status: customerStateFlag
       },
       manageItem: [
         {
@@ -47,13 +66,14 @@ export default {
         },
         {
           name: '我的ETC',
-          link: 'billlist',
+          link: 'http://qm.awservice.net/#myETC',//测试
+         // link: 'https://m8.sinoiov.com/#myETC',//生产
           isLink: true,
           value: ''
         },
         {
           name: '联系客服',
-          link: 'bankList',
+          link: '',
           isLink: false,
           value: '021-00000000'
         },

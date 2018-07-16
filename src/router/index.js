@@ -32,6 +32,9 @@ import billList from '@/page/manager/billList' //账单列表
 import billInfo from '@/page/manager/billInfo' //账单列表
 import repay from '@/page/manager/repay' //账单列表
 
+
+
+
 import BankList from '@/page/bankinfo/BankList' //银行卡列表
 import BankAdd from '@/page/bankinfo/BankAdd' //银行卡列表
 
@@ -208,7 +211,6 @@ const router = new Router({
 
 let indexScrollTop = 0
 let allowBack = true
-alert("x")
 router.beforeEach((to, from, next) => {
 	let customerState = window.localStorage.getItem("customerState");
 	console.log("customerState:" + customerState)
