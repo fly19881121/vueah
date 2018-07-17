@@ -381,7 +381,7 @@
 
 									console.log("suc:" + JSON.stringify(res))
 									let url = _this.$getHost() + '/pdf/web/viewer.html?' + _this.$getHost() + '/download/contract/' + cano + ".pdf";
-									url = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
+//									url = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
 									_this.$router.push({
 										name: 'contshow',
 										query: {

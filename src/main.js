@@ -40,9 +40,8 @@ axios.interceptors.request.use(
       });
 axios.defaults.timeout = 10000; //响应时间
 axios.defaults.headers.post['Content-Type'] = 'form-data'; //配置请求头
-const hosturl="https://ladybird.awservice.net";
 Vue.prototype.$getHost = function (){
-	return hosturl;
+	return process.env.API_HOST;
 }
 const baseURLDev = '/api'
 const baseURLQa = ''
