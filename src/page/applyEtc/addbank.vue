@@ -127,19 +127,19 @@
 			},
 			checkAll() {
 				let _this = this;
-				if(_this.username == "") {
+				if(_this.checkNull(_this.username)) {
 					alert("请先填写账户名称")
 					return false;
-				} else if(_this.banknum == "") {
+				} else if(_this.checkNull(_this.banknum)) {
 					alert("请先填写银行卡号")
 					return false;
-				} else if(_this.bankname == "") {
+				} else if(_this.checkNull(_this.bankname)) {
 					alert("请先选择开户银行")
 					return false;
-				} else if(_this.idcard == "") {
+				} else if(_this.checkNull(_this.idcard)) {
 					alert("请先填写持卡人身份证号")
 					return false;
-				} else if(_this.phonenum == "") {
+				} else if(_this.checkNull(_this.phonenum)) {
 					alert("请先填写持卡人手机号")
 					return false;
 				}

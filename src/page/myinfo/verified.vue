@@ -430,7 +430,10 @@
 					alert("请先上传身份证反面照片");
 					return;
 				}
-
+				if(!_this.checkIdCard(_this.sfzcardNo)){
+					alert("请确认身份证号码正确");
+					return;
+				}
 				//step1 先获取安心签编号
 				let par = {
 					"customerType": 1
