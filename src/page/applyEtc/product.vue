@@ -19,7 +19,7 @@
 			<div class="divsec">
 				<label class="label-text-show">{{item.descri}}</label>
 			</div>
-			<mt-button size="small" type="primary" class="btn-pro" v-on:click="next(item)">立即申请</mt-button>
+			<mt-button size="small" type="primary" class="btn-pro" v-on:click="next(item)">{{item.btndesc}}</mt-button>
 		</div>
 	</div>
 </template>
@@ -40,6 +40,34 @@
 			next(obj) {
 				let _this = this;
 				let _obj=obj;
+				let flag=true;
+				let productOpenState=_obj.productOpenState;//判断当前申请状态
+					switch(parseInt(productOpenState)){
+						case 1:
+							arr[i].btndesc="立即使用";
+							break;
+						case 2:
+							alert("您已开通当前业务.");
+							flag=false;
+							break;
+						case 3:
+							alert("您已开通当前业务,正在审批中,请耐心等待.");
+							flag=false;
+							break;
+						case 4:
+							alert("您已开通其他相关产品.");
+							flag=false;
+							break;
+						case 5:
+							break;
+						case 6:
+							alert("当前业务暂不开放,敬请期待.");
+							flag=false;
+							break;
+					}
+				if(!flag){
+					return;
+				}
 				
 				//15+后付费月结卡(个人)    16+后付费周结卡(个人)
 				//18+保证金月结卡(个人)    20+保证金周结卡(个人)
@@ -160,7 +188,31 @@
 			}
 			_this.$ajaxPost('/dcapi/loan/queryLoanProduct ', param, function(res) {
 				console.log("suc:" + JSON.stringify(res))
-				_this.prolist=res.data.result;
+				let arr=res.data.result;
+				for(let i=0;i<arr.length;i++){
+					let productOpenState=arr[i].productOpenState;//判断当前申请状态
+					switch(parseInt(productOpenState)){
+						case 1:
+							arr[i].btndesc="立即使用";
+							break;
+						case 2:
+							arr[i].btndesc="已开通";
+							break;
+						case 3:
+							arr[i].btndesc="等待审批";
+							break;
+						case 4:
+							arr[i].btndesc="已开通其他产品";
+							break;
+						case 5:
+							arr[i].btndesc="申请办理";
+							break;
+						case 6:
+							arr[i].btndesc="暂不开放申请";
+							break;
+					}
+				}
+				_this.prolist=arr;
 				_this.loadding=false;
 			}, function(e) {
 				console.log("fail:" + JSON.stringify(e))
