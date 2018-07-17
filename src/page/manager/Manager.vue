@@ -73,13 +73,13 @@ export default {
         },
         {
           name: '联系客服',
-          link: '',
+          link: 'manager',
           isLink: false,
           value: '021-00000000'
         },
         {
           name: '关于我们',
-          link: 'resetPassw',
+          link: 'manager',
           isLink: true,
           value: ''
         }]

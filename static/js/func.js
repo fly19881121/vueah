@@ -174,6 +174,22 @@ export default {
 						out += "\r\n";
 				};
 				return out;
+			},
+			Vue.prototype.checkMobile = function(str) {//判断是否符合手机号
+				let reg = /^1[34578][0-9]{9}$/; //验证规则，
+				let phoneNum = str; //手机号码
+				let flag = reg.test(phoneNum); //true
+				return flag;
+			},
+			Vue.prototype.checkNull = function(str) {//判断是否为空，空则返回true
+				return Object.keys(str).length === 0
+			},
+			Vue.prototype.checkIdCard = function(str) {//判断是否符合身份证号规则
+				let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+				let idcard = str; //身份证号
+				let flag = reg.test(idcard); //true
+				return flag;
 			}
+
 	}
 }

@@ -35,6 +35,10 @@
 			},
 			next() {
 				let _this = this;
+				if(_this.value4.length==0){
+					alert("请先选择车辆");
+					return;
+				}
 				_this.setlocalstory("carlist",_this.value4);
 				_this.$router.push('/apply')
 			},

@@ -23,7 +23,7 @@
 		name: 'hello',
 		data() {
 			return {
-				addpicsrc: "../../../static/img/addpic.png",
+				addpicsrc: "./static/img/addpic.png",
 				filePic: "",
 				filePath: ""
 
