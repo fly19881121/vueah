@@ -7,7 +7,8 @@
 			<mt-button slot="right" @click="more">添加账户</mt-button>
 		</mt-header>
 
-		<div class="maindivbank" v-for="item in prolist" v-bind:key="item.id">
+		<div class="pb50">
+			<div class="maindivbank" v-for="item in prolist" v-bind:key="item.id">
 			<div class="div-all">
 					<div>
 						<img :src="item.iconsrc" class="img-loc" />
@@ -20,8 +21,8 @@
 							{{item.desc}}
 						</div>
 					</div>
-
 				</div>
+			</div>
 		</div>
 	</div>
 </template>

@@ -5,51 +5,54 @@
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
 		</mt-header>
-		<div class="idpic">
-			<div class="fileinput-button">
-				<span>
-        	<img :src="addpicsrc" class="img-loc"/>
-        </span>
-				<input type="file" ref="file" v-on:change="getpic">
+
+		<div class="pb50">
+			<div class="idpic">
+				<div class="fileinput-button">
+					<span>
+	        	<img :src="addpicsrc" class="img-loc"/>
+	        </span>
+					<input type="file" ref="file" v-on:change="getpic">
+				</div>
+				<p>请选择行驶本照片</p>
+				<span class="btn-chose">
+					<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic">上传</mt-button>
+				</span>
 			</div>
-			<p>请选择行驶本照片</p>
-			<span class="btn-chose">
-				<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic">上传</mt-button>
-			</span>
-		</div>
-		<div v-if="carinfoflag">
-			<mt-field label="号牌号码" v-model="cardNo"></mt-field>
-			<mt-field label="车辆类型" v-model="vehicleType"></mt-field>
-			<mt-field label="所有人" v-model="name"></mt-field>
-			<mt-field label="住址" v-model="address"></mt-field>
-			<mt-field label="使用性质" v-model="useCharacte"></mt-field>
-			<mt-field label="品牌型号" v-model="model"></mt-field>
-			<mt-field label="车辆识别代码" v-model="vin"></mt-field>
-			<mt-field label="发动机号" v-model="enginePN"></mt-field>
-			<div @click='openPicker("re")'>
-				<mt-field label="注册日期" v-model="redate" readonly="readonly"></mt-field>
+			<div v-if="carinfoflag">
+				<mt-field label="号牌号码" v-model="cardNo"></mt-field>
+				<mt-field label="车辆类型" v-model="vehicleType"></mt-field>
+				<mt-field label="所有人" v-model="name"></mt-field>
+				<mt-field label="住址" v-model="address"></mt-field>
+				<mt-field label="使用性质" v-model="useCharacte"></mt-field>
+				<mt-field label="品牌型号" v-model="model"></mt-field>
+				<mt-field label="车辆识别代码" v-model="vin"></mt-field>
+				<mt-field label="发动机号" v-model="enginePN"></mt-field>
+				<div @click='openPicker("re")'>
+					<mt-field label="注册日期" v-model="redate" readonly="readonly"></mt-field>
+				</div>
+				<div @click='openPicker("start")'>
+					<mt-field label="发证日期" v-model="startdate" readonly="readonly"></mt-field>
+				</div>
 			</div>
-			<div @click='openPicker("start")'>
-				<mt-field label="发证日期" v-model="startdate" readonly="readonly"></mt-field>
+			<div class="select" @click="sheetchepai = true">
+				<mt-field label="车牌颜色" v-model="carcolor"></mt-field>
 			</div>
+			<div class="select" @click="sheetchetou = true">
+				<mt-field label="车头颜色" v-model="chetoucolor"></mt-field>
+			</div>
+
+
+			<mt-actionsheet :actions="actionschepai" v-model="sheetchepai">
+			</mt-actionsheet>
+
+			<mt-actionsheet :actions="actionschetou" v-model="sheetchetou">
+			</mt-actionsheet>
+
+			<mt-datetime-picker type="date" ref="picker" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="handleConfirm" :startDate="startDate">
+			</mt-datetime-picker>
+			<mt-button size="large" type="primary" class="button-al" v-on:click="sureback">确定添加</mt-button>
 		</div>
-		<div class="select" @click="sheetchepai = true">
-			<mt-field label="车牌颜色" v-model="carcolor"></mt-field>
-		</div>
-		<div class="select" @click="sheetchetou = true">
-			<mt-field label="车头颜色" v-model="chetoucolor"></mt-field>
-		</div>
-
-
-		<mt-actionsheet :actions="actionschepai" v-model="sheetchepai">
-		</mt-actionsheet>
-
-		<mt-actionsheet :actions="actionschetou" v-model="sheetchetou">
-		</mt-actionsheet>
-
-		<mt-datetime-picker type="date" ref="picker" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="handleConfirm" :startDate="startDate">
-		</mt-datetime-picker>
-		<mt-button size="large" type="primary" class="button-al" v-on:click="sureback">确定添加</mt-button>
 	</div>
 </template>
 <script>

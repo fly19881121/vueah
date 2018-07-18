@@ -7,21 +7,23 @@
 			<mt-button slot="right" @click="more">添加账户</mt-button>
 		</mt-header>
 
-		<div class="maindivbank" v-for="item in prolist" v-bind:key="item.id">
-			<div class="div-all" @click='back(item)'>
-					<div>
-						<img :src="item.iconsrc" class="img-loc" />
-					</div>
-					<div class="div-content">
-						<div class="bankname">
-							{{item.name}}
+		<div class="pb50">
+			<div class="maindivbank" v-for="item in prolist" v-bind:key="item.id">
+				<div class="div-all" @click='back(item)'>
+						<div>
+							<img :src="item.iconsrc" class="img-loc" />
 						</div>
-						<div class="div-bankdesc">
-							{{item.desc}}
+						<div class="div-content">
+							<div class="bankname">
+								{{item.name}}
+							</div>
+							<div class="div-bankdesc">
+								{{item.desc}}
+							</div>
 						</div>
-					</div>
 
-				</div>
+					</div>
+			</div>
 		</div>
 	</div>
 </template>

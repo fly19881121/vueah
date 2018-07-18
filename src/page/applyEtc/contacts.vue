@@ -6,21 +6,21 @@
 			</div>
 		</mt-header>
 
-		<div class="div-loc">
-			<label></label>
-		</div>
+		<div class="pb50">
 
-		<div class="div-loc">
-			<mt-field label="联系人姓名" placeholder="联系人姓名" v-model="contactsname"></mt-field>
+			<div class="div-loc">
+				<mt-field label="联系人姓名" placeholder="联系人姓名" v-model="contactsname"></mt-field>
 
-		</div>
+			</div>
 
-		<div class="div-loc">
-			<mt-field label="联系人手机号" placeholder="联系人手机号" v-model="contactsphone" class=""></mt-field>
-		</div>
+			<div class="div-loc">
+				<mt-field label="联系人手机号" placeholder="联系人手机号" v-model="contactsphone" class=""></mt-field>
+			</div>
 
-		<div class="div-loc">
-			<mt-button size="large" id="btn-locshow" type="primary" v-on:click="sureback">完成</mt-button>
+			<div class="div-loc">
+				<mt-button size="large" id="btn-locshow" type="primary" v-on:click="sureback">完成</mt-button>
+			</div>
+
 		</div>
 
 	</div>

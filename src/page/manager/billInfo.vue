@@ -5,20 +5,22 @@
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
 		</mt-header>
-		<div class="itemlist" v-for="item in items">
-			<header>车牌号 {{item.cardNO}}</header>
-			<div class="main">
-				<p>出口:{{item.out}} {{item.outTime}}</p>
-				<p>入口:{{item.entry}} {{item.entryTime}}</p>
-				<p>金额:{{item.total}}</p>
+		<div class="pb50">
+			<div class="itemlist" v-for="item in items">
+				<header>车牌号 {{item.cardNO}}</header>
+				<div class="main">
+					<p>出口:{{item.out}} {{item.outTime}}</p>
+					<p>入口:{{item.entry}} {{item.entryTime}}</p>
+					<p>金额:{{item.total}}</p>
+				</div>
 			</div>
-		</div>
 
-		<div class="div-info">
-			<div class="div-info-1">
-				{{total}}
+			<div class="div-info">
+				<div class="div-info-1">
+					{{total}}
+				</div>
+				<mt-button size="large" type="primary" class="footer-btn" v-on:click="topay">立即还款</mt-button>
 			</div>
-			<mt-button size="large" type="primary" class="footer-btn" v-on:click="topay">立即还款</mt-button>
 		</div>
 	</div>
 </template>

@@ -1,5 +1,4 @@
 <template>
-
 	<div>
 		<mt-header fixed title="产品详情">
 			<div slot="left">
@@ -7,17 +6,17 @@
 			</div>
 		</mt-header>
 
-		<div class="productinfo">
-
-			<header>
-				<span>产品介绍</span>{{proinfo.productName}}
-			</header>
-			<div class="main">
-				<p>{{proinfo.descri}}</p>
+		<div class="pb50">
+			<div class="productinfo">
+				<header>
+					<span>产品介绍</span>{{proinfo.productName}}
+				</header>
+				<div class="main">
+					<p>{{proinfo.descri}}</p>
+				</div>
 			</div>
-
+			<mt-button size="large" id="button-al" type="primary" class="button-al" v-on:click="next">立即申请</mt-button>
 		</div>
-		<mt-button size="large" id="button-al" type="primary" class="button-al" v-on:click="next">立即申请</mt-button>
 	</div>
 </template>
 

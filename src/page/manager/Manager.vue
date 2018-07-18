@@ -6,24 +6,25 @@
       </router-link>
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
-    <div class="user-info clearfix">
-      <div class="avtor-icon">
-        <img src="../../../static/img/avtor.jpg" alt="">
+    <div class="pb50">
+      <div class="user-info clearfix">
+        <div class="avtor-icon">
+          <img src="../../../static/img/avtor.jpg" alt="">
+        </div>
+        <div class="user-des">
+          <h6>{{user.name}}</h6>
+          <p>{{user.company}} <span>{{user.status}}</span></p>
+        </div>
       </div>
-      <div class="user-des">
-        <h6>{{user.name}}</h6>
-        <p>{{user.company}} <span>{{user.status}}</span></p>
+      <div>
+        <mt-cell v-for= "item in manageItem" :key="item.title"
+          :title = item.name
+          :to= item.link
+          :isLink = item.isLink
+          :value = item.value >
+        </mt-cell>
       </div>
     </div>
-    <div  >
-      <mt-cell v-for= "item in manageItem" :key="item.title"
-        :title = item.name
-        :to= item.link
-        :isLink = item.isLink
-        :value = item.value >
-      </mt-cell>
-    </div>
-
   </div>
 </template>
 

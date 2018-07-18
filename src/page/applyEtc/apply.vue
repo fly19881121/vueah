@@ -6,95 +6,98 @@
 			</div>
 		</mt-header>
 
-		<div class="applymain">
 
-			<mt-field label="产品" v-model="proname" readonly="readonly"></mt-field>
+		<div class="pb50">
+			<div class="applymain">
+				<mt-field label="产品" v-model="proname" readonly="readonly"></mt-field>
+				<div v-on:click="toaddcar">
+					<mt-field label="选择车辆" v-model="carname" readonly="readonly">
+						<span><i class="fa fa-angle-right"></i></span>
+					</mt-field>
+				</div>
 
-			<div v-on:click="toaddcar">
-				<mt-field label="选择车辆" v-model="carname" readonly="readonly">
-					<span><i class="fa fa-angle-right"></i></span>
-				</mt-field>
+				<div v-if="isbaozhengjin">
+					<mt-field label="保证金金额" v-model="baozhengjin"></mt-field>
+				</div>
+
+				<div @click="sheetRepaytype = true">
+					<mt-field label="保证金/还款方式" v-model="repaytype"></mt-field>
+				</div>
+
+				<div v-on:click="toaddbank" v-if="repaytype=='代扣'">
+					<mt-field label="选择还款账户" v-model="repaybank" readonly="readonly">
+						<span><i class="fa fa-angle-right"></i></span>
+					</mt-field>
+				</div>
+
+				<div @click="sheetEtcType = true">
+					<mt-field label="Etc卡领取方式" v-model="getEtcType"></mt-field>
+				</div>
+
+				<!--<mt-button @click.native="sheetVisible = true" size="large">点击上拉 action sheet</mt-button>-->
+
+				<mt-actionsheet :actions="actionsEtcType" v-model="sheetEtcType">
+				</mt-actionsheet>
+
+				<mt-actionsheet :actions="actionsRepayType" v-model="sheetRepaytype">
+				</mt-actionsheet>
+
+				<mt-actionsheet :actions="actionsMarry" v-model="sheetMarry">
+				</mt-actionsheet>
+
+				<div v-if="getEtcType=='快递(到付)'">
+					<mt-field label="联系地址" v-model="addr">
+					</mt-field>
+				</div>
+
+				<div @click="sheetMarry = true" v-if="ismar">
+					<mt-field label="是否已婚" v-model="ismarry"></mt-field>
+				</div>
+
+				<router-link :to="{ path: '/contacts',query:{library_id:'marry'} }" v-if="ismarry=='是'">
+					<mt-field label="配偶联系方式" v-model="contactsSpouse" readonly="readonly">
+						<span><i class="fa fa-angle-right"></i></span>
+					</mt-field>
+				</router-link>
+
+				<router-link :to="{ path: '/contacts',query:{library_id:'1'} }" v-if="iscon1">
+					<mt-field label="紧急联系人1" v-model="contacts1" readonly="readonly">
+						<span><i class="fa fa-angle-right"></i></span>
+					</mt-field>
+				</router-link>
+
+				<router-link :to="{ path: '/contacts',query:{library_id:'2'} }" v-if="iscon2">
+					<mt-field label="紧急联系人2" v-model="contacts2" readonly="readonly">
+						<span><i class="fa fa-angle-right"></i></span>
+					</mt-field>
+				</router-link>
+
+				<router-link :to="{ path: '/uploadCarRelation' }" v-if="carrel">
+					<mt-field label="选择车辆关系证明" v-model="uploadCarRelation" readonly="readonly">
+						<span><i class="fa fa-angle-right"></i></span>
+					</mt-field>
+				</router-link>
+
+				<router-link :to="{ path: '/uploadCreditReport' }" v-if="gerenzhengxin">
+
+					<mt-field label="选择个人征信报告照片" v-model="uploadCreditReport" readonly="readonly">
+						<span><i class="fa fa-angle-right"></i></span>
+					</mt-field>
+				</router-link>
+
+				<router-link :to="{ path: '/uploadBankState' }" v-if="cardliushui">
+
+					<mt-field label="选择银行卡流水账单" v-model="uploadBankState" readonly="readonly">
+						<span><i class="fa fa-angle-right"></i></span>
+					</mt-field>
+				</router-link>
+
 			</div>
 
-			<div v-if="isbaozhengjin">
-				<mt-field label="保证金金额" v-model="baozhengjin"></mt-field>
-			</div>
+			<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="apply">申请</mt-button>
 
-			<div @click="sheetRepaytype = true">
-				<mt-field label="保证金/还款方式" v-model="repaytype"></mt-field>
-			</div>
-
-			<div v-on:click="toaddbank" v-if="repaytype=='代扣'">
-				<mt-field label="选择还款账户" v-model="repaybank" readonly="readonly">
-					<span><i class="fa fa-angle-right"></i></span>
-				</mt-field>
-			</div>
-
-			<div @click="sheetEtcType = true">
-				<mt-field label="Etc卡领取方式" v-model="getEtcType"></mt-field>
-			</div>
-
-			<!--<mt-button @click.native="sheetVisible = true" size="large">点击上拉 action sheet</mt-button>-->
-
-			<mt-actionsheet :actions="actionsEtcType" v-model="sheetEtcType">
-			</mt-actionsheet>
-
-			<mt-actionsheet :actions="actionsRepayType" v-model="sheetRepaytype">
-			</mt-actionsheet>
-
-			<mt-actionsheet :actions="actionsMarry" v-model="sheetMarry">
-			</mt-actionsheet>
-
-			<div v-if="getEtcType=='快递(到付)'">
-				<mt-field label="联系地址" v-model="addr">
-				</mt-field>
-			</div>
-
-			<div @click="sheetMarry = true" v-if="ismar">
-				<mt-field label="是否已婚" v-model="ismarry"></mt-field>
-			</div>
-
-			<router-link :to="{ path: '/contacts',query:{library_id:'marry'} }" v-if="ismarry=='是'">
-				<mt-field label="配偶联系方式" v-model="contactsSpouse" readonly="readonly">
-					<span><i class="fa fa-angle-right"></i></span>
-				</mt-field>
-			</router-link>
-
-			<router-link :to="{ path: '/contacts',query:{library_id:'1'} }" v-if="iscon1">
-				<mt-field label="紧急联系人1" v-model="contacts1" readonly="readonly">
-					<span><i class="fa fa-angle-right"></i></span>
-				</mt-field>
-			</router-link>
-
-			<router-link :to="{ path: '/contacts',query:{library_id:'2'} }" v-if="iscon2">
-				<mt-field label="紧急联系人2" v-model="contacts2" readonly="readonly">
-					<span><i class="fa fa-angle-right"></i></span>
-				</mt-field>
-			</router-link>
-
-			<router-link :to="{ path: '/uploadCarRelation' }" v-if="carrel">
-				<mt-field label="选择车辆关系证明" v-model="uploadCarRelation" readonly="readonly">
-					<span><i class="fa fa-angle-right"></i></span>
-				</mt-field>
-			</router-link>
-
-			<router-link :to="{ path: '/uploadCreditReport' }" v-if="gerenzhengxin">
-
-				<mt-field label="选择个人征信报告照片" v-model="uploadCreditReport" readonly="readonly">
-					<span><i class="fa fa-angle-right"></i></span>
-				</mt-field>
-			</router-link>
-
-			<router-link :to="{ path: '/uploadBankState' }" v-if="cardliushui">
-
-				<mt-field label="选择银行卡流水账单" v-model="uploadBankState" readonly="readonly">
-					<span><i class="fa fa-angle-right"></i></span>
-				</mt-field>
-			</router-link>
 
 		</div>
-
-		<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="apply">申请</mt-button>
 
 	</div>
 </template>

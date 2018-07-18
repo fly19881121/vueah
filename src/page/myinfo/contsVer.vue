@@ -5,15 +5,17 @@
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
 		</mt-header>
-		<div v-if="loadding">
-			<img src="../../../static/img/loading.gif" />
-		</div>
-		<!--<canvas v-for="page in pages" :id="'the-canvas'+page" :key="page"></canvas>-->
+		<div class="pb50">
+			<div v-if="loadding">
+				<img src="../../../static/img/loading.gif" />
+			</div>
+			<!--<canvas v-for="page in pages" :id="'the-canvas'+page" :key="page"></canvas>-->
 
-		<iframe :src="pdfurl" class="ifram-show"></iframe>
+			<iframe :src="pdfurl" class="ifram-show"></iframe>
 
-		<div v-if="!loadding">
-			<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="submit">我同意以上合同要求</mt-button>
+			<div v-if="!loadding">
+				<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="submit">我同意以上合同要求</mt-button>
+			</div>
 		</div>
 	</div>
 </template>

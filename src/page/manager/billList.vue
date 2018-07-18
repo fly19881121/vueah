@@ -6,53 +6,55 @@
 			</div>
 		</mt-header>
 
-		<mt-navbar v-model="selected">
-			<mt-tab-item id="1">未结清账单</mt-tab-item>
-			<mt-tab-item id="2">已结清账单</mt-tab-item>
-		</mt-navbar>
 
-		<!-- tab-container -->
-		<mt-tab-container v-model="selected">
-			<mt-tab-container-item id="1">
-				<!--未结清-->
-				<div class="maindivbill" v-for="item in bill1">
-					<header>
-						<span>{{item.no}}期</span>
-						<span>{{item.productCate}}产品账单</span>
-					</header>
-					<div class="main">
-						<p><span>产品周期:{{item.dateStart}}--{{item.dateEnd}}</span></p>
-						<p><span>最后还款日:{{item.finalRepayment}}</span></p>
-						<p><span>账单总金额:{{item.currentDateTotal}}</span></p>
+		<div class="pb50">
+			<mt-navbar v-model="selected">
+				<mt-tab-item id="1">未结清账单</mt-tab-item>
+				<mt-tab-item id="2">已结清账单</mt-tab-item>
+			</mt-navbar>
+
+			<!-- tab-container -->
+			<mt-tab-container v-model="selected">
+				<mt-tab-container-item id="1">
+					<!--未结清-->
+					<div class="maindivbill" v-for="item in bill1">
+						<header>
+							<span>{{item.no}}期</span>
+							<span>{{item.productCate}}产品账单</span>
+						</header>
+						<div class="main">
+							<p><span>产品周期:{{item.dateStart}}--{{item.dateEnd}}</span></p>
+							<p><span>最后还款日:{{item.finalRepayment}}</span></p>
+							<p><span>账单总金额:{{item.currentDateTotal}}</span></p>
+						</div>
+						<footer>
+							<span @click="toinfo">查看详情</span>
+							<span @click="torepay" class="text-blue">去还款</span>
+						</footer>
 					</div>
-					<footer>
-						<span @click="toinfo">查看详情</span>
-						<span @click="torepay" class="text-blue">去还款</span>
-					</footer>
-				</div>
 
-			</mt-tab-container-item>
+				</mt-tab-container-item>
 
-			<mt-tab-container-item id="2">
-				<!--已结清-->
-				<div class="maindivbill" v-for="item in bill2">
-					<header>
-						<span>{{item.no}}期</span>
-						<span>{{item.productCate}}产品账单</span>
-					</header>
-					<div class="main">
-						<p><span>产品周期:{{item.dateStart}}--{{item.dateEnd}}</span></p>
-						<p><span>最后还款日:{{item.finalRepayment}}</span></p>
-						<p><span>账单总金额:{{item.currentDateTotal}}</span></p>
+				<mt-tab-container-item id="2">
+					<!--已结清-->
+					<div class="maindivbill" v-for="item in bill2">
+						<header>
+							<span>{{item.no}}期</span>
+							<span>{{item.productCate}}产品账单</span>
+						</header>
+						<div class="main">
+							<p><span>产品周期:{{item.dateStart}}--{{item.dateEnd}}</span></p>
+							<p><span>最后还款日:{{item.finalRepayment}}</span></p>
+							<p><span>账单总金额:{{item.currentDateTotal}}</span></p>
+						</div>
+						<footer>
+							<span @click="toinfo">查看详情</span>
+						</footer>
 					</div>
-					<footer>
-						<span @click="toinfo">查看详情</span>
-					</footer>
-				</div>
-			</mt-tab-container-item>
+				</mt-tab-container-item>
 
-		</mt-tab-container>
-
+			</mt-tab-container>
+		</div>
 	</div>
 </template>
 

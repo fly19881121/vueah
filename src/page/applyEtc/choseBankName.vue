@@ -5,18 +5,19 @@
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
 		</mt-header>
-		<div class="applymain">
-			<mt-radio
-				title="选择开户行"
-				v-model="value"
-				:options="items">
-			</mt-radio>
+
+		<div class="pb50">
+			<div class="applymain">
+				<mt-radio
+					title="选择开户行"
+					v-model="value"
+					:options="items">
+				</mt-radio>
 
 
-			<mt-button size="large" id="button-al" type="primary" class="button-al" v-on:click="next">立即申请</mt-button>
+				<mt-button size="large" id="button-al" type="primary" class="button-al" v-on:click="next">立即申请</mt-button>
+			</div>
 		</div>
-
-
 	</div>
 </template>
 

@@ -12,10 +12,12 @@
 			<mt-button size="large" type="primary" class="button-sure" v-on:click="sureback">确定选择</mt-button>
 		</div> -->
 
-		<mt-checklist align="left" class="page-part" title="请选择添加车辆" v-model="value4" :options="options4">
-		</mt-checklist>
+		<div class="pb50">
+			<mt-checklist align="left" class="page-part" title="请选择添加车辆" v-model="value4" :options="options4">
+			</mt-checklist>
 
-		<mt-button size="large" type="primary" id="btn-locshow" class="btn-locshow" v-on:click="next">立即申请</mt-button>
+			<mt-button size="large" type="primary" id="btn-locshow" class="btn-locshow" v-on:click="next">立即申请</mt-button>
+		</div>
 	</div>
 </template>
 

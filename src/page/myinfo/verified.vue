@@ -5,157 +5,159 @@
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</router-link>-->
 		</mt-header>
-		<div v-if="loadding" class="loading">
-			<img src="../../../static/img/loading.gif" />
-		</div>
-		<div v-if="divchose">
-			<mt-button size="large" type="primary" class="button-al" v-on:click="vergeren">我是个人账户</mt-button>
-			<mt-button size="large" type="primary" class="button-al" v-on:click="verqiye">我是企业账户</mt-button>
-			<mt-button size="large" type="primary" class="button-al" v-on:click="sureback">暂不认证</mt-button>
-		</div>
 
-		<div v-if="divgeren">
-			<div class="idpic">
-				<div class="fileinput-button">
-					<span>
-          	<img :src="picIdZheng" class="img-loc"/>
-          </span>
-					<input type="file" ref="fileIdZheng" v-on:change="getPicInfo('gerenzhengmian')">
-				</div>
-				<p>请上传身份证人面像</p>
-				<div class="btn-chose">
-					<mt-button size="small" type="primary" class="submit_img" v-on:click="uploadpic('gerenzhengmian')">上传</mt-button>
-				</div>
+		<div class="pb50">
+			<div v-if="loadding" class="loading">
+				<img src="../../../static/img/loading.gif" />
 			</div>
-			<div class="idpic">
-				<div class="fileinput-button">
-					<span>
-          	<img :src="picIdFan" class="img-loc"/>
-          </span>
-					<input type="file" ref="fileIdFan" v-on:change="getPicInfo('gerenfanmian')">
-				</div>
-				<p>请上传身份证国徽像</p>
-				<div class="btn-chose">
-					<mt-button size="small" type="primary" class="submit_img" v-on:click="uploadpic('gerenfanmian')">上传</mt-button>
-				</div>
+			<div v-if="divchose">
+				<mt-button size="large" type="primary" class="button-al" v-on:click="vergeren">我是个人账户</mt-button>
+				<mt-button size="large" type="primary" class="button-al" v-on:click="verqiye">我是企业账户</mt-button>
+				<mt-button size="large" type="primary" class="button-al" v-on:click="sureback">暂不认证</mt-button>
 			</div>
-			<div v-if="divgereninfo" style="margin-top: 20px;">
-				<mt-field label="姓名" v-model="sfzname"></mt-field>
-				<mt-field label="性别" v-model="sfzsex"></mt-field>
-				<mt-field label="民族" v-model="sfzfolk"></mt-field>
-				<mt-field label="地址" v-model="sfzaddress"></mt-field>
-				<mt-field label="身份证号" v-model="sfzcardNo"></mt-field>
-				<div @click='openPicker("bir")'>
-					<mt-field label="出生日期" v-model="birdate" readonly="readonly"></mt-field>
-				</div>
-			</div>
-			<div v-if="divgereninfofan">
-				<mt-field label="签发机关" v-model="sfzissueAuthority"></mt-field>
-				<div @click='openPicker("idend")'>
-					<mt-field label="有效期" v-model="sfzvalidPeriod" readonly="readonly"></mt-field>
-				</div>
-			</div>
-			<mt-button size="large" type="primary" class="button-al" v-on:click="submitGeren">提交认证</mt-button>
-		</div>
 
-		<div v-if="divqiye">
-			<div v-if="divqiye1" class="company">
-				<mt-field placeholder="请输入企业姓名" label="企业姓名" v-model="customerName"></mt-field>
-				<mt-field placeholder="请输入企业营业执照号" label="营业执照号" v-model="licenseNo"></mt-field>
-				<mt-field placeholder="请输入企业法人姓名" label="法人姓名" v-model="legalName"></mt-field>
-				<mt-field placeholder="请输入法人身份证号" label="法人身份证号" v-model="legalIdCard"></mt-field>
-				<mt-field placeholder="请输入经办人姓名" label="经办人姓名" v-model="proname"></mt-field>
-				<mt-button size="large" type="primary" class="button-al" v-on:click="qiyenext1">下一步</mt-button>
-			</div>
-			<div v-if="divqiye2">
-				<!--法人部分-->
+			<div v-if="divgeren">
 				<div class="idpic">
 					<div class="fileinput-button">
 						<span>
-            	<img :src="picfarenzheng" class="img-loc"/>
-            </span>
-						<input type="file" ref="filefarenzheng" v-on:change="getPicInfo('farenzhengmian')">
+	          	<img :src="picIdZheng" class="img-loc"/>
+	          </span>
+						<input type="file" ref="fileIdZheng" v-on:change="getPicInfo('gerenzhengmian')">
 					</div>
-					<p>请选择法人身份证正面照片</p>
-					<span class="btn-chose">
-						<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('farenzhengmian')">上传</mt-button>
-					</span>
-				</div>
-				<div v-if="divfareninfozheng">
-					<mt-field label="法人性别" v-model="farensex"></mt-field>
-					<mt-field label="法人民族" v-model="farenfolx"></mt-field>
-					<div @click='openPicker("farenbir")'>
-						<mt-field label="法人出生日期" v-model="farenbir" readonly="readonly"></mt-field>
+					<p>请上传身份证人面像</p>
+					<div class="btn-chose">
+						<mt-button size="small" type="primary" class="submit_img" v-on:click="uploadpic('gerenzhengmian')">上传</mt-button>
 					</div>
-					<mt-field label="住址" v-model="farenaddr"></mt-field>
 				</div>
-				<!--经办人部分-->
 				<div class="idpic">
 					<div class="fileinput-button">
 						<span>
-            	<img :src="picjingbanzheng" class="img-loc"/>
-            </span>
-						<input type="file" ref="filejingbanrenzheng" v-on:change="getPicInfo('jingbanrenzhengmian')">
+	          	<img :src="picIdFan" class="img-loc"/>
+	          </span>
+						<input type="file" ref="fileIdFan" v-on:change="getPicInfo('gerenfanmian')">
 					</div>
-					<p>请选择经办人身份证正面照片</p>
-					<span class="btn-chose">
-						<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('jingbanrenzhengmian')">上传</mt-button>
-					</span>
-				</div>
-				<div v-if="divjingbanzheng">
-					<mt-field label="经办人姓名" v-model="jbrname"></mt-field>
-					<mt-field label="经办人性别" v-model="jbrsex"></mt-field>
-					<mt-field label="经办人民族" v-model="jbrfolx"></mt-field>
-					<div @click='openPicker("jingbanbir")'>
-						<mt-field label="经办人出生日期" v-model="jbrbir" readonly="readonly"></mt-field>
-					</div>
-					<mt-field label="经办人住址" v-model="jbraddr"></mt-field>
-					<mt-field label="经办人身份证号" v-model="jbrcardno"></mt-field>
-					<mt-field label="联系人姓名" v-model="contacter"></mt-field>
-					<mt-field label="联系人电话" v-model="contacterphone"></mt-field>
-				</div>
-				<!--营业执照-->
-				<div class="idpic">
-					<span class="fileinput-button">
-		            <span>
-		            	<img :src="picyingye" class="img-loc"/>
-		            </span>
-					<input type="file" ref="fileyingye" v-on:change="getPicInfo('yingyezhizhao')">
-					</span>
-					<p>请选择营业执照照片</p>
-					<span class="btn-chose">
-						<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('yingyezhizhao')">上传</mt-button>
-					</span>
-				</div>
-				<!--法人反面-->
-				<div class="idpic">
-					<span class="fileinput-button">
-		            <span>
-		            	<img :src="picfarenfan" class="img-loc"/>
-		            </span>
-					<input type="file" ref="filefarenfan" v-on:change="getPicInfo('farenfanmian')">
-					</span>
-					<p>请选择法人身份证反面照片</p>
-					<span class="btn-chose">
-						<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('farenfanmian')">上传</mt-button>
-					</span>
-				</div>
-				<div v-if="divfarenfan">
-					<mt-field label="签发机关" v-model="farenissueAuthority"></mt-field>
-					<div @click='openPicker("farenidend")'>
-						<mt-field label="有效期" v-model="farenidenddate" readonly="readonly"></mt-field>
+					<p>请上传身份证国徽像</p>
+					<div class="btn-chose">
+						<mt-button size="small" type="primary" class="submit_img" v-on:click="uploadpic('gerenfanmian')">上传</mt-button>
 					</div>
 				</div>
+				<div v-if="divgereninfo" style="margin-top: 20px;">
+					<mt-field label="姓名" v-model="sfzname"></mt-field>
+					<mt-field label="性别" v-model="sfzsex"></mt-field>
+					<mt-field label="民族" v-model="sfzfolk"></mt-field>
+					<mt-field label="地址" v-model="sfzaddress"></mt-field>
+					<mt-field label="身份证号" v-model="sfzcardNo"></mt-field>
+					<div @click='openPicker("bir")'>
+						<mt-field label="出生日期" v-model="birdate" readonly="readonly"></mt-field>
+					</div>
+				</div>
+				<div v-if="divgereninfofan">
+					<mt-field label="签发机关" v-model="sfzissueAuthority"></mt-field>
+					<div @click='openPicker("idend")'>
+						<mt-field label="有效期" v-model="sfzvalidPeriod" readonly="readonly"></mt-field>
+					</div>
+				</div>
+				<mt-button size="large" type="primary" class="button-al" v-on:click="submitGeren">提交认证</mt-button>
+			</div>
 
-				<mt-button size="large" type="primary" class="button-al" v-on:click="submitQiye">申请认证</mt-button>
+			<div v-if="divqiye">
+				<div v-if="divqiye1" class="company">
+					<mt-field placeholder="请输入企业姓名" label="企业姓名" v-model="customerName"></mt-field>
+					<mt-field placeholder="请输入企业营业执照号" label="营业执照号" v-model="licenseNo"></mt-field>
+					<mt-field placeholder="请输入企业法人姓名" label="法人姓名" v-model="legalName"></mt-field>
+					<mt-field placeholder="请输入法人身份证号" label="法人身份证号" v-model="legalIdCard"></mt-field>
+					<mt-field placeholder="请输入经办人姓名" label="经办人姓名" v-model="proname"></mt-field>
+					<mt-button size="large" type="primary" class="button-al" v-on:click="qiyenext1">下一步</mt-button>
+				</div>
+				<div v-if="divqiye2">
+					<!--法人部分-->
+					<div class="idpic">
+						<div class="fileinput-button">
+							<span>
+	            	<img :src="picfarenzheng" class="img-loc"/>
+	            </span>
+							<input type="file" ref="filefarenzheng" v-on:change="getPicInfo('farenzhengmian')">
+						</div>
+						<p>请选择法人身份证正面照片</p>
+						<span class="btn-chose">
+							<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('farenzhengmian')">上传</mt-button>
+						</span>
+					</div>
+					<div v-if="divfareninfozheng">
+						<mt-field label="法人性别" v-model="farensex"></mt-field>
+						<mt-field label="法人民族" v-model="farenfolx"></mt-field>
+						<div @click='openPicker("farenbir")'>
+							<mt-field label="法人出生日期" v-model="farenbir" readonly="readonly"></mt-field>
+						</div>
+						<mt-field label="住址" v-model="farenaddr"></mt-field>
+					</div>
+					<!--经办人部分-->
+					<div class="idpic">
+						<div class="fileinput-button">
+							<span>
+	            	<img :src="picjingbanzheng" class="img-loc"/>
+	            </span>
+							<input type="file" ref="filejingbanrenzheng" v-on:change="getPicInfo('jingbanrenzhengmian')">
+						</div>
+						<p>请选择经办人身份证正面照片</p>
+						<span class="btn-chose">
+							<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('jingbanrenzhengmian')">上传</mt-button>
+						</span>
+					</div>
+					<div v-if="divjingbanzheng">
+						<mt-field label="经办人姓名" v-model="jbrname"></mt-field>
+						<mt-field label="经办人性别" v-model="jbrsex"></mt-field>
+						<mt-field label="经办人民族" v-model="jbrfolx"></mt-field>
+						<div @click='openPicker("jingbanbir")'>
+							<mt-field label="经办人出生日期" v-model="jbrbir" readonly="readonly"></mt-field>
+						</div>
+						<mt-field label="经办人住址" v-model="jbraddr"></mt-field>
+						<mt-field label="经办人身份证号" v-model="jbrcardno"></mt-field>
+						<mt-field label="联系人姓名" v-model="contacter"></mt-field>
+						<mt-field label="联系人电话" v-model="contacterphone"></mt-field>
+					</div>
+					<!--营业执照-->
+					<div class="idpic">
+						<span class="fileinput-button">
+			            <span>
+			            	<img :src="picyingye" class="img-loc"/>
+			            </span>
+						<input type="file" ref="fileyingye" v-on:change="getPicInfo('yingyezhizhao')">
+						</span>
+						<p>请选择营业执照照片</p>
+						<span class="btn-chose">
+							<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('yingyezhizhao')">上传</mt-button>
+						</span>
+					</div>
+					<!--法人反面-->
+					<div class="idpic">
+						<span class="fileinput-button">
+			            <span>
+			            	<img :src="picfarenfan" class="img-loc"/>
+			            </span>
+						<input type="file" ref="filefarenfan" v-on:change="getPicInfo('farenfanmian')">
+						</span>
+						<p>请选择法人身份证反面照片</p>
+						<span class="btn-chose">
+							<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('farenfanmian')">上传</mt-button>
+						</span>
+					</div>
+					<div v-if="divfarenfan">
+						<mt-field label="签发机关" v-model="farenissueAuthority"></mt-field>
+						<div @click='openPicker("farenidend")'>
+							<mt-field label="有效期" v-model="farenidenddate" readonly="readonly"></mt-field>
+						</div>
+					</div>
+
+					<mt-button size="large" type="primary" class="button-al" v-on:click="submitQiye">申请认证</mt-button>
+
+				</div>
 
 			</div>
 
+			<mt-datetime-picker type="date" ref="picker" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="handleConfirm" :startDate="startDate">
+			</mt-datetime-picker>
 		</div>
-
-		<mt-datetime-picker type="date" ref="picker" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="handleConfirm" :startDate="startDate">
-		</mt-datetime-picker>
-
 	</div>
 </template>
 <script>

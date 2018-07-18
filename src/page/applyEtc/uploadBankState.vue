@@ -5,16 +5,18 @@
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
 		</mt-header>
-		<div class="idpic">
-			<div class="fileinput-button">
-        <span>
-        	<img :src="addpicsrc" class="img-loc"/>
-        </span>
-				<input type="file" ref="file" v-on:change="getpic">
+		<div class="pb50">
+			<div class="idpic">
+				<div class="fileinput-button">
+	        <span>
+	        	<img :src="addpicsrc" class="img-loc"/>
+	        </span>
+					<input type="file" ref="file" v-on:change="getpic">
+				</div>
+				<p>请选择银行卡流水账单</p>
 			</div>
-			<p>请选择银行卡流水账单</p>
+			<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic">确定添加</mt-button>
 		</div>
-		<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic">确定添加</mt-button>
 	</div>
 </template>
 <script>
