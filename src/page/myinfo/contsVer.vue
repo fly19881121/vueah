@@ -46,7 +46,9 @@
 				_this.$ajaxPost('/api/customer/addCustomerAuthInfoAfter', par, function(res) {
 
 					console.log("base suc:" + JSON.stringify(res))
+					_this.$toast('您的认证已经提交，现在可以去办理业务啦');
 					_this.setlocalstory("comeHomeFlag",true);
+					_this.setlocalstory("customerState", 2);
 					_this.$router.push('/home');
 					pushHistory();
 
