@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mt-header title="申请办理">
+		<mt-header fixed title="申请办理">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
@@ -286,7 +286,7 @@
 							return;
 						}
 
-						//step2 基本信息添加申请	
+						//step2 基本信息添加申请
 						let paymentChannel = "";
 						if(_this.repaytype == "代扣") {
 							paymentChannel = 2;
@@ -323,7 +323,7 @@
 								_this.getEtcType + '\",\"key\":\"cardIssueMethod\",\"options\":[\"快递(到付)\",\"营业厅/现场领取 \"],\"placeholder\":\"请选择领取ETC卡片方式\",\"title\":\"ETC卡领取⽅式\",\"type\":\"radio\"},' +
 								'{\"config\":{\"required\":\"false\"},\"field_value\":\"' +
 								_this.addr + '\",\"key\":\"sxsq_address\",\"placeholder\":\"ETC卡收件地址(勿⽤标点符 号)\",\"title\":\"联系地址\",\"type\":\"textarea\"}' ;
-								
+
 							let parstr1=',{\"config\": {\"required\":\"false\"},\"field_value\":\"' +
 								_this.ismarry + '\",\"key\":\"isMarried\",\"options\": [\"已婚\",\"未婚\"],\"placeholder\":\"请选择婚姻状况\",\"title\":\"是否已婚 \",\"type\":\"radio\"},' +
 								'{\"config\":{\"required\":\"false\"},\"field_value\":\"' +
@@ -332,15 +332,15 @@
 								contacts1Info + '\",\"key\":\"contact1\",\"placeholder\":\"紧急联系⼈1联系⽅式 \",\"title\":\"紧急联系⼈1\",\"type\":\"contact\"},' +
 								'{\"config\":{\"required\":\"false\"},\"field_value\":\"' +
 								contacts2Info + '\",\"key\":\"contact2\",\"placeholder\":\"(请勿重复)联系⼈ 2\",\"title\":\"紧急联系⼈2\",\"type\":\"contact\"}';
-							
+
 							if(_this.getlocalstory("productId")=="15"||_this.getlocalstory("productId")=="16"||_this.getlocalstory("productId")=="18"||_this.getlocalstory("productId")=="20"){
 								parstr=parstr+parstr1;
 							}
-								
-								
-								
-								
-								
+
+
+
+
+
 
 							let str1 = ',{\"config\": {\"required\":\"false\"},\"field_value\":\"https://ladybird.awservice.net/upload//cus tomer_17891/20180702160714055001/201807021607140015.jpg\",\"key\":\"vehicleRelationsh ip\",\"placeholder\":\"[必须]挂靠协议/分期购⻋付款凭证/证明承运关系的其他材料(三选⼀)，可拍摄多张 \",\"sample\":\"https://qf.awservice.net/upload//customer_2/20171013182132431001/2017 10131821320004.jpg\",\"title\":\"⻋辆关系证明\",\"type\":\"file\"}';
 							let str2 = ',{\"config\": {\"required\":\"false\"},\"key\":\"sxsq_grzxbg\",\"placeholder\":\"[可选]仅申请5辆⻋以上 时需要，可拍摄多张 \",\"sample\":\"https://qf.awservice.net/upload//customer_2/20171013182024066001/2017 10131820240003.jpg\",\"title\":\"个⼈征信报告照⽚\",\"type\":\"file\"}';
@@ -541,7 +541,7 @@
 			}
 		}
 	}
-	
+
 	#button-al {
 		width: calc(100% - 1rem);
 		margin: .5rem auto;

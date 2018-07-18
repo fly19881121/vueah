@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mt-header title="认证">
+		<mt-header fixed title="认证">
 			<!--<router-link to="/" slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</router-link>-->
@@ -572,8 +572,8 @@
 					};
 					_this.$ajaxPost('/api/customer/addCustomerAuthInfo', par2, function(res2) {
 						console.log("addCustomerAuthInfo suc:" + JSON.stringify(par2))
-						//step 3 上传模板信息		
-						
+						//step 3 上传模板信息
+
 						let objectId = res2.userId;
 						let objectName = "cus_customer_cer_ent";
 						let coninfo = _this.contacter + "," + _this.contacterphone;
@@ -680,7 +680,7 @@
 		},
 		mounted: function() {
 			let _this = this;
-			
+
 		}
 	}
 
@@ -698,7 +698,7 @@
 		width: calc(100% - 1rem);
 		margin: .5rem auto;
 	}
-	
+
 	.idpic {
 		margin: .5rem 0;
 		.fileinput-button {
@@ -715,7 +715,7 @@
 			line-height: 1rem;
 		}
 	}
-	
+
 	.fileinput-button input {
 		position: absolute;
 		right: 0px;
@@ -724,67 +724,67 @@
 		width: 100%;
 		height: 100%;
 	}
-	
+
 	.btn-chose {
 		width: 70%;
 		margin: 0 auto;
 	}
-	
+
 	.submit_img {
 		width: 100%;
 	}
-	
+
 	.company {
 		>a {
 			border-bottom: 1px solid rgba(225, 225, 225, 1);
 		}
 	}
-	
+
 	.img-loc {
 		width: 100%;
 		display: block;
 		margin: 0 auto;
 	}
-	
+
 	.content {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
 	}
-	
+
 	.switch-width {
 		width: 60%;
 	}
-	
+
 	.label-text {
 		margin-top: 8px;
 		color: blue;
 	}
-	
+
 	.fa-loc {
 		position: absolute;
 		top: 190px;
 		right: 20px;
 		z-index: 2;
 	}
-	
+
 	.fa-color {
 		color: blue;
 	}
-	
+
 	.but-login-filter {
 		opacity: 0.5;
 		color: black;
 	}
-	
+
 	.cont-sec {
 		margin-top: 10px;
 	}
-	
+
 	.password-width {
 		width: 70%;
 	}
-	
+
 	.fir-input {
 		float: left;
 		line-height: 30px;
@@ -794,7 +794,7 @@
 		border-right-width: 0px;
 		border-bottom-color: gainsboro
 	}
-	
+
 	.sec-input {
 		float: left;
 		line-height: 30px;
@@ -804,11 +804,11 @@
 		border-right-width: 0px;
 		border-bottom-color: gainsboro
 	}
-	
+
 	.divinput {
 		line-height: 55px;
 	}
-	
+
 	.divinput input {
 		line-height: 40px;
 		border: none;

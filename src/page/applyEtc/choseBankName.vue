@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mt-header title="选择银行">
+		<mt-header fixed title="选择银行">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>

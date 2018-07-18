@@ -1,7 +1,7 @@
 <template>
 
 	<div>
-		<mt-header title="产品详情">
+		<mt-header fixed title="产品详情">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
@@ -39,7 +39,7 @@
 			next() {
 				let _this = this;
 				let _obj=_this.proinfo;
-				
+
 				//15+后付费月结卡(个人)    16+后付费周结卡(个人)
 				//18+保证金月结卡(个人)    20+保证金周结卡(个人)
 				let config=[];
@@ -116,7 +116,7 @@
 					}
 					config.push(JSON.stringify(jsonstr));
 				}
-				
+
 				//清空之前所有选择的申请信息
 				_this.removelocalstory("repaybank");
 				_this.removelocalstory("repaytype");
@@ -139,9 +139,9 @@
 				_this.removelocalstory("uploadBankState");
 				_this.removelocalstory("uploadCarRelation");
 				_this.removelocalstory("uploadCreditReport");
-				
-				
-				
+
+
+
 				_this.setlocalstory("config",config);
 				_this.setlocalstory("productId",_obj.productId);
 				_this.setlocalstory("creditFormId",_obj.creditFormId);

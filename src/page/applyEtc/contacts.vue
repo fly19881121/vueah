@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mt-header title="添加联系人">
+		<mt-header fixed title="添加联系人">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>

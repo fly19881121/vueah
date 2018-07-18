@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mt-header title="添加车辆">
+		<mt-header fixed title="添加车辆">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
@@ -39,14 +39,14 @@
 		<div class="select" @click="sheetchetou = true">
 			<mt-field label="车头颜色" v-model="chetoucolor"></mt-field>
 		</div>
-		
-		
+
+
 		<mt-actionsheet :actions="actionschepai" v-model="sheetchepai">
 		</mt-actionsheet>
-		
+
 		<mt-actionsheet :actions="actionschetou" v-model="sheetchetou">
 		</mt-actionsheet>
-		
+
 		<mt-datetime-picker type="date" ref="picker" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="handleConfirm" :startDate="startDate">
 		</mt-datetime-picker>
 		<mt-button size="large" type="primary" class="button-al" v-on:click="sureback">确定添加</mt-button>
@@ -74,7 +74,7 @@
 					className: 'slot1',
 					textAlign: 'left'
 				}],
-				
+
 				actionschepai: [{
 					name: '蓝色',
 					method: this.onDateChange
@@ -89,7 +89,7 @@
 					method: this.onDateChange
 				}],
 				sheetchepai:false,
-				
+
 				actionschetou: [{
 					name: '蓝色',
 					method: this.onDateChangeT
@@ -104,8 +104,8 @@
 					method: this.onDateChangeT
 				}],
 				sheetchetou:false,
-				
-				
+
+
 				carcolor: "请选择",
 				chetoucolor: "请选择",
 				colorflag: "",
@@ -241,7 +241,7 @@
 		width: calc(100% - 1rem);
 		margin: .5rem auto;
 	}
-	
+
 	.idpic {
 		margin: .5rem 0;
 		.fileinput-button {
@@ -258,7 +258,7 @@
 			line-height: 1rem;
 		}
 	}
-	
+
 	.fileinput-button input {
 		position: absolute;
 		right: 0px;
@@ -267,7 +267,7 @@
 		width: 100%;
 		height: 100%;
 	}
-	
+
 	.img-loc {
 		width: 100%;
 		display: block;
