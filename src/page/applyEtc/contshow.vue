@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mt-header title="申请办理">
+		<mt-header fixed title="申请办理">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
@@ -83,7 +83,7 @@
 		display: block;
 		border-bottom: 1px solid black;
 	}
-	
+
 	#button-al {
 		width: calc(100% - 1rem);
 		margin: .5rem auto;

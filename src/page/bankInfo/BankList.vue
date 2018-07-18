@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mt-header title="还款账户">
+		<mt-header fixed fixed title="还款账户">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
@@ -47,12 +47,12 @@
 				_this.setlocalstory("repaybankid",par.id);
 				_this.$router.push('/apply')
 			}
-			
+
 		},
 		created(){
 				let _this=this;
-				
-				
+
+
 				_this.$ajaxGet('/dcapi/bank/queryBankAccout?accountChannel=BAOFOO', "", function(res) {
 					let arr=[];
 					console.log("queryBankAccout suc:" + JSON.stringify(res.data.result))

@@ -1,6 +1,6 @@
 <template>
   <div class="manager">
-    <mt-header title="个人中心">
+    <mt-header fixed title="个人中心">
       <router-link to="/home" slot="left">
         <mt-button icon="back">返回</mt-button>
       </router-link>
@@ -32,7 +32,7 @@
 export default {
   name: 'manager',
   data () {
-  	
+
   	let customerName=this.getlocalstory("customerName");
   	let customerState=this.getlocalstory("customerState");
   	//1未认证 2认证中 3认证成功 4认证失败 5草稿 6已注销 -1
@@ -50,7 +50,7 @@ export default {
   	}else if(customerState=="6"){
   		customerStateFlag="已注销";
   	}
-  	
+
     return {
       user: {
         name: customerName,

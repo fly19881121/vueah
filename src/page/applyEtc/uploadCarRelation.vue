@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mt-header title="上传车辆关系证明">
+		<mt-header fixed title="上传车辆关系证明">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>

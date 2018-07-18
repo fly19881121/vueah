@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mt-header title="ETC办卡">
+		<mt-header fixed title="ETC办卡">
 			<router-link to="/home" slot="left">
 				<mt-button icon="back">返回</mt-button>
 			</router-link>
@@ -69,7 +69,7 @@
 	.advan-info {
 		padding: .5rem;
 	}
-	
+
 	.advantage {
 		padding: .5rem .5rem 2rem .5em;
 		p {
@@ -79,7 +79,7 @@
 			margin: .2rem;
 		}
 	}
-	
+
 	.title-line {
 		position: relative;
 		text-align: center;
@@ -101,13 +101,13 @@
 			font-size: .5rem;
 		}
 	}
-	
+
 	.btn-locshow {
 		position: fixed;
 		bottom: 0;
 		z-index: 15;
 	}
-	
+
 	.mainshow {
 		width: 100%;
 		padding: 0 .5rem;
@@ -134,11 +134,11 @@
 			line-height: 1.2rem;
 		}
 	}
-	
+
 	.imginfomainshow {
 		width: 100%;
 	}
-	
+
 	#btn-locshow {
 		width: calc(100% - 1rem);
 		left: .5rem;

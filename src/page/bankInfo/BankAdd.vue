@@ -1,6 +1,6 @@
 <template>
 	<div class="BankAdd">
-		<mt-header title="添加银行卡">
+		<mt-header fixed title="添加银行卡">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
@@ -193,7 +193,7 @@
 			border-bottom: 1px solid rgba(225, 225, 225, .2);
 		}
 	}
-	
+
 	#button-al {
 		width: calc(100% - 1rem);
 		margin: .5rem auto;

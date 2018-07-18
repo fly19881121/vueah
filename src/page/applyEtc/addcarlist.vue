@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mt-header title="选择车辆">
+		<mt-header fixed title="选择车辆">
 			<div slot="left">
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
@@ -59,7 +59,7 @@
 			_this.$ajaxPost('/router/local/rest ', param, function(res) {
 
 				console.log("car.query  suc:" + JSON.stringify(res))
-				
+
 				let listCar=res.data.result;
 				let arr=[];
 				for(let i in listCar){
@@ -74,7 +74,7 @@
 				}
 				_this.options4=arr;
 				_this.setlocalstory("carTotal",arr.length);
-				
+
 			}, function(e) {
 				console.log("fail:" + JSON.stringify(e))
 			});
@@ -88,11 +88,11 @@
 		margin-top: 10px;
 		margin-bottom: 10px;
 	}
-	
+
 	.div1-lay {
 		width: 20%;
 	}
-	
+
 	#btn-locshow {
 		width: calc(100% - 1rem);
 		margin: .5rem;
