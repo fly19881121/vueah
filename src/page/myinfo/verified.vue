@@ -20,7 +20,7 @@
 				<div class="idpic">
 					<div class="fileinput-button">
 						<span>
-	          	<img :src="picIdZheng" class="img-loc"/>
+	          	<img :src="picIdZheng" class="img-loc" width="100%" />
 	          </span>
 						<input type="file" ref="fileIdZheng" v-on:change="getPicInfo('gerenzhengmian')">
 					</div>
@@ -711,6 +711,18 @@
 			margin: 0 auto;
 			position: relative;
 			border-radius: 5px;
+			height:4rem;
+			span{
+				width:100%;
+				height:100%;
+				display:block;
+				text-align:center;
+			}
+			.img-loc {
+				display: inline-block; vertical-align: middle;
+				width:100%;
+				height:100%;
+			}
 		}
 		p {
 			text-align: center;
@@ -742,11 +754,7 @@
 		}
 	}
 
-	.img-loc {
-		width: 100%;
-		display: block;
-		margin: 0 auto;
-	}
+
 
 	.content {
 		display: flex;

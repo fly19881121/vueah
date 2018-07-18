@@ -16,7 +16,7 @@
 				</div>
 				<p>请选择行驶本照片</p>
 				<span class="btn-chose">
-					<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic">上传</mt-button>
+					<mt-button size="small" type="primary" class="button-al" v-on:click="uploadpic">上传</mt-button>
 				</span>
 			</div>
 			<div v-if="carinfoflag">
@@ -255,6 +255,18 @@
 			margin: 0 auto;
 			position: relative;
 			border-radius: 5px;
+			height:4rem;
+			span{
+				width:100%;
+				height:100%;
+				display:block;
+				text-align:center;
+			}
+			.img-loc {
+				display: inline-block; vertical-align: middle;
+				width:100%;
+				height:100%;
+			}
 		}
 		p {
 			text-align: center;
@@ -271,9 +283,12 @@
 		height: 100%;
 	}
 
-	.img-loc {
-		width: 100%;
-		display: block;
-		margin: 0 auto;
+	.btn-chose{
+		width:70%;
+		margin:0 auto;
+		display:block;
+		.button-al{
+			width:100%;
+		}
 	}
 </style>
