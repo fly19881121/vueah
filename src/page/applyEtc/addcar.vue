@@ -36,10 +36,10 @@
 				</div>
 			</div>
 			<div class="select" @click="sheetchepai = true">
-				<mt-field label="车牌颜色" v-model="carcolor"></mt-field>
+				<mt-field label="车牌颜色" v-model="carcolor" readonly="readonly"></mt-field>
 			</div>
 			<div class="select" @click="sheetchetou = true">
-				<mt-field label="车头颜色" v-model="chetoucolor"></mt-field>
+				<mt-field label="车头颜色" v-model="chetoucolor" readonly="readonly"></mt-field>
 			</div>
 
 
@@ -49,7 +49,7 @@
 			<mt-actionsheet :actions="actionschetou" v-model="sheetchetou">
 			</mt-actionsheet>
 
-			<mt-datetime-picker type="date" ref="picker" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="handleConfirm" :startDate="startDate">
+			<mt-datetime-picker type="date" ref="picker" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="handleConfirm" :startDate="startDate" :endDate="endDate">
 			</mt-datetime-picker>
 			<mt-button size="large" type="primary" class="button-al" v-on:click="sureback">确定添加</mt-button>
 		</div>
@@ -67,7 +67,8 @@
 				addpicsrc: "./static/img/prepic.png",
 				dateTime: '',
 
-				startDate: new Date(),
+				startDate: new Date('1970-01-01'),
+				endDate:new Date(),
 				type: "", //日期选择器,
 				redate: "请选择",
 				startdate: "请选择",

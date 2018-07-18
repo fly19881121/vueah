@@ -17,7 +17,7 @@
 				</div>
 
 				<div @click="sheetbankname = true">
-					<mt-field label="开户银行" v-model="bankname" placeholder="请选择开户行">
+					<mt-field label="开户银行" v-model="bankname" placeholder="请选择开户行" readonly="readonly">
 						<span><i class="fa fa-angle-right"></i></span>
 					</mt-field>
 				</div>

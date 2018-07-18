@@ -155,7 +155,7 @@
 
 			</div>
 
-			<mt-datetime-picker type="date" ref="picker" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="handleConfirm" :startDate="startDate">
+			<mt-datetime-picker type="date" ref="picker" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="handleConfirm" :startDate="startDate" :endDate="endDate">
 			</mt-datetime-picker>
 		</div>
 	</div>
@@ -243,7 +243,8 @@
 				farenissueAuthority: "",
 				uploadpicfarenfan: false,
 
-				startDate: new Date(),
+				startDate: new Date('1970-01-01'),
+				endDate:new Date(),
 				proname: "",
 				type: "" //日期选择器,
 
