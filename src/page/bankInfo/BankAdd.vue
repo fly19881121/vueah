@@ -98,6 +98,8 @@
 						}else{
 							_this.sureBank();
 						}
+					}else{
+						_this.$toast(res.data.message)
 					}
 				}, function(e) {
 					console.log("applyBind fail:" + JSON.stringify(e))

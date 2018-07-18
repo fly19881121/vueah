@@ -32,8 +32,10 @@
 					userId = "3a904a67-0761-4c59-96f2-480b8vbfe50b";//对公0005
 					userName = "18802420002";//对公0005
 					tokenId = "10A0EFDC880E1F2EAD514C607F471B20"//对公0005
+
 				} else {
 					let _mobile = JSON.parse(_this.utf8to16(_this.base64decode(window.daka.getMobileApp())));
+					alert(JSON.stringify(_mobile))
 					userId = _mobile.userId;
 					tokenId = _mobile.tokenId;
 					userName = _mobile.userName;
@@ -59,6 +61,9 @@
 						_this.setlocalstory("comeHomeFlag", true);
 						_this.$router.push('/home');
 					} else {
+						if(customerState==4){
+							_this.$toast('认证失败，请重新认证');
+						}
 						_this.setlocalstory("comeHomeFlag", false);
 						_this.$router.push('/verified');
 					}
