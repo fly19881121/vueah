@@ -424,14 +424,14 @@
 				var customerNo; //安心签标号
 
 				if(!_this.uploadpicIdZheng) {
-					alert("请先上传身份证正面照片");
+					_this.$toast("请先上传身份证正面照片");
 					return;
 				} else if(!_this.uploadpicIdFan) {
-					alert("请先上传身份证反面照片");
+					_this.$toast("请先上传身份证反面照片");
 					return;
 				}
 				if(!_this.checkIdCard(_this.sfzcardNo)){
-					alert("请确认身份证号码正确");
+					_this.$toast("请确认身份证号码正确");
 					return;
 				}
 				//step1 先获取安心签编号
@@ -443,7 +443,7 @@
 
 					console.log("getCustomerAnxinSign suc:" + JSON.stringify(res))
 					if(!res.data.success) {
-						alert("签约不成功，请重试");
+						_this.$toast("签约不成功，请重试");
 						return;
 					}
 					customerNo = res.data.result.customerNo; //安心签编号
@@ -457,7 +457,7 @@
 					}
 					_this.$ajaxPost('/api/customer/addCustomerAuthInfo', par2, function(resbos) {
 						if(!resbos.data.success) {
-							alert("签约不成功，请重试");
+							_this.$toast("签约不成功，请重试");
 							return;
 						}
 						console.log("addCustomerAuthInfo suc:" + JSON.stringify(resbos))
@@ -486,7 +486,7 @@
 						_this.$ajaxPost('/dcapi/defineForm/addOrModifyDefineForm ', parApply, function(resform) {
 
 							if(!resform.data.success) {
-								alert("签约不成功，请重试");
+								_this.$toast("签约不成功，请重试");
 								return;
 							}
 
@@ -536,16 +536,16 @@
 				var customerNo; //安心签标号
 
 				if(!_this.uploadpicfarenzheng) {
-					alert("请先上传法人正面照片");
+					_this.$toast("请先上传法人正面照片");
 					return;
 				} else if(!_this.uploadpicjbrzheng) {
-					alert("请先上传经办人正面照片");
+					_this.$toast("请先上传经办人正面照片");
 					return;
 				} else if(!_this.uploadpicyingye) {
-					alert("请先上传营业执照照片");
+					_this.$toast("请先上传营业执照照片");
 					return;
 				} else if(!_this.uploadpicfarenfan) {
-					alert("请先上传法人反面照片");
+					_this.$toast("请先上传法人反面照片");
 					return;
 				}
 				//step 1 获取安心签编号
@@ -555,7 +555,7 @@
 				_this.$ajaxPost('/api/customer/getCustomerAnxinSign', par, function(res) {
 					console.log("getCustomerAnxinSign suc:" + JSON.stringify(res))
 					if(!res.data.success) {
-						alert("签约不成功，请重试");
+						_this.$toast("签约不成功，请重试");
 						return;
 					}
 					customerNo = res.data.result.customerNo; //安心签编号
@@ -612,7 +612,7 @@
 
 						_this.$ajaxPost('/dcapi/defineForm/addOrModifyDefineForm ', par3, function(res3) {
 							if(!res3.data.success) {
-								alert("签约不成功，请重试");
+								_this.$toast("签约不成功，请重试");
 								return;
 							}
 
@@ -648,7 +648,7 @@
 					if(response.data.success) {
 						callback(response.data.result);
 					} else {
-						alert("上传失败，请选择清晰图片")
+						_this.$toast("上传失败，请选择清晰图片")
 					}
 
 				}, function(e) {
@@ -662,7 +662,7 @@
 					if(response.data.success == true) {
 						callback(response);
 					} else {
-						alert("上传失败，请选择清晰图片")
+						_this.$toast("上传失败，请选择清晰图片")
 					}
 				}, function(e) {
 					console.log("fail:" + JSON.stringify(e))

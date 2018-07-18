@@ -104,7 +104,7 @@
 			sureBank() {
 				let _this = this;
 				if(_this.showcode && _this.smsCode == "") {
-					alert("请先填写手机验证码")
+					_this.$toast("请先填写手机验证码")
 					return false;
 				}
 				if(!_this.showcode){
@@ -128,19 +128,19 @@
 			checkAll() {
 				let _this = this;
 				if(_this.username == "") {
-					alert("请先填写账户名称")
+					_this.$toast("请先填写账户名称")
 					return false;
 				} else if(_this.banknum == "") {
-					alert("请先填写银行卡号")
+					_this.$toast("请先填写银行卡号")
 					return false;
 				} else if(_this.bankname == "") {
-					alert("请先选择开户银行")
+					_this.$toast("请先选择开户银行")
 					return false;
 				} else if(_this.idcard == "") {
-					alert("请先填写持卡人身份证号")
+					_this.$toast("请先填写持卡人身份证号")
 					return false;
 				} else if(_this.phonenum == "") {
-					alert("请先填写持卡人手机号")
+					_this.$toast("请先填写持卡人手机号")
 					return false;
 				}
 				return true;
@@ -197,5 +197,25 @@
 	#button-al {
 		width: calc(100% - 1rem);
 		margin: .5rem auto;
+	}
+	.mint-actionsheet {
+		position: fixed;
+		background: #e0e0e0;
+		width: 100%;
+		text-align: center;
+		bottom: 0;
+		left: 50%;
+		-webkit-transform: translate3d(-50%, 0, 0);
+		transform: translate3d(-50%, 0, 0);
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		-webkit-transition: -webkit-transform .3s ease-out;
+		transition: -webkit-transform .3s ease-out;
+		-o-transition: transform .3s ease-out;
+		transition: transform .3s ease-out;
+		transition: transform .3s ease-out, -webkit-transform .3s ease-out;
+		overscroll-behavior-y: yes;
+		overflow: auto;
+		height: 500px;
 	}
 </style>

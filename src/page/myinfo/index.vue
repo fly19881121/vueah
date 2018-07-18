@@ -17,6 +17,7 @@
 		},
 		mounted() {
 			let _this = this;
+			//_this.$toast('提示信息');
 			try {
 				let envflag = process.env.NODE_ENV;
 				let userId = "";
@@ -72,7 +73,7 @@
 					//					window.localStorage.setItem("customerType", "2");
 					//					window.localStorage.setItem("token", "17860_c80e27cfa61b0d28d571f27dc498fbbe");
 				}, function(logine) {
-					alert("login fail:" + JSON.stringify(logine))
+					_this.$toast("login fail:" + JSON.stringify(logine))
 					console.log("login fail:" + JSON.stringify(logine))
 				});
 
@@ -83,7 +84,7 @@
 				//			window.sessionStorage.setItem('systemVersion', _mobile.systemVersion);
 				//			window.sessionStorage.setItem('SUPPORTNATIVEPAY', _mobile.supportNativePay);
 			} catch(e) {
-				alert("未获取到用户信息")
+				_this.$toast("未获取到用户信息")
 				console.log(e);
 			}
 		}

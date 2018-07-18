@@ -41,7 +41,7 @@
 				_this.$ajaxPost('/api/creditline/creditlineApplyAfter', par, function(res) {
 					console.log("creditlineApplyAfter suc:"+JSON.stringify(res))
 					if(!res.data.success) {
-						alert("申请失败，请重试");
+						_this.$toast("申请失败，请重试");
 						return;
 					}
 					if(_this.getlocalstory("caflag")) {
@@ -55,7 +55,7 @@
 						_this.$ajaxPost('/router/local/rest ', parmer, function(res) {
 							console.log("trigger suc:" + JSON.stringify(res))
 							if(!res.data.success) {
-								alert("申请失败，请重试");
+								_this.$toast("申请失败，请重试");
 								return;
 							}
 							_this.$router.push('/suc')

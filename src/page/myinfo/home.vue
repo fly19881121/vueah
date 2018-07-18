@@ -31,15 +31,15 @@
 				<span>etc办卡</span>
 			</div>
 			<div>
-				<router-link :to="{ path: '' }">
+				<a :href="etc_host">
 					<div>
 						<i class="fa fa-file-text-o"></i>
 					</div>
-				</router-link>
+				</a>
 				<span>我的账单</span>
 			</div>
 			<div>
-				<router-link :to="{ path: '' }">
+				<router-link :to="{ path: 'BankList' }">
 					<div>
 						<i class="fa fa-file-text-o"></i>
 					</div>
@@ -53,9 +53,11 @@
 	export default {
 		name: 'hello',
 		data() {
+			let etc_host=process.env.ETC_HOST;
 			return {
 				picinfo: [],
-				menu: []
+				menu: [],
+				etc_host:etc_host
 			}
 		},
 		methods: {

@@ -282,7 +282,7 @@
 						console.log("creditlineApplyBefor suc:" + JSON.stringify(res))
 
 						if(!res.data.success) {
-							alert("申请失败，请重试");
+							_this.$toast("申请失败，请重试");
 							return;
 						}
 
@@ -308,7 +308,7 @@
 						_this.$ajaxPost('/api/creditline/creditlineApply ', par, function(res2) {
 							console.log("creditlineApply suc:" + JSON.stringify(res2))
 							if(!res2.data.success) {
-								alert("申请失败，请重试");
+								_this.$toast("申请失败，请重试");
 								return;
 							}
 							let objectId = res2.data.result.objectId;
@@ -369,7 +369,7 @@
 								console.log("addOrModifyDefineForm  suc:" + JSON.stringify(res3))
 
 								if(!res3.data.success) {
-									alert("申请失败，请重试");
+									_this.$toast("申请失败，请重试");
 									return;
 								}
 								console.log(res.data.result)
@@ -418,35 +418,35 @@
 				let productId = _this.getlocalstory("productId");
 				//校验是否填写完全数据
 				if(_this.carname == "请选择车辆") {
-					alert("请先选择车辆");
+					_this.$toast("请先选择车辆");
 					return false;
 				}
 				if(_this.repaytype == "请选择") {
-					alert("请先选择保证金/还款方式");
+					_this.$toast("请先选择保证金/还款方式");
 					return false;
 				} else if(_this.repaytype == "代扣") {
 					if(_this.repaybank == "请选择" || _this.repaybank == "" || _this.repaybank == null) {
-						alert("请先选择还款银行");
+						_this.$toast("请先选择还款银行");
 						return false;
 					}
 				}
 				if(_this.getEtcType == "请选择") {
-					alert("请先选择Etc卡领取方式");
+					_this.$toast("请先选择Etc卡领取方式");
 					return false;
 				} else if(_this.getEtcType == "快递(到付)") {
 					if(_this.addr == "") {
-						alert("请先填写收件地址");
+						_this.$toast("请先填写收件地址");
 						return false;
 					}
 				}
 
 				if(_this.ismar) {
 					if(_this.ismarry == "请选择") {
-						alert("请先选择是否已婚");
+						_this.$toast("请先选择是否已婚");
 						return false;
 					} else if(_this.ismarry == "是") {
 						if(_this.contactsSpouse == "请选择") {
-							alert("请先填写配偶联系方式");
+							_this.$toast("请先填写配偶联系方式");
 							return false;
 						}
 
@@ -456,31 +456,31 @@
 
 				if(_this.iscon1) {
 					if(_this.contacts1 == "请选择") {
-						alert("请先填写紧急联系人1");
+						_this.$toast("请先填写紧急联系人1");
 						return false;
 					}
 				}
 				if(_this.iscon2) {
 					if(_this.contacts2 == "请选择") {
-						alert("请先填写紧急联系人2");
+						_this.$toast("请先填写紧急联系人2");
 						return false;
 					}
 				}
 				if(_this.carrel) {
 					if(_this.uploadCarRelation == "请选择") {
-						alert("请选择车辆关系证明");
+						_this.$toast("请选择车辆关系证明");
 						return false;
 					}
 				}
 				if(_this.gerenzhengxin) {
 					if(_this.uploadCreditReport == "请选择") {
-						alert("请选择个人征信报告");
+						_this.$toast("请选择个人征信报告");
 						return false;
 					}
 				}
 				if(_this.cardliushui) {
 					if(_this.uploadBankState == "请选择") {
-						alert("请选择银行卡流水账单");
+						_this.$toast("请选择银行卡流水账单");
 						return false;
 					}
 				}

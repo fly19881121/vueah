@@ -56,7 +56,7 @@
 						_this.setlocalstory("uploadBankState","已上传");
 						_this.$router.push('/apply');
 					} else {
-						alert("上传失败，请选择清晰图片")
+						_this.$toast("上传失败，请选择清晰图片")
 					}
 
 				}, function(e) {

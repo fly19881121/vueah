@@ -154,7 +154,7 @@
 						_this.addpicsrc = url;
 						_this.carinfoflag = true;
 					} else {
-						alert("上传失败，请选择清晰图片")
+						_this.$toast("上传失败，请选择清晰图片")
 					}
 				}, function(e) {
 					console.log("fail:" + JSON.stringify(e))
@@ -174,7 +174,7 @@
 						_this.filePath = response.data.result[0].filePath;
 						_this.uploadPicFlag = true;
 					} else {
-						alert("上传失败，请选择清晰图片")
+						_this.$toast("上传失败，请选择清晰图片")
 					}
 
 				}, function(e) {
@@ -203,7 +203,7 @@
 			sureback() {
 				let _this = this;
 				if(!_this.uploadPicFlag) {
-					alert("请先上传图片");
+					_this.$toast("请先上传图片");
 					return;
 				}
 

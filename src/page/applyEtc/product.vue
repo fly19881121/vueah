@@ -47,21 +47,21 @@
 							arr[i].btndesc="立即使用";
 							break;
 						case 2:
-							alert("您已开通当前业务.");
+							_this.$toast("您已开通当前业务.");
 							flag=false;
 							break;
 						case 3:
-							alert("您已开通当前业务,正在审批中,请耐心等待.");
+							_this.$toast("您已开通当前业务,正在审批中,请耐心等待.");
 							flag=false;
 							break;
 						case 4:
-							alert("您已开通其他相关产品.");
+							_this.$toast("您已开通其他相关产品.");
 							flag=false;
 							break;
 						case 5:
 							break;
 						case 6:
-							alert("当前业务暂不开放,敬请期待.");
+							_this.$toast("当前业务暂不开放,敬请期待.");
 							flag=false;
 							break;
 					}
