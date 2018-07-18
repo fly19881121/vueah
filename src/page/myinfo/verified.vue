@@ -271,10 +271,12 @@
 					this.sfzvalidPeriod = date;
 				}
 				if(this.type == 'farenbir') {
-					this.farenbirdate = date;
+					this.farenbir = date;
 				}
 				if(this.type == 'farenidend') {
 					this.farenidenddate = date;
+				}if(this.type == 'jingbanbir') {
+					this.jbrbir = date;
 				}
 			},
 			getPicInfo(flag) { //获取图片参数，准备进行ocr识别

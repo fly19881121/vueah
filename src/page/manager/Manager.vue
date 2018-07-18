@@ -55,7 +55,7 @@ export default {
     return {
       user: {
         name: customerName,
-        company: '太斯特有限公司',
+        company: '',
         status: customerStateFlag
       },
       manageItem: [
