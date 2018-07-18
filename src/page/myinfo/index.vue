@@ -30,14 +30,14 @@
 					userName = "18802420006";
 					tokenId = "BFCFAC3BB3551C68D2D2D3AEB2986BB7"
 				} else {
-//					let _mobile = JSON.parse(_this.utf8to16(_this.base64decode(window.daka.getMobileApp())));
-//					userId = _mobile.userId;
-//					tokenId = _mobile.tokenId;
-//					userName = _mobile.userName;
+					let _mobile = JSON.parse(_this.utf8to16(_this.base64decode(window.daka.getMobileApp())));
+					userId = _mobile.userId;
+					tokenId = _mobile.tokenId;
+					userName = _mobile.userName;
 					//开发模式
-					userId = "c0573332-e35e-4a0f-b918-9f4f2d4189d3";
-					userName = "18802420006";
-					tokenId = "BFCFAC3BB3551C68D2D2D3AEB2986BB7"
+//					userId = "c0573332-e35e-4a0f-b918-9f4f2d4189d3";
+//					userName = "18802420006";
+//					tokenId = "BFCFAC3BB3551C68D2D2D3AEB2986BB7"
 				}
 
 				let param = {
