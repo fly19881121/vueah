@@ -35,7 +35,7 @@
 
 				} else {
 					let _mobile = JSON.parse(_this.utf8to16(_this.base64decode(window.daka.getMobileApp())));
-					alert(JSON.stringify(_mobile))
+//					alert(JSON.stringify(_mobile))
 					userId = _mobile.userId;
 					tokenId = _mobile.tokenId;
 					userName = _mobile.userName;

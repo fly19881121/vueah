@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div>
-			<i class="fa fa-user-circle-o user-loc" v-on:click="toManager"></i>
+			<!--<i class="fa fa-user-circle-o user-loc" v-on:click="toManager"></i>-->
 		</div>
 		<!-- <div>
 			<i class="fa fa-qrcode qr-loc" v-on:click=""></i>
@@ -39,12 +39,12 @@
 				<span>我的账单</span>
 			</div>
 			<div>
-				<router-link :to="{ path: 'BankList' }">
+				<router-link :to="{ path: 'Manager' }">
 					<div>
 						<i class="fa fa-file-text-o"></i>
 					</div>
 				</router-link>
-				<span>我的银行卡</span>
+				<span>个人中心</span>
 			</div>
 		</div>
 	</div>
