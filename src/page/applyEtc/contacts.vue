@@ -49,10 +49,10 @@
 				let _this=this;
 				let info=_this.contactsname+","+_this.contactsphone;
 				if(_this.checkNull(_this.contactsname)){
-					alert("请输入姓名");
+					_this.$toast("请输入姓名");
 					return;
 				}else if(!_this.checkMobile(_this.contactsphone)){
-					alert("请输入正确的手机号");
+					_this.$toast("请输入正确的手机号");
 					return;
 				}
 				if(_this.library_id=="marry"){

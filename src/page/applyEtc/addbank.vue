@@ -104,7 +104,7 @@
 			sureBank() {
 				let _this = this;
 				if(_this.showcode && _this.smsCode == "") {
-					alert("请先填写手机验证码")
+					_this.$toast("请先填写手机验证码")
 					return false;
 				}
 				if(!_this.showcode) {
@@ -128,19 +128,19 @@
 			checkAll() {
 				let _this = this;
 				if(_this.checkNull(_this.username)) {
-					alert("请先填写账户名称")
+					_this.$toast("请先填写账户名称")
 					return false;
 				} else if(_this.checkNull(_this.banknum)) {
-					alert("请先填写银行卡号")
+					_this.$toast("请先填写银行卡号")
 					return false;
 				} else if(_this.checkNull(_this.bankname)) {
-					alert("请先选择开户银行")
+					_this.$toast("请先选择开户银行")
 					return false;
 				} else if(_this.checkNull(_this.idcard)) {
-					alert("请先填写持卡人身份证号")
+					_this.$toast("请先填写持卡人身份证号")
 					return false;
 				} else if(_this.checkNull(_this.phonenum)) {
-					alert("请先填写持卡人手机号")
+					_this.$toast("请先填写持卡人手机号")
 					return false;
 				}
 				return true;

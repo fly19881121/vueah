@@ -50,7 +50,7 @@ export default {
   	}else if(customerState=="6"){
   		customerStateFlag="已注销";
   	}
-
+  	let etc_host=process.env.ETC_HOST;
     return {
       user: {
         name: customerName,
@@ -66,8 +66,7 @@ export default {
         },
         {
           name: '我的ETC',
-          link: 'http://qm.awservice.net/#myETC',//测试
-         // link: 'https://m8.sinoiov.com/#myETC',//生产
+          link: etc_host,//测试
           isLink: true,
           value: ''
         },
