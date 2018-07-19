@@ -20,6 +20,20 @@ FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 
+//自定义指令
+ Vue.directive('removefcous', function(el, pra, a) {
+
+    let oInput = el.querySelector('input');
+    oInput.onfocus = function() {
+           //创建focus的事件
+           oInput.blur();
+    };
+
+    oInput.onblur = function() {
+          //同时创建blur事件
+    };
+})
+
 //再次封装axios到vue对象中，直接传参数即可
 import axios from 'axios'
 

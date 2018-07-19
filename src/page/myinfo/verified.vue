@@ -48,13 +48,13 @@
 					<mt-field label="地址" v-model="sfzaddress"></mt-field>
 					<mt-field label="身份证号" v-model="sfzcardNo"></mt-field>
 					<div @click='openPicker("bir")'>
-						<mt-field label="出生日期" v-model="birdate" readonly="readonly"></mt-field>
+						<mt-field label="出生日期" v-model="birdate" readonly="readonly"v-removefcous></mt-field>
 					</div>
 				</div>
 				<div v-if="divgereninfofan">
 					<mt-field label="签发机关" v-model="sfzissueAuthority"></mt-field>
 					<div @click='openPicker("idend")'>
-						<mt-field label="有效期" v-model="sfzvalidPeriod" readonly="readonly"></mt-field>
+						<mt-field label="有效期" v-model="sfzvalidPeriod" readonly="readonly" v-removefcous></mt-field>
 					</div>
 				</div>
 				<mt-button size="large" type="primary" class="button-al" v-on:click="submitGeren">提交认证</mt-button>
@@ -87,7 +87,7 @@
 						<mt-field label="法人性别" v-model="farensex"></mt-field>
 						<mt-field label="法人民族" v-model="farenfolx"></mt-field>
 						<div @click='openPicker("farenbir")'>
-							<mt-field label="法人出生日期" v-model="farenbir" readonly="readonly"></mt-field>
+							<mt-field label="法人出生日期" v-model="farenbir" readonly="readonly" v-removefcous></mt-field>
 						</div>
 						<mt-field label="住址" v-model="farenaddr"></mt-field>
 					</div>
@@ -109,7 +109,7 @@
 						<mt-field label="经办人性别" v-model="jbrsex"></mt-field>
 						<mt-field label="经办人民族" v-model="jbrfolx"></mt-field>
 						<div @click='openPicker("jingbanbir")'>
-							<mt-field label="经办人出生日期" v-model="jbrbir" readonly="readonly"></mt-field>
+							<mt-field label="经办人出生日期" v-model="jbrbir" readonly="readonly" v-removefcous></mt-field>
 						</div>
 						<mt-field label="经办人住址" v-model="jbraddr"></mt-field>
 						<mt-field label="经办人身份证号" v-model="jbrcardno"></mt-field>
@@ -145,7 +145,7 @@
 					<div v-if="divfarenfan">
 						<mt-field label="签发机关" v-model="farenissueAuthority"></mt-field>
 						<div @click='openPicker("farenidend")'>
-							<mt-field label="有效期" v-model="farenidenddate" readonly="readonly"></mt-field>
+							<mt-field label="有效期" v-model="farenidenddate" readonly="readonly" v-removefcous></mt-field>
 						</div>
 					</div>
 

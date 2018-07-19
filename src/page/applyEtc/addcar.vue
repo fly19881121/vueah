@@ -29,10 +29,10 @@
 				<mt-field label="车辆识别代码" v-model="vin"></mt-field>
 				<mt-field label="发动机号" v-model="enginePN"></mt-field>
 				<div @click='openPicker("re")'>
-					<mt-field label="注册日期" v-model="redate" readonly="readonly"></mt-field>
+					<mt-field label="注册日期" v-model="redate" readonly="readonly" v-removefcous></mt-field>
 				</div>
 				<div @click='openPicker("start")'>
-					<mt-field label="发证日期" v-model="startdate" readonly="readonly"></mt-field>
+					<mt-field label="发证日期" v-model="startdate" readonly="readonly" v-removefcous></mt-field>
 				</div>
 			</div>
 			<div class="select" @click="sheetchepai = true">
