@@ -460,14 +460,14 @@
 						"userId": _this.getlocalstory("userId"),
 						"customerNo": customerNo
 					}
-					_this.$ajaxPost('/api/customer/addCustomerAuthInfo', par2, function(resbos) {
-						if(!resbos.data.success) {
+					_this.$ajaxPost('/api/customer/addCustomerAuthInfo', par2, function(responseAdd) {
+						console.log("addCustomerAuthInfo responseAdd:" + JSON.stringify(responseAdd))
+						if(!responseAdd.data.success) {
 							_this.$toast("签约不成功，请重试");
 							return;
 						}
-						console.log("addCustomerAuthInfo suc:" + JSON.stringify(resbos))
-						let objectId = resbos.data.result.objectId;
-						let objectName = resbos.data.result.objectName;
+						let objectId = responseAdd.data.result.objectId;
+						let objectName = responseAdd.data.result.objectName;
 						//step3  更新客户认证自定义表单
 						let str1 = '[{\"children\":[{\"key\":\"name\",\"label\":\"姓名\"}, {\"key\":\"sex\",\"label\":\"性别\"},{\"key\":\"folk\",\"label\":\"民族\"}, {\"key\":\"birt\",\"label\":\"出生日期\"},{\"key\":\"address\",\"label\":\"住址\"}, {\"key\":\"num\",\"label\":\"身份证号\"}],\"config\": {\"required\":\"true\"},\"field_value\":' +
 							'\"{\\\"address\\\":\\\"' + _this.sfzaddress + ' \\\",' +
@@ -576,7 +576,11 @@
 						"customerNo": customerNo
 					};
 					_this.$ajaxPost('/api/customer/addCustomerAuthInfo', par2, function(res2) {
-						console.log("addCustomerAuthInfo suc:" + JSON.stringify(par2))
+						console.log("addCustomerAuthInfo res2:" + JSON.stringify(res2))
+						if(!res2.data.success) {
+							_this.$toast("签约不成功，请重试");
+							return;
+						}
 						//step 3 上传模板信息
 
 						let objectId = res2.userId;

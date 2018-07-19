@@ -29,13 +29,25 @@
 //					 userId = "c0573332-e35e-4a0f-b918-9f4f2d4189d3";
 //					 userName = "18802420006";
 //					 tokenId = "BFCFAC3BB3551C68D2D2D3AEB2986BB7"
-					userId = "3a904a67-0761-4c59-96f2-480b8vbfe50b";//对公0005
-					userName = "18802420002";//对公0005
-					tokenId = "10A0EFDC880E1F2EAD514C607F471B20"//对公0005
+//					userId = "3a904a67-0761-4c59-96f2-480b8vbfe50b";//对公0005
+//					userName = "18802420002";//对公0005
+//					tokenId = "10A0EFDC880E1F2EAD514C607F471B20"//对公0005
+					
+					userId = "076b7170-05c9-4902-b2e9-36639700051b";//对公0005
+					userName = "15066669999";//对公0005
+					tokenId = "BF4C5AE218D5B3C14826C416DF468D7A"//对公0005
+					
+//					userId = "45f31bf9-257a-4475-ae86-ee730067be28";//对公0005
+//					userName = "13366669999";//对公0005
+//					tokenId = "46C1AB85E9735AA7432F5BAD0B4B588E"//对公0005
+					
+//					userId = "E315A461-9E9B-49A2-927C-69CA517EDB50";//对公0005
+//					userName = "18802420003";//对公0005
+//					tokenId = "43C364A009EFF7DE8A545F496DB00EE9"//对公0005
 
 				} else {
 					let _mobile = JSON.parse(_this.utf8to16(_this.base64decode(window.daka.getMobileApp())));
-//					alert(JSON.stringify(_mobile))
+					alert(JSON.stringify(_mobile))
 					userId = _mobile.userId;
 					tokenId = _mobile.tokenId;
 					userName = _mobile.userName;
@@ -54,6 +66,7 @@
 						"userId": userId
 					}
 				}
+				alert("login par:"+JSON.stringify(param))
 				_this.$ajaxPost('/router/local/rest', param, function(res) {
 					console.log("login suc:" + JSON.stringify(res))
 					let customerState = res.data.result.customerState;

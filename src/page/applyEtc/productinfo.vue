@@ -172,6 +172,7 @@
 				_this.setlocalstory("productId",_obj.productId);
 				_this.setlocalstory("creditFormId",_obj.creditFormId);
 				_this.setlocalstory("productName",_obj.productName);
+				_this.setlocalstory("creditContractTemplateId",_obj.creditContractTemplateId);
 				_this.$router.push('/apply');
 			}
 		}

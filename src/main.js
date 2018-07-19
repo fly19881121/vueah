@@ -92,7 +92,7 @@ Vue.prototype.$ajaxPost = function(url, parmer, success, fail) {
 			success(response);
 		})
 		.catch(function(error) {
-			fail("error:" + error);
+			fail(error);
 		});
 }
 

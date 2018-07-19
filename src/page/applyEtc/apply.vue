@@ -17,21 +17,21 @@
 				</div>
 
 				<div v-if="isbaozhengjin">
-					<mt-field label="保证金金额" v-model="baozhengjin"></mt-field>
+					<mt-field label="保证金金额" v-model="baozhengjin" v-removefcous></mt-field>
 				</div>
 
 				<div @click="sheetRepaytype = true">
-					<mt-field label="保证金/还款方式" v-model="repaytype"></mt-field>
+					<mt-field label="保证金/还款方式" v-model="repaytype" v-removefcous></mt-field>
 				</div>
 
 				<div v-on:click="toaddbank" v-if="repaytype=='代扣'">
-					<mt-field label="选择还款账户" v-model="repaybank" readonly="readonly">
+					<mt-field label="选择还款账户" v-model="repaybank" readonly="readonly" v-removefcous>
 						<span><i class="fa fa-angle-right"></i></span>
 					</mt-field>
 				</div>
 
 				<div @click="sheetEtcType = true">
-					<mt-field label="Etc卡领取方式" v-model="getEtcType"></mt-field>
+					<mt-field label="Etc卡领取方式" v-model="getEtcType" v-removefcous></mt-field>
 				</div>
 
 				<!--<mt-button @click.native="sheetVisible = true" size="large">点击上拉 action sheet</mt-button>-->
@@ -51,7 +51,7 @@
 				</div>
 
 				<div @click="sheetMarry = true" v-if="ismar">
-					<mt-field label="是否已婚" v-model="ismarry"></mt-field>
+					<mt-field label="是否已婚" v-model="ismarry" v-removefcous></mt-field>
 				</div>
 
 				<router-link :to="{ path: '/contacts',query:{library_id:'marry'} }" v-if="ismarry=='是'">
@@ -377,7 +377,8 @@
 								}
 								console.log(res.data.result)
 								//step4 进入pdf查看页面
-								let pdfDownUrl = "/api/loan/downloadLoanContract?templateId=3&customerNo=" + res.data.result;
+								let creditContractTemplateId=_this.getlocalstory("creditContractTemplateId");
+								let pdfDownUrl = "/api/loan/downloadLoanContract?templateId="+creditContractTemplateId+"&customerNo=" + res.data.result;
 								let cano = res.data.result;
 								_this.setlocalstory("cano", cano);
 								_this.$ajaxGet(pdfDownUrl, "", function(res) {
