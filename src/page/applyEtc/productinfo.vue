@@ -38,6 +38,33 @@
 			next() {
 				let _this = this;
 				let _obj=_this.proinfo;
+				let flag=true;
+				let productOpenState=_obj.productOpenState;//判断当前申请状态
+					switch(parseInt(productOpenState)){
+						case 1:
+							break;
+						case 2:
+							_this.$toast("您已开通当前业务.");
+							flag=false;
+							break;
+						case 3:
+							_this.$toast("您已开通当前业务,正在审批中,请耐心等待.");
+							flag=false;
+							break;
+						case 4:
+							_this.$toast("您已开通其他相关产品.");
+							flag=false;
+							break;
+						case 5:
+							break;
+						case 6:
+							_this.$toast("当前业务暂不开放,敬请期待.");
+							flag=false;
+							break;
+					}
+				if(!flag){
+					return;
+				}
 
 				//15+后付费月结卡(个人)    16+后付费周结卡(个人)
 				//18+保证金月结卡(个人)    20+保证金周结卡(个人)
