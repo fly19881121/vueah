@@ -46,8 +46,12 @@
 				_this.$ajaxPost('/api/customer/addCustomerAuthInfoAfter', par, function(res) {
 
 					console.log("base suc:" + JSON.stringify(res))
+					if(!res.data.success) {
+						_this.$toast("申请失败，请重试");
+						return;
+					}
 					_this.$toast('您的认证已经提交，现在可以去办理业务啦');
-					_this.setlocalstory("comeHomeFlag",true);
+					_this.setlocalstory("comeHomeFlag", true);
 					_this.setlocalstory("customerState", 2);
 					_this.$router.push('/home');
 					pushHistory();
@@ -79,12 +83,12 @@
 		display: block;
 		border-bottom: 1px solid black;
 	}
-
+	
 	#button-al {
 		width: calc(100% - 1rem);
 		margin: .5rem auto;
 	}
-
+	
 	.ifram-show {
 		width: 100%;
 		height: 300px;

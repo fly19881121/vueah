@@ -229,6 +229,10 @@
 				_this.$ajaxPost('/router/local/rest', param, function(res) {
 
 					console.log("suc:" + JSON.stringify(res))
+					if(!res.data.success) {
+						_this.$toast(res.data.Message);
+						return;
+					}
 
 					_this.$router.push('/addcarlist')
 				}, function(e) {

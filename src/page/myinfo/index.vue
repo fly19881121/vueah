@@ -50,7 +50,7 @@
 					alert(JSON.stringify(_mobile))
 					userId = _mobile.userId;
 					tokenId = _mobile.tokenId;
-					userName = _mobile.userName;
+					userName = _mobile.mobileNo;
 
 					//开发模式
 //					userId = "c0573332-e35e-4a0f-b918-9f4f2d4189d3";

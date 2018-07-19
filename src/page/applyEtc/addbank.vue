@@ -119,6 +119,10 @@
 				console.log("confirmBind参数:" + JSON.stringify(paramsub))
 				_this.$ajaxPost('/api/payment/confirmBind', paramsub, function(ressub) {
 					console.log("confirmBind suc:" + JSON.stringify(ressub))
+					if(!ressub.data.success) {
+						_this.$toast(ressub.data.Message);
+						return;
+					}
 					_this.$router.push('/addbanklist')
 				}, function(esub) {
 					console.log("confirmBind fail:" + JSON.stringify(esub))
@@ -153,6 +157,10 @@
 			_this.$ajaxGet('/dcapi/cnaps/queryBankName ', "", function(res) {
 
 				console.log("queryBankName suc:" + JSON.stringify(res))
+				if(!res.data.success) {
+						_this.$toast(res.data.Message);
+						return;
+					}
 
 				let arrBankList = res.data.result;
 				let arr = [];
