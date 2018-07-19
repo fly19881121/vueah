@@ -26,7 +26,7 @@
 					</div>
 					<p>请上传身份证人面像</p>
 					<div class="btn-chose">
-						<mt-button size="small" type="primary" class="submit_img" v-on:click="uploadpic('gerenzhengmian')">上传</mt-button>
+						<mt-button size="small" type="primary" class="submit_img" v-on:click="uploadpic('gerenzhengmian')">{{btnUpLoadMsgGeren}}</mt-button>
 					</div>
 				</div>
 				<div class="idpic">
@@ -38,7 +38,7 @@
 					</div>
 					<p>请上传身份证国徽像</p>
 					<div class="btn-chose">
-						<mt-button size="small" type="primary" class="submit_img" v-on:click="uploadpic('gerenfanmian')">上传</mt-button>
+						<mt-button size="small" type="primary" class="submit_img" v-on:click="uploadpic('gerenfanmian')">{{btnUpLoadMsgGerenFan}}</mt-button>
 					</div>
 				</div>
 				<div v-if="divgereninfo" style="margin-top: 20px;">
@@ -80,7 +80,7 @@
 						</div>
 						<p>请选择法人身份证正面照片</p>
 						<span class="btn-chose">
-							<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('farenzhengmian')">上传</mt-button>
+							<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('farenzhengmian')">{{btnuploadmsgfarenzheng}}</mt-button>
 						</span>
 					</div>
 					<div v-if="divfareninfozheng">
@@ -101,7 +101,7 @@
 						</div>
 						<p>请选择经办人身份证正面照片</p>
 						<span class="btn-chose">
-							<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('jingbanrenzhengmian')">上传</mt-button>
+							<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('jingbanrenzhengmian')">{{btnuploadmsgjbzheng}}</mt-button>
 						</span>
 					</div>
 					<div v-if="divjingbanzheng">
@@ -126,7 +126,7 @@
 						</span>
 						<p>请选择营业执照照片</p>
 						<span class="btn-chose">
-							<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('yingyezhizhao')">上传</mt-button>
+							<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('yingyezhizhao')">{{btnuploadmsgyy}}</mt-button>
 						</span>
 					</div>
 					<!--法人反面-->
@@ -139,7 +139,7 @@
 						</span>
 						<p>请选择法人身份证反面照片</p>
 						<span class="btn-chose">
-							<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('farenfanmian')">上传</mt-button>
+							<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic('farenfanmian')">{{btnuploadmsgfarenfan}}</mt-button>
 						</span>
 					</div>
 					<div v-if="divfarenfan">
@@ -191,6 +191,8 @@
 				uploadpicIdZheng: false,
 				uploadpicIdZhengurl: "",
 				uploadpicIdFan: false,
+				btnUpLoadMsgGeren:"待上传",
+				btnUpLoadMsgGerenFan:"待上传",
 
 				//企业部分
 				divqiye: false, //企业认证div显隐
@@ -216,6 +218,8 @@
 				uploadpicfarenzheng: false,
 				filepicfarenzheng: "", //要上传的法人身份证正面
 				uploadfarenurl: "",
+				btnuploadmsgfarenzheng:"待上传",
+				
 
 				//经办人部分
 				picjingbanzheng: './static/img/prepic.png', //经办人身份证正面照片
@@ -230,11 +234,13 @@
 				uploadpicjbrzheng: false,
 				filepicjbrzheng: "", //要上传的经办人身份证正面
 				uploadjbrurl: "",
+				btnuploadmsgjbzheng:"待上传",
 
 				picyingye: './static/img/addpic.png', //营业执照照片
 				filepicyingye: "", //要上传的营业执照
 				uploadpicyingye: false,
 				uploadyingyeurl: "",
+				btnuploadmsgyy:"待上传",
 
 				picfarenfan: './static/img/unprepic.png', //法人身份证反面照片
 				divfarenfan: false,
@@ -242,6 +248,7 @@
 				farenidenddate: "请选择",
 				farenissueAuthority: "",
 				uploadpicfarenfan: false,
+				btnuploadmsgfarenfan:"待上传",
 
 				startDate: new Date('1970-01-01'),
 				endDate:new Date(),
@@ -382,6 +389,7 @@
 					_this.useUpload(param, function(response) {
 						_this.uploadpicIdZheng = true;
 						_this.uploadpicIdZhengurl = response.data.result[0].filePath;
+						_this.btnUpLoadMsgGeren="已上传";
 					})
 				} else if(flag == "gerenfanmian") { //个人身份证反面
 					let file = _this.filepicIdFan;
@@ -389,6 +397,7 @@
 					param.append('files', file); //通过append向form对象添加数据
 					_this.useUpload(param, function(response) {
 						_this.uploadpicIdFan = true;
+						_this.btnUpLoadMsgGerenFan="已上传";
 					})
 				} else if(flag == "farenzhengmian") { //法人正面
 					let file = _this.filepicfarenzheng;
@@ -397,6 +406,7 @@
 					_this.useUpload(param, function(response) {
 						_this.uploadpicfarenzheng = true;
 						_this.uploadfarenurl = response.data.result[0].filePath;
+						_this.btnuploadmsgfarenzheng="已上传";
 					})
 				} else if(flag == "jingbanrenzhengmian") { //经办人正面
 					let file = _this.filepicjbrzheng;
@@ -405,6 +415,7 @@
 					_this.useUpload(param, function(response) {
 						_this.uploadpicjbrzheng = true;
 						_this.uploadjbrurl = response.data.result[0].filePath;
+						_this.btnuploadmsgjbzheng="已上传";
 					})
 				} else if(flag == "yingyezhizhao") { //营业执照
 					let file = _this.filepicyingye;
@@ -413,6 +424,7 @@
 					_this.useUpload(param, function(response) {
 						_this.uploadpicyingye = true;
 						_this.uploadyingyeurl = response.data.result[0].filePath;
+						_this.btnuploadmsgyy="已上传";
 					})
 				} else if(flag == "farenfanmian") { //法人反面
 
@@ -421,6 +433,7 @@
 					param.append('files', file); //通过append向form对象添加数据
 					_this.useUpload(param, function(response) {
 						_this.uploadpicfarenfan = true;
+						_this.btnuploadmsgfarenfan="已上传";
 					})
 				}
 			},

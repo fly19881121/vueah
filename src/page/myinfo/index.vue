@@ -41,13 +41,13 @@
 //					userName = "13366669999";//对公0005
 //					tokenId = "46C1AB85E9735AA7432F5BAD0B4B588E"//对公0005
 					
-//					userId = "E315A461-9E9B-49A2-927C-69CA517EDB50";//对公0005
-//					userName = "18802420003";//对公0005
-//					tokenId = "43C364A009EFF7DE8A545F496DB00EE9"//对公0005
+					userId = "E315A461-9E9B-49A2-927C-69CA517EDB50";//对公0005
+					userName = "18802420003";//对公0005
+					tokenId = "43C364A009EFF7DE8A545F496DB00EE9"//对公0005
 
 				} else {
 					let _mobile = JSON.parse(_this.utf8to16(_this.base64decode(window.daka.getMobileApp())));
-					alert(JSON.stringify(_mobile))
+//					alert(JSON.stringify(_mobile))
 					userId = _mobile.userId;
 					tokenId = _mobile.tokenId;
 					userName = _mobile.mobileNo;
@@ -66,7 +66,7 @@
 						"userId": userId
 					}
 				}
-				alert("login par:"+JSON.stringify(param))
+//				alert("login par:"+JSON.stringify(param))
 				_this.$ajaxPost('/router/local/rest', param, function(res) {
 					console.log("login suc:" + JSON.stringify(res))
 					let customerState = res.data.result.customerState;
