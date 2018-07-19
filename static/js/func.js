@@ -196,13 +196,12 @@ export default {
 					text: msg,
 					spinnerType: 'triple-bounce'
 				});
+			},
+			Vue.prototype.$loadingclose = function(msg) {
+				Mint.Indicator.close(); //关闭loading
+			},
+			Vue.prototype.$getHost = function() {
+				return process.env.API_HOST;
 			}
-		Vue.prototype.$loadingclose = function(msg) {
-			Mint.Indicator.close(); //关闭loading
-		},
-		Vue.prototype.$getHost = function() {
-	return process.env.API_HOST;
-}
-
 	}
 }
