@@ -36,7 +36,7 @@ Vue.config.productionTip = false
 
 //再次封装axios到vue对象中，直接传参数即可
 import axios from 'axios'
-
+//请求拦截器
 axios.interceptors.request.use(
 	config => {
 		let token = localStorage.getItem("token");
@@ -45,28 +45,25 @@ axios.interceptors.request.use(
 		}
 		Mint.Indicator.open({ //打开loading
 			text: '请稍后...',
-			spinnerType: 'fading-circle'
+			spinnerType: 'triple-bounce'
 		});
 		return config;
 	},
 	err => {
 		return Promise.reject(err);
 	});
-
 //响应拦截器
 axios.interceptors.response.use((response) => {
 	Mint.Indicator.close(); //关闭loading
 	return response;
 }, (err) => {
+	Mint.Indicator.close(); //关闭loading
 	return Promise.reject(err);
 
 })
 
 axios.defaults.timeout = 10000; //响应时间
 axios.defaults.headers.post['Content-Type'] = 'form-data'; //配置请求头
-Vue.prototype.$getHost = function() {
-	return process.env.API_HOST;
-}
 const baseURLDev = '/api'
 const baseURLQa = ''
 var baseURL = ''

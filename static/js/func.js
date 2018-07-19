@@ -3,6 +3,7 @@ var base64DecodeChars = new Array(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
 	52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
 	15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
 	41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1, -1, -1);
+import Mint from 'mint-ui'
 export default {
 
 	install(Vue, options) {
@@ -175,21 +176,33 @@ export default {
 				};
 				return out;
 			},
-			Vue.prototype.checkMobile = function(str) {//判断是否符合手机号
+			Vue.prototype.checkMobile = function(str) { //判断是否符合手机号
 				let reg = /^1[34578][0-9]{9}$/; //验证规则，
 				let phoneNum = str; //手机号码
 				let flag = reg.test(phoneNum); //true
 				return flag;
 			},
-			Vue.prototype.checkNull = function(str) {//判断是否为空，空则返回true
+			Vue.prototype.checkNull = function(str) { //判断是否为空，空则返回true
 				return Object.keys(str).length === 0
 			},
-			Vue.prototype.checkIdCard = function(str) {//判断是否符合身份证号规则
+			Vue.prototype.checkIdCard = function(str) { //判断是否符合身份证号规则
 				let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 				let idcard = str; //身份证号
 				let flag = reg.test(idcard); //true
 				return flag;
+			},
+			Vue.prototype.$loadingopen = function(msg) {
+				Mint.Indicator.open({ //打开loading
+					text: msg,
+					spinnerType: 'triple-bounce'
+				});
 			}
+		Vue.prototype.$loadingclose = function(msg) {
+			Mint.Indicator.close(); //关闭loading
+		},
+		Vue.prototype.$getHost = function() {
+	return process.env.API_HOST;
+}
 
 	}
 }

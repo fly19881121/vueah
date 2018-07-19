@@ -25,7 +25,7 @@
 				pdfDoc: null,
 				loadding: true,
 				pages: 0,
-				pdfurl:""
+				pdfurl: ""
 			}
 		},
 		methods: {
@@ -34,40 +34,57 @@
 			},
 			submit() {
 				let _this = this;
-				let par = {
-					"applyNo": _this.getlocalstory("cano")
+				//授信确认
+				let carlist = _this.getlocalstory("carlist");
+				let par1 = {
+					"method": "aws.mobile.cg.etc.vehicle.creditApply",
+					"param": {
+						"creditApplyNo": _this.getlocalstory("cano"),
+						"vehicleIds": carlist.split(",")
+					}
 				}
-				console.log("creditlineApplyAfter 申请："+JSON.stringify(par))
-				_this.$ajaxPost('/api/creditline/creditlineApplyAfter', par, function(res) {
-					console.log("creditlineApplyAfter suc:"+JSON.stringify(res))
+				console.log("aws.mobile.cg.etc.vehicle.creditApply 申请：" + JSON.stringify(par1))
+				_this.$ajaxPost('/router/local/rest', par1, function(res) {
 					if(!res.data.success) {
 						_this.$toast("申请失败，请重试");
 						return;
 					}
-					if(_this.getlocalstory("caflag")) {
-						//触发风控
-						let parmer = {
-							"method": "aws.mobile.cg.etc.vehicle.risk.trigger",
-							"param": {
-								"creditApplyNo": _this.getlocalstory("cano")
-							}
-						}
-						_this.$ajaxPost('/router/local/rest ', parmer, function(res) {
-							console.log("trigger suc:" + JSON.stringify(res))
-							if(!res.data.success) {
-								_this.$toast("申请失败，请重试");
-								return;
-							}
-							_this.$router.push('/suc')
-						}, function(e) {
-							console.log("trigger fail:" + JSON.stringify(e))
-						});
-					}else{
-						_this.$router.push('/suc')
+					let par = {
+						"applyNo": _this.getlocalstory("cano")
 					}
-				}, function(e) {
-					console.log("creditlineApplyAfter fail:" + JSON.stringify(e))
-				});
+					console.log("creditlineApplyAfter 申请：" + JSON.stringify(par))
+					_this.$ajaxPost('/api/creditline/creditlineApplyAfter', par, function(res) {
+						console.log("creditlineApplyAfter suc:" + JSON.stringify(res))
+						if(!res.data.success) {
+							_this.$toast("申请失败，请重试");
+							return;
+						}
+						if(_this.getlocalstory("caflag")) {
+							//触发风控
+							let parmer = {
+								"method": "aws.mobile.cg.etc.vehicle.risk.trigger",
+								"param": {
+									"creditApplyNo": _this.getlocalstory("cano")
+								}
+							}
+							_this.$ajaxPost('/router/local/rest ', parmer, function(res) {
+								console.log("trigger suc:" + JSON.stringify(res))
+								if(!res.data.success) {
+									_this.$toast("申请失败，请重试");
+									return;
+								}
+								_this.$router.push('/suc')
+							}, function(e) {
+								console.log("trigger fail:" + JSON.stringify(e))
+							});
+						} else {
+							_this.$router.push('/suc')
+						}
+					}, function(e) {
+						console.log("creditlineApplyAfter fail:" + JSON.stringify(e))
+					});
+
+				})
 			}
 		},
 		mounted() {
@@ -83,11 +100,12 @@
 		display: block;
 		border-bottom: 1px solid black;
 	}
-
+	
 	#button-al {
 		width: calc(100% - 1rem);
 		margin: .5rem auto;
 	}
+	
 	.ifram-show {
 		width: 100%;
 		height: 300px;

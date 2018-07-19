@@ -26,9 +26,9 @@
 
 				if(envflag == 'development') {
 					//开发模式
-					// userId = "c0573332-e35e-4a0f-b918-9f4f2d4189d3";
-					// userName = "18802420006";
-					// tokenId = "BFCFAC3BB3551C68D2D2D3AEB2986BB7"
+//					 userId = "c0573332-e35e-4a0f-b918-9f4f2d4189d3";
+//					 userName = "18802420006";
+//					 tokenId = "BFCFAC3BB3551C68D2D2D3AEB2986BB7"
 					userId = "3a904a67-0761-4c59-96f2-480b8vbfe50b";//对公0005
 					userName = "18802420002";//对公0005
 					tokenId = "10A0EFDC880E1F2EAD514C607F471B20"//对公0005
