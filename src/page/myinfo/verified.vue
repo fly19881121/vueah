@@ -458,7 +458,6 @@
 				};
 
 				_this.$ajaxPost('/api/customer/getCustomerAnxinSign', par, function(res) {
-
 					console.log("getCustomerAnxinSign suc:" + JSON.stringify(res))
 					if(!res.data.success) {
 						_this.$toast("签约不成功，请重试");
@@ -502,7 +501,6 @@
 						}
 
 						_this.$ajaxPost('/dcapi/defineForm/addOrModifyDefineForm ', parApply, function(resform) {
-
 							if(!resform.data.success) {
 								_this.$toast("签约不成功，请重试");
 								return;
@@ -511,6 +509,10 @@
 							let pdfDownUrl = "/api/loan/downloadLoanContract?templateId=3&customerNo=" + customerNo;
 							_this.$ajaxGet(pdfDownUrl, "", function(respdf) {
 								console.log("pdfDownUrl suc:" + JSON.stringify(respdf))
+								if(!respdf.data.success&&respdf.data.success!=undefined) {
+										_this.$toast(resd.data.message);
+										return;
+									}
 								let url = _this.$getHost() + '/pdf/web/viewer.html?' + _this.$getHost() + '/download/contract/' + customerNo + ".pdf";
 								//url = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
 								_this.$router.push({
@@ -644,6 +646,10 @@
 							let pdfDownUrl = "/api/loan/downloadLoanContract?templateId=3&customerNo=" + customerNo;
 							_this.$ajaxGet(pdfDownUrl, "", function(respdf) {
 								console.log("pdfDownUrl suc:" + JSON.stringify(respdf))
+								if(!respdf.data.success&&respdf.data.success!=undefined) {
+										_this.$toast(resd.data.message);
+										return;
+									}
 								let url = _this.$getHost() + '/pdf/web/viewer.html?' + _this.$getHost() + '/download/contract/' + customerNo + ".pdf";
 								//url = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
 								_this.$router.push({
@@ -696,7 +702,7 @@
 			sureback() {
 				let _this = this;
 				_this.setlocalstory("comeHomeFlag",true);
-				_this.$router.push('/home');
+				_this.$router.push('/');
 				pushHistory();
 			}
 		},
@@ -712,7 +718,7 @@
 	function pushHistory() {
 		var state = {
 			title: "title",
-			url: "/home"
+			url: "/"
 		}
 		window.history.pushState(state, "title", "#");
 	}

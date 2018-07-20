@@ -1,7 +1,7 @@
 <template>
   <div class="manager">
     <mt-header fixed title="个人中心">
-      <router-link to="/home" slot="left">
+      <router-link to="/" slot="left">
         <mt-button icon="back">返回</mt-button>
       </router-link>
       <mt-button icon="more" slot="right"></mt-button>

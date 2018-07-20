@@ -6,7 +6,6 @@
 			</div>
 		</mt-header>
 
-
 		<div class="pb50">
 			<div class="applymain">
 				<mt-field label="产品" v-model="proname" readonly="readonly"></mt-field>
@@ -95,7 +94,6 @@
 			</div>
 
 			<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="apply">申请</mt-button>
-
 
 		</div>
 
@@ -274,6 +272,7 @@
 				this.removelocalstory("uploadBankState");
 				this.removelocalstory("uploadCarRelation");
 				this.removelocalstory("uploadCreditReport");
+				this.removelocalstory("creditSignRule");
 			},
 			apply() {
 				let _this = this;
@@ -325,9 +324,9 @@
 							let parstr = '[{\"config\":{\"required\":\"true\"},\"field_value\":\"' +
 								_this.getEtcType + '\",\"key\":\"cardIssueMethod\",\"options\":[\"快递(到付)\",\"营业厅/现场领取 \"],\"placeholder\":\"请选择领取ETC卡片方式\",\"title\":\"ETC卡领取⽅式\",\"type\":\"radio\"},' +
 								'{\"config\":{\"required\":\"false\"},\"field_value\":\"' +
-								_this.addr + '\",\"key\":\"sxsq_address\",\"placeholder\":\"ETC卡收件地址(勿⽤标点符 号)\",\"title\":\"联系地址\",\"type\":\"textarea\"}' ;
+								_this.addr + '\",\"key\":\"sxsq_address\",\"placeholder\":\"ETC卡收件地址(勿⽤标点符 号)\",\"title\":\"联系地址\",\"type\":\"textarea\"}';
 
-							let parstr1=',{\"config\": {\"required\":\"false\"},\"field_value\":\"' +
+							let parstr1 = ',{\"config\": {\"required\":\"false\"},\"field_value\":\"' +
 								_this.ismarry + '\",\"key\":\"isMarried\",\"options\": [\"已婚\",\"未婚\"],\"placeholder\":\"请选择婚姻状况\",\"title\":\"是否已婚 \",\"type\":\"radio\"},' +
 								'{\"config\":{\"required\":\"false\"},\"field_value\":\"' +
 								contactsSpouseInfo + '\",\"key\":\"spouseContact\",\"placeholder\":\"已婚时需填写 \",\"title\":\"配偶联系⽅式\",\"type\":\"contact\"},' +
@@ -336,14 +335,9 @@
 								'{\"config\":{\"required\":\"false\"},\"field_value\":\"' +
 								contacts2Info + '\",\"key\":\"contact2\",\"placeholder\":\"(请勿重复)联系⼈ 2\",\"title\":\"紧急联系⼈2\",\"type\":\"contact\"}';
 
-							if(_this.getlocalstory("productId")=="15"||_this.getlocalstory("productId")=="16"||_this.getlocalstory("productId")=="18"||_this.getlocalstory("productId")=="20"){
-								parstr=parstr+parstr1;
+							if(_this.getlocalstory("productId") == "15" || _this.getlocalstory("productId") == "16" || _this.getlocalstory("productId") == "18" || _this.getlocalstory("productId") == "20") {
+								parstr = parstr + parstr1;
 							}
-
-
-
-
-
 
 							let str1 = ',{\"config\": {\"required\":\"false\"},\"field_value\":\"https://ladybird.awservice.net/upload//cus tomer_17891/20180702160714055001/201807021607140015.jpg\",\"key\":\"vehicleRelationsh ip\",\"placeholder\":\"[必须]挂靠协议/分期购⻋付款凭证/证明承运关系的其他材料(三选⼀)，可拍摄多张 \",\"sample\":\"https://qf.awservice.net/upload//customer_2/20171013182132431001/2017 10131821320004.jpg\",\"title\":\"⻋辆关系证明\",\"type\":\"file\"}';
 							let str2 = ',{\"config\": {\"required\":\"false\"},\"key\":\"sxsq_grzxbg\",\"placeholder\":\"[可选]仅申请5辆⻋以上 时需要，可拍摄多张 \",\"sample\":\"https://qf.awservice.net/upload//customer_2/20171013182024066001/2017 10131820240003.jpg\",\"title\":\"个⼈征信报告照⽚\",\"type\":\"file\"}';
@@ -377,15 +371,20 @@
 								}
 								console.log(res.data.result)
 								//step4 进入pdf查看页面
-								let creditContractTemplateId=_this.getlocalstory("creditContractTemplateId");
-								let pdfDownUrl = "/api/loan/downloadLoanContract?templateId="+creditContractTemplateId+"&customerNo=" + res.data.result;
+								let creditContractTemplateId = _this.getlocalstory("creditContractTemplateId");
+								let pdfDownUrl = "/api/loan/downloadLoanContract?templateId=" + creditContractTemplateId + "&customerNo=" + res.data.result;
 								let cano = res.data.result;
 								_this.setlocalstory("cano", cano);
-								_this.$ajaxGet(pdfDownUrl, "", function(res) {
-
-									console.log("suc:" + JSON.stringify(res))
+								_this.$ajaxGet(pdfDownUrl, "", function(resd) {
+									console.log("pdfDownUrl suc:" + JSON.stringify(resd))
+//									alert("pdfDownUrl suc:" + JSON.stringify(resd))
+									if(!resd.data.success&&resd.data.success!=undefined) {
+										_this.$toast(resd.data.message);
+										return;
+									}
 									let url = _this.$getHost() + '/pdf/web/viewer.html?' + _this.$getHost() + '/download/contract/' + cano + ".pdf";
-//									url = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
+									//url = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
+//									alert("pdf url:"+url)
 									_this.$router.push({
 										name: 'contshow',
 										query: {
@@ -513,12 +512,11 @@
 			for(let i = 0; i < arr.length; i++) {
 				let jsonstr = {
 					"name": arr[i],
-					"method":_this.onDateChange
+					"method": _this.onDateChange
 				}
 				arrAct.push(jsonstr);
 			}
-			_this.actionsRepayType=arrAct;
-
+			_this.actionsRepayType = arrAct;
 
 			let carsum = _this.getlocalstory("carTotal");
 			if(carsum > 5) {
@@ -545,7 +543,7 @@
 			}
 		}
 	}
-
+	
 	#button-al {
 		width: calc(100% - 1rem);
 		margin: .5rem auto;

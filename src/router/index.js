@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import home from '@/page/myinfo/home' //主页
+//import home from '@/page/myinfo/home' //主页
 import verified from '@/page/myinfo/verified' //认证
 import contsVer from '@/page/myinfo/contsVer' //认证合同pdf
 import index from '@/page/myinfo/index' //启动页
+import loginfail from '@/components/loginfail' //启动页
 
 
 
@@ -41,19 +42,24 @@ import BankAdd from '@/page/bankinfo/BankAdd' //银行卡列表
 Vue.use(Router)
 
 const routes = [
-
-	{
+{
 		path: '/',
 		name: 'index',
 		component: index
 	},
+	
+//	{
+//		path: '/home',
+//		name: 'home',
+//		component: home,
+//		meta: {
+//			requireAuth: true
+//		}
+//	},
 	{
-		path: '/home',
-		name: 'home',
-		component: home,
-		meta: {
-			requireAuth: true
-		}
+		path: '/index',
+		name: 'index',
+		component: index
 	},
 	{
 		path: '/applyetc',
@@ -197,9 +203,9 @@ const routes = [
 		component: contsVer
 	},
 	{
-		path: '/index',
-		name: 'index',
-		component: index
+		path: '/loginfail',
+		name: 'loginfail',
+		component: loginfail
 	}
 ]
 
@@ -225,7 +231,7 @@ router.beforeEach((to, from, next) => {
 		if(customerState == 3||customerState == 2) {
 			next()
 		} else if(customerState == 4) {
-			if(to.path == "/home") {
+			if(to.path == "") {
 				next()
 			} else {
 				alert("认证失败，请重新认证")
@@ -238,7 +244,7 @@ router.beforeEach((to, from, next) => {
 			}
 
 		}else {
-			if(comeHomeFlag=="true" && to.path == "/home") {
+			if(comeHomeFlag=="true" && to.path == "") {
 				next()
 			} else {
 				alert("您还没有认证，请先认证")

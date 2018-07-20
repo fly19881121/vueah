@@ -1,16 +1,15 @@
 <template>
 	<div>
-		<mt-header title="申请成功">
+		<mt-header title="登录失败">
 
 		</mt-header>
 		<div class="icon">
 			<i class="fa fa-check-circle-o"></i>
 		</div>
 		<div class="msg">
-			您已申请成功，请耐心等待
+			登录失败，请退出页面重新进入
 		</div>
 		<br />
-		<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="reback">返回首页</mt-button>
 	</div>
 </template>
 

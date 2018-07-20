@@ -5,20 +5,18 @@ import App from './App'
 import router from './router'
 import Mint from 'mint-ui'
 import FastClick from 'fastclick'
-
 import 'mint-ui/lib/style.css'
 import 'font-awesome/css/font-awesome.min.css'
 import '../static/style/reset.css'
 import 'lib-flexible/flexible.js'
-
-Vue.use(Mint)
-
 import func from '../static/js/func.js'
 Vue.use(func);
-
+Vue.use(Mint)
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false
+
+window.localStorage.setItem("comeHomeFlag",false);//初始化页面模式，会在登录后重置状态
 
 //自定义指令
  Vue.directive('removefcous', function(el, pra, a) {
@@ -79,6 +77,7 @@ Vue.prototype.$ajaxGet = function(url, parmer, success, fail) {
 			success(response);
 		})
 		.catch(function(error) {
+			alert(url+"-error:"+error)
 			fail(error);
 		});
 }
@@ -92,6 +91,7 @@ Vue.prototype.$ajaxPost = function(url, parmer, success, fail) {
 			success(response);
 		})
 		.catch(function(error) {
+			alert(url+"-error:"+error)
 			fail(error);
 		});
 }
@@ -99,10 +99,10 @@ Vue.prototype.$ajaxPost = function(url, parmer, success, fail) {
 window.addEventListener('popstate', function(e) {
 	let path = location.href.split("/");
 	let flag = path[path.length - 1];
-	if(flag == "home" || flag == "") {
+	if( flag == "") {
 		var state = {
 			title: "title",
-			url: "/home"
+			url: "/"
 		}
 		window.history.pushState(state, "title", "#");
 	}

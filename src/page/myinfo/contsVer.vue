@@ -51,9 +51,9 @@
 						return;
 					}
 					_this.$toast('您的认证已经提交，现在可以去办理业务啦');
-					_this.setlocalstory("comeHomeFlag", true);
+					_this.setlocalstory("comeHomeFlag", false);
 					_this.setlocalstory("customerState", 2);
-					_this.$router.push('/home');
+					_this.$router.push('/');
 					pushHistory();
 
 				}, function(e) {
@@ -72,7 +72,7 @@
 	function pushHistory() {
 		var state = {
 			title: "title",
-			url: "/home"
+			url: "/"
 		}
 		window.history.pushState(state, "title", "#");
 	}

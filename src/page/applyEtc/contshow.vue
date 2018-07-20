@@ -5,11 +5,13 @@
 				<mt-button icon="back" @click="handleClose">返回</mt-button>
 			</div>
 		</mt-header>
-		<div v-if="loadding">
-			<img src="../../../static/img/loading.gif" />
+		<div v-if="!loadding" style="margin-top: 45px;">
+			<p>验证码已经发送到您注册的手机上了，请注意查收</p>
+			<mt-field label="验证码" v-model="code" pl></mt-field>
+			<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="subcode">确定</mt-button>
 		</div>
-		<iframe :src="pdfurl" class="ifram-show"></iframe>
-		<div v-if="!loadding">
+		<iframe :src="pdfurl" class="ifram-show" v-if="loadding"></iframe>
+		<div v-if="loadding">
 			<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="submit">我同意以上合同要求</mt-button>
 		</div>
 	</div>
@@ -25,7 +27,8 @@
 				pdfDoc: null,
 				loadding: true,
 				pages: 0,
-				pdfurl: ""
+				pdfurl: "",
+				code: ""
 			}
 		},
 		methods: {
@@ -33,6 +36,57 @@
 				this.$router.go(-1); //返回上一层
 			},
 			submit() {
+				let _this = this;
+				//判断是否需要短信验证
+				let creditSignRule = _this.getlocalstory("creditSignRule");
+				if(creditSignRule) {
+					//验证短信
+					console.log("yanzheng")
+					let param = {
+						"projectCode": _this.getlocalstory("cano")
+					}
+
+					_this.$ajaxPost('/api/cfca/sendSignContractCode', param, function(res) {
+						if(res.data.success) {
+							_this.loadding = false;
+						}
+						console.log("sendSignContractCode suc:" + JSON.stringify(res))
+					}, function(e) {
+						console.log("224 fail:" + JSON.stringify(e))
+					});
+
+				} else {
+					//不需要验证短信
+					console.log("no yanzheng")
+					_this.subsure("");
+				}
+
+			},
+			subcode() {
+				let _this = this;
+				if(_this.checkNull(_this.code)) {
+					_this.$toast("请先填写验证码")
+					return false;
+				}
+				let param = {
+					"projectCode": _this.getlocalstory("cano"),
+					"checkCode": _this.code
+				}
+
+				_this.$ajaxPost('/api/cfca/verifySignContractCode', param, function(res) {
+					console.log("verifySignContractCode suc:" + JSON.stringify(res))
+					if(!res.data.success) {
+						_this.$toast("验证码错误，已重新发送");
+						_this.submit();
+						return false;
+					}
+					_this.subsure(res.data.result);
+				}, function(e) {
+					console.log("verifySignContractCode fail:" + e)
+				});
+
+			},
+			subsure(cfcaSignature) {
 				let _this = this;
 				//授信确认
 				let carlist = _this.getlocalstory("carlist");
@@ -50,7 +104,8 @@
 						return;
 					}
 					let par = {
-						"applyNo": _this.getlocalstory("cano")
+						"applyNo": _this.getlocalstory("cano"),
+						"cfcaSignature": cfcaSignature
 					}
 					console.log("creditlineApplyAfter 申请：" + JSON.stringify(par))
 					_this.$ajaxPost('/api/creditline/creditlineApplyAfter', par, function(res) {
@@ -90,7 +145,6 @@
 		mounted() {
 			let url = Base64.decode(this.$route.query.url)
 			this.pdfurl = url;
-			this.loadding = false
 		}
 	}
 </script>

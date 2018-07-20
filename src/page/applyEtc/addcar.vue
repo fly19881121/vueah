@@ -16,7 +16,7 @@
 				</div>
 				<p>请选择行驶本照片</p>
 				<span class="btn-chose">
-					<mt-button size="small" type="primary" class="button-al" v-on:click="uploadpic">上传</mt-button>
+					<mt-button size="small" type="primary" class="button-al" v-on:click="uploadpic">{{btnuploadmsg}}</mt-button>
 				</span>
 			</div>
 			<div v-if="carinfoflag">
@@ -41,7 +41,6 @@
 			<div class="select" @click="sheetchetou = true">
 				<mt-field label="车头颜色" v-model="chetoucolor" readonly="readonly"></mt-field>
 			</div>
-
 
 			<mt-actionsheet :actions="actionschepai" v-model="sheetchepai">
 			</mt-actionsheet>
@@ -68,7 +67,7 @@
 				dateTime: '',
 
 				startDate: new Date('1970-01-01'),
-				endDate:new Date(),
+				endDate: new Date(),
 				type: "", //日期选择器,
 				redate: "请选择",
 				startdate: "请选择",
@@ -82,33 +81,32 @@
 				actionschepai: [{
 					name: '蓝色',
 					method: this.onDateChange
-				},{
+				}, {
 					name: '黄色',
 					method: this.onDateChange
-				},{
+				}, {
 					name: '黑色',
 					method: this.onDateChange
-				},{
+				}, {
 					name: '白色',
 					method: this.onDateChange
 				}],
-				sheetchepai:false,
+				sheetchepai: false,
 
 				actionschetou: [{
 					name: '蓝色',
 					method: this.onDateChangeT
-				},{
+				}, {
 					name: '黄色',
 					method: this.onDateChangeT
-				},{
+				}, {
 					name: '黑色',
 					method: this.onDateChangeT
-				},{
+				}, {
 					name: '白色',
 					method: this.onDateChangeT
 				}],
-				sheetchetou:false,
-
+				sheetchetou: false,
 
 				carcolor: "请选择",
 				chetoucolor: "请选择",
@@ -124,7 +122,8 @@
 				enginePN: "",
 				uploadPicFlag: false,
 				filePic: "",
-				filePath: ""
+				filePath: "",
+				btnuploadmsg: "待上传"
 
 			}
 		},
@@ -177,6 +176,7 @@
 					if(response.data.success == true) {
 						_this.filePath = response.data.result[0].filePath;
 						_this.uploadPicFlag = true;
+						_this.btnuploadmsg = "已上传";
 					} else {
 						_this.$toast("上传失败，请选择清晰图片")
 					}
@@ -225,7 +225,7 @@
 						"registDate": _this.redate
 					}
 				}
-				console.log("vehicle.add sub:"+JSON.stringify(param))
+				console.log("vehicle.add sub:" + JSON.stringify(param))
 				_this.$ajaxPost('/router/local/rest', param, function(res) {
 
 					console.log("suc:" + JSON.stringify(res))
@@ -249,7 +249,7 @@
 		width: calc(100% - 1rem);
 		margin: .5rem auto;
 	}
-
+	
 	.idpic {
 		margin: .5rem 0;
 		.fileinput-button {
@@ -260,17 +260,18 @@
 			margin: 0 auto;
 			position: relative;
 			border-radius: 5px;
-			height:4rem;
-			span{
-				width:100%;
-				height:100%;
-				display:block;
-				text-align:center;
+			height: 4rem;
+			span {
+				width: 100%;
+				height: 100%;
+				display: block;
+				text-align: center;
 			}
 			.img-loc {
-				display: inline-block; vertical-align: middle;
-				width:100%;
-				height:100%;
+				display: inline-block;
+				vertical-align: middle;
+				width: 100%;
+				height: 100%;
 			}
 		}
 		p {
@@ -278,7 +279,7 @@
 			line-height: 1rem;
 		}
 	}
-
+	
 	.fileinput-button input {
 		position: absolute;
 		right: 0px;
@@ -287,13 +288,13 @@
 		width: 100%;
 		height: 100%;
 	}
-
-	.btn-chose{
-		width:70%;
-		margin:0 auto;
-		display:block;
-		.button-al{
-			width:100%;
+	
+	.btn-chose {
+		width: 70%;
+		margin: 0 auto;
+		display: block;
+		.button-al {
+			width: 100%;
 		}
 	}
 </style>

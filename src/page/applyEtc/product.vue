@@ -171,6 +171,9 @@
 				_this.removelocalstory("uploadBankState");
 				_this.removelocalstory("uploadCarRelation");
 				_this.removelocalstory("uploadCreditReport");
+				_this.removelocalstory("creditSignRule");
+				_this.removelocalstory("config");
+				_this.removelocalstory("creditContractTemplateId");
 
 
 
@@ -179,6 +182,7 @@
 				_this.setlocalstory("creditFormId",_obj.creditFormId);
 				_this.setlocalstory("productName",_obj.productName);
 				_this.setlocalstory("creditContractTemplateId",_obj.creditContractTemplateId);
+				_this.setlocalstory("creditSignRule",_obj.creditSignRule);
 				_this.$router.push('/apply');
 			}
 

@@ -62,6 +62,7 @@
 					}
 
 				}, function(e) {
+					_this.$toast("上传失败，请选择清晰图片")
 					console.log("fail:" + JSON.stringify(e))
 				});
 			}
