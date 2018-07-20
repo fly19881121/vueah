@@ -6,7 +6,7 @@
 		<div class="icon">
 			<i class="fa fa-check-circle-o"></i>
 		</div>
-		<div>
+		<div class="msg">
 			您已申请成功，请耐心等待
 		</div>
 		<br />
@@ -46,5 +46,8 @@
 	#button-al{
   	width:calc(100% - 1rem);
   	margin:.5rem auto;
+  }
+  .msg{
+  	text-align: center;
   }
 </style>

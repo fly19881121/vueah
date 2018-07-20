@@ -545,9 +545,12 @@
 
 			},
 			qiyenext1() {
+				if(!this.checkIdCard(this.legalIdCard)){
+					this.$toast("请确认身份证号码正确");
+					return;
+				}
 				this.divqiye1 = false;
 				this.divqiye2 = true;
-
 			},
 			submitQiye() {
 				let _this = this;
