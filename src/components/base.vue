@@ -31,18 +31,15 @@
 				//alert(_this.$getHost());
 				//_this.setlocalstory("token",token);
 				let param = {
-					"accountName": "李南南8",
-					"bankCardNo": "6666666666666666",
-					"mobile": "18238806637",
-					"personId": "411123199902020202",
-					"bankName": "上海浦东发展银⾏"
+					"tradeNo": "BF20180702160344135001",
+					"smsCode": "111111"
 				}
 
 				//api/config/querySystemConfig true
 
 				//$ajaxPost
 				//$ajaxGet
-				_this.$ajaxPost('/api/payment/applyBind', param, function(res) {
+				_this.$ajaxPost('/api/payment/confirmBind', param, function(res) {
 
 					console.log("base suc:" + JSON.stringify(res))
 

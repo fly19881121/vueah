@@ -86,9 +86,15 @@
 				}
 				if(envflag == 'development') {
 					//开发模式
+					
+					
 					userId = "62d7570a-5be7-48c6-af65-ad9a9070a895"; //对公0005
 					userName = "13802400002"; //对公0005
 					tokenId = "916A0BAFB6DFF366398BCE02CAE156F1" //对公0005
+					
+					userId = "88d329fc-be41-42e9-bd29-b5f4db546115"; //对公0005
+					userName = "13802400001"; //对公0005
+					tokenId = "D5045167A74F0BA2FB961BA45E3320B1" //对公0005
 				} else {
 					let _mobile = JSON.parse(_this.utf8to16(_this.base64decode(window.daka.getMobileApp())));
 					//alert(JSON.stringify(_mobile))

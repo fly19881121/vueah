@@ -12,7 +12,7 @@ import 'lib-flexible/flexible.js'
 import func from '../static/js/func.js'
 Vue.use(func);
 Vue.use(Mint)
-FastClick.attach(document.body)
+//FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 
@@ -68,30 +68,34 @@ var baseURL = ''
 process.env.NODE_ENV === 'development' ? baseURL = baseURLDev : baseURL = baseURLQa
 
 Vue.prototype.$ajaxGet = function(url, parmer, success, fail) {
+	let parmer1=parmer;
 	axios({
 			method: 'get',
 			url: url,
 			baseURL: baseURL,
-			data: parmer
+			data: parmer1
 		}).then(function(response) {
 			success(response);
 		})
 		.catch(function(error) {
 			alert(url+"-error:"+error)
+			alert("parmer："+JSON.stringify(parmer1))
 			fail(error);
 		});
 }
 Vue.prototype.$ajaxPost = function(url, parmer, success, fail) {
+	let parmer1=parmer;
 	axios({
 			method: 'post',
 			url: url,
 			baseURL: baseURL,
-			data: parmer
+			data: parmer1
 		}).then(function(response) {
 			success(response);
 		})
 		.catch(function(error) {
-			alert(url+"-error:"+error)
+			alert(url+"-error:"+error);
+			alert("parmer："+JSON.stringify(parmer1))
 			fail(error);
 		});
 }
