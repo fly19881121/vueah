@@ -204,10 +204,54 @@
 			onDateChangeT(actions, index) {
 				this.chetoucolor = actions.name;
 			},
+			checkAll() {
+				let _this = this;
+				if(_this.checkNull(_this.cardNo)) {
+					_this.$toast("请先填写号牌号码")
+					return false;
+				} else if(_this.checkNull(_this.vehicleType)) {
+					_this.$toast("请先填写车辆类型")
+					return false;
+				} else if(_this.checkNull(_this.name)) {
+					_this.$toast("请先填写所有人")
+					return false;
+				} else if(_this.checkNull(_this.address)) {
+					_this.$toast("请先填写住址")
+					return false;
+				} else if(_this.checkNull(_this.useCharacte)) {
+					_this.$toast("请先填写使用性质")
+					return false;
+				} else if(_this.checkNull(_this.model)) {
+					_this.$toast("请先填写品牌型号")
+					return false;
+				} else if(_this.checkNull(_this.vin)) {
+					_this.$toast("请先填写车辆识别代码")
+					return false;
+				} else if(_this.checkNull(_this.enginePN)) {
+					_this.$toast("请先填写发动机号")
+					return false;
+				} else if(_this.redate == "请选择") {
+					_this.$toast("请先选择注册日期")
+					return false;
+				} else if(_this.startdate == "请选择") {
+					_this.$toast("请先选择发证日期")
+					return false;
+				} else if(_this.carcolor == "请选择") {
+					_this.$toast("请先选择车牌颜色")
+					return false;
+				} else if(_this.chetoucolor == "请选择") {
+					_this.$toast("请先选择车头颜色")
+					return false;
+				}
+				return true;
+			},
 			sureback() {
 				let _this = this;
 				if(!_this.uploadPicFlag) {
 					_this.$toast("请先上传图片");
+					return;
+				}
+				if(!_this.checkAll()) {
 					return;
 				}
 
@@ -227,13 +271,11 @@
 				}
 				console.log("vehicle.add sub:" + JSON.stringify(param))
 				_this.$ajaxPost('/router/local/rest', param, function(res) {
-
 					console.log("suc:" + JSON.stringify(res))
 					if(!res.data.success) {
 						_this.$toast(res.data.Message);
 						return;
 					}
-
 					_this.$router.push('/addcarlist')
 				}, function(e) {
 					console.log("fail:" + JSON.stringify(e))

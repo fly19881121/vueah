@@ -66,12 +66,6 @@ export default {
           value: ''
         },
         {
-          name: '我的ETC',
-          link: etc_host,//测试
-          isLink: true,
-          value: ''
-        },
-        {
           name: '联系客服',
           link: 'manager',
           isLink: false,

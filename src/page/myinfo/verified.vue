@@ -250,7 +250,7 @@
 				uploadpicfarenfan: false,
 				btnuploadmsgfarenfan:"待上传",
 
-				startDate: new Date('1970-01-01'),
+				startDate: new Date('1960-01-01'),
 				endDate:new Date(),
 				proname: "",
 				type: "" //日期选择器,
@@ -460,7 +460,7 @@
 				_this.$ajaxPost('/api/customer/getCustomerAnxinSign', par, function(res) {
 					console.log("getCustomerAnxinSign suc:" + JSON.stringify(res))
 					if(!res.data.success) {
-						_this.$toast("签约不成功，请重试");
+						_this.$toast(res2.data.message);
 						return;
 					}
 					customerNo = res.data.result.customerNo; //安心签编号
@@ -475,7 +475,7 @@
 					_this.$ajaxPost('/api/customer/addCustomerAuthInfo', par2, function(responseAdd) {
 						console.log("addCustomerAuthInfo responseAdd:" + JSON.stringify(responseAdd))
 						if(!responseAdd.data.success) {
-							_this.$toast("签约不成功，请重试");
+							_this.$toast(res2.data.message);
 							return;
 						}
 						let objectId = responseAdd.data.result.objectId;
@@ -502,7 +502,7 @@
 
 						_this.$ajaxPost('/dcapi/defineForm/addOrModifyDefineForm ', parApply, function(resform) {
 							if(!resform.data.success) {
-								_this.$toast("签约不成功，请重试");
+								_this.$toast(res2.data.message);
 								return;
 							}
 
@@ -547,8 +547,24 @@
 
 			},
 			qiyenext1() {
+				if(this.checkNull(this.customerName)){
+					this.$toast("请输入企业姓名");
+					return;
+				}
+				if(this.checkNull(this.licenseNo)){
+					this.$toast("请输入企业营业执照号");
+					return;
+				}
+				if(this.checkNull(this.legalName)){
+					this.$toast("请输入企业法人姓名");
+					return;
+				}
 				if(!this.checkIdCard(this.legalIdCard)){
 					this.$toast("请确认身份证号码正确");
+					return;
+				}
+				if(this.checkNull(this.proname)){
+					this.$toast("请输入经办人姓名");
 					return;
 				}
 				this.divqiye1 = false;
@@ -596,7 +612,7 @@
 					_this.$ajaxPost('/api/customer/addCustomerAuthInfo', par2, function(res2) {
 						console.log("addCustomerAuthInfo res2:" + JSON.stringify(res2))
 						if(!res2.data.success) {
-							_this.$toast("签约不成功，请重试");
+							_this.$toast(res2.data.message);
 							return;
 						}
 						//step 3 上传模板信息
@@ -639,7 +655,7 @@
 
 						_this.$ajaxPost('/dcapi/defineForm/addOrModifyDefineForm ', par3, function(res3) {
 							if(!res3.data.success) {
-								_this.$toast("签约不成功，请重试");
+								_this.$toast(res2.data.message);
 								return;
 							}
 

@@ -57,7 +57,8 @@
 				_this.$ajaxGet('/dcapi/bank/queryBankAccout?accountChannel=BAOFOO', "", function(res) {
 					let arr=[];
 					console.log("queryBankAccout suc:" + JSON.stringify(res.data.result))
-					for(let i=0;i<res.data.result.length;i++){
+					if(res.data.result){
+						for(let i=0;i<res.data.result.length;i++){
 						let tmp=res.data.result[i];
 						let stricon="";
 						if(tmp.bankName=="中国建设银行"){
@@ -84,6 +85,7 @@
 							"iconsrc":stricon,
 						}
 						arr.push(jsonstr);
+					}
 					}
 					_this.prolist=arr;
 				}, function(e) {

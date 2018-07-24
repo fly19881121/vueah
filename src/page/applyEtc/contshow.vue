@@ -7,7 +7,7 @@
 		</mt-header>
 		<div v-if="!loadding" style="margin-top: 45px;">
 			<p>验证码已经发送到您注册的手机上了，请注意查收</p>
-			<mt-field label="验证码" v-model="code" pl></mt-field>
+			<mt-field label="验证码" v-model="code" placeholder="请输入验证码"></mt-field>
 			<mt-button size="large" type="primary" id="button-al" class="button-al" v-on:click="subcode">确定</mt-button>
 		</div>
 		<iframe :src="pdfurl" class="ifram-show" v-if="loadding"></iframe>

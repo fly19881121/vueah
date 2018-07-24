@@ -14,7 +14,7 @@
 			</div>
 
 			<div class="div-loc">
-				<mt-field label="联系人手机号" placeholder="联系人手机号" v-model="contactsphone" class=""></mt-field>
+				<mt-field label="联系人手机号" placeholder="联系人手机号" v-model="contactsphone" type="number"></mt-field>
 			</div>
 
 			<div class="div-loc">

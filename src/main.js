@@ -60,7 +60,7 @@ axios.interceptors.response.use((response) => {
 
 })
 
-axios.defaults.timeout = 10000; //响应时间
+axios.defaults.timeout = 100000; //响应时间
 axios.defaults.headers.post['Content-Type'] = 'form-data'; //配置请求头
 const baseURLDev = '/api'
 const baseURLQa = ''
