@@ -77,6 +77,8 @@
 							stricon = "./static/img/spdb.png";
 						} else if(tmp.bankName == "平安银行") {
 							stricon = "./static/img/pingan.png";
+						} else {
+							stricon = "./static/img/bank.png";
 						}
 						let jsonstr = {
 							"name": tmp.bankName,

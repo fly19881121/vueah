@@ -16,7 +16,7 @@
 				</div>
 				<p>请选择行驶本照片</p>
 				<span class="btn-chose">
-					<mt-button size="small" type="primary" class="button-al" v-on:click="uploadpic">{{btnuploadmsg}}</mt-button>
+					<mt-button size="small" type="primary" class="button-al" v-on:click="compress">{{btnuploadmsg}}</mt-button>
 				</span>
 			</div>
 			<div v-if="carinfoflag">
@@ -164,12 +164,18 @@
 				});
 
 			},
-			uploadpic() {
+			compress(){
 				let _this = this;
 				let file = _this.filePic;
+				_this.$compressPic(file,function(blob){
+					_this.uploadpic(blob);
+				});
+			},
+			uploadpic(blob) {
+				let _this = this;
 
 				let param = new FormData(); //创建form对象
-				param.append('files', file); //通过append向form对象添加数据
+				param.append('files', blob); //通过append向form对象添加数据
 
 				_this.$ajaxPost('/api/attachment/uploadAttachmentBatch ', param, function(response) {
 					console.log("suc:" + JSON.stringify(response))

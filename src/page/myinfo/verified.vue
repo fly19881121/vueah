@@ -48,7 +48,7 @@
 					<mt-field label="地址" v-model="sfzaddress"></mt-field>
 					<mt-field label="身份证号" v-model="sfzcardNo"></mt-field>
 					<div @click='openPicker("bir")'>
-						<mt-field label="出生日期" v-model="birdate" readonly="readonly"v-removefcous></mt-field>
+						<mt-field label="出生日期" v-model="birdate" readonly="readonly" v-removefcous></mt-field>
 					</div>
 				</div>
 				<div v-if="divgereninfofan">
@@ -191,8 +191,8 @@
 				uploadpicIdZheng: false,
 				uploadpicIdZhengurl: "",
 				uploadpicIdFan: false,
-				btnUpLoadMsgGeren:"待上传",
-				btnUpLoadMsgGerenFan:"待上传",
+				btnUpLoadMsgGeren: "待上传",
+				btnUpLoadMsgGerenFan: "待上传",
 
 				//企业部分
 				divqiye: false, //企业认证div显隐
@@ -218,8 +218,7 @@
 				uploadpicfarenzheng: false,
 				filepicfarenzheng: "", //要上传的法人身份证正面
 				uploadfarenurl: "",
-				btnuploadmsgfarenzheng:"待上传",
-				
+				btnuploadmsgfarenzheng: "待上传",
 
 				//经办人部分
 				picjingbanzheng: './static/img/prepic.png', //经办人身份证正面照片
@@ -234,13 +233,13 @@
 				uploadpicjbrzheng: false,
 				filepicjbrzheng: "", //要上传的经办人身份证正面
 				uploadjbrurl: "",
-				btnuploadmsgjbzheng:"待上传",
+				btnuploadmsgjbzheng: "待上传",
 
 				picyingye: './static/img/addpic.png', //营业执照照片
 				filepicyingye: "", //要上传的营业执照
 				uploadpicyingye: false,
 				uploadyingyeurl: "",
-				btnuploadmsgyy:"待上传",
+				btnuploadmsgyy: "待上传",
 
 				picfarenfan: './static/img/unprepic.png', //法人身份证反面照片
 				divfarenfan: false,
@@ -248,10 +247,10 @@
 				farenidenddate: "请选择",
 				farenissueAuthority: "",
 				uploadpicfarenfan: false,
-				btnuploadmsgfarenfan:"待上传",
+				btnuploadmsgfarenfan: "待上传",
 
 				startDate: new Date('1960-01-01'),
-				endDate:new Date(),
+				endDate: new Date(),
 				proname: "",
 				type: "" //日期选择器,
 
@@ -283,7 +282,8 @@
 				}
 				if(this.type == 'farenidend') {
 					this.farenidenddate = date;
-				}if(this.type == 'jingbanbir') {
+				}
+				if(this.type == 'jingbanbir') {
 					this.jbrbir = date;
 				}
 			},
@@ -384,57 +384,75 @@
 				let _this = this;
 				if(flag == "gerenzhengmian") { //个人身份证正面
 					let file = _this.filepicIdZheng;
-					let param = new FormData(); //创建form对象
-					param.append('files', file); //通过append向form对象添加数据
-					_this.useUpload(param, function(response) {
-						_this.uploadpicIdZheng = true;
-						_this.uploadpicIdZhengurl = response.data.result[0].filePath;
-						_this.btnUpLoadMsgGeren="已上传";
-					})
+					_this.$compressPic(file, function(blob) {
+						let param = new FormData(); //创建form对象
+						param.append('files', blob); //通过append向form对象添加数据
+						_this.useUpload(param, function(response) {
+							_this.uploadpicIdZheng = true;
+							_this.uploadpicIdZhengurl = response.data.result[0].filePath;
+							_this.btnUpLoadMsgGeren = "已上传";
+						})
+					});
+
 				} else if(flag == "gerenfanmian") { //个人身份证反面
 					let file = _this.filepicIdFan;
-					let param = new FormData(); //创建form对象
-					param.append('files', file); //通过append向form对象添加数据
-					_this.useUpload(param, function(response) {
-						_this.uploadpicIdFan = true;
-						_this.btnUpLoadMsgGerenFan="已上传";
-					})
+
+					_this.$compressPic(file, function(blob) {
+						let param = new FormData(); //创建form对象
+						param.append('files', blob); //通过append向form对象添加数据
+						_this.useUpload(param, function(response) {
+							_this.uploadpicIdFan = true;
+							_this.btnUpLoadMsgGerenFan = "已上传";
+						})
+					});
+
 				} else if(flag == "farenzhengmian") { //法人正面
 					let file = _this.filepicfarenzheng;
-					let param = new FormData(); //创建form对象
-					param.append('files', file); //通过append向form对象添加数据
-					_this.useUpload(param, function(response) {
-						_this.uploadpicfarenzheng = true;
-						_this.uploadfarenurl = response.data.result[0].filePath;
-						_this.btnuploadmsgfarenzheng="已上传";
-					})
+					_this.$compressPic(file, function(blob) {
+						let param = new FormData(); //创建form对象
+						param.append('files', blob); //通过append向form对象添加数据
+						_this.useUpload(param, function(response) {
+							_this.uploadpicfarenzheng = true;
+							_this.uploadfarenurl = response.data.result[0].filePath;
+							_this.btnuploadmsgfarenzheng = "已上传";
+						})
+					});
+
 				} else if(flag == "jingbanrenzhengmian") { //经办人正面
 					let file = _this.filepicjbrzheng;
-					let param = new FormData(); //创建form对象
-					param.append('files', file); //通过append向form对象添加数据
-					_this.useUpload(param, function(response) {
-						_this.uploadpicjbrzheng = true;
-						_this.uploadjbrurl = response.data.result[0].filePath;
-						_this.btnuploadmsgjbzheng="已上传";
-					})
+					_this.$compressPic(file, function(blob) {
+						let param = new FormData(); //创建form对象
+						param.append('files', blob); //通过append向form对象添加数据
+						_this.useUpload(param, function(response) {
+							_this.uploadpicjbrzheng = true;
+							_this.uploadjbrurl = response.data.result[0].filePath;
+							_this.btnuploadmsgjbzheng = "已上传";
+						})
+					});
+
 				} else if(flag == "yingyezhizhao") { //营业执照
 					let file = _this.filepicyingye;
-					let param = new FormData(); //创建form对象
-					param.append('files', file); //通过append向form对象添加数据
-					_this.useUpload(param, function(response) {
-						_this.uploadpicyingye = true;
-						_this.uploadyingyeurl = response.data.result[0].filePath;
-						_this.btnuploadmsgyy="已上传";
-					})
-				} else if(flag == "farenfanmian") { //法人反面
+					_this.$compressPic(file, function(blob) {
+						let param = new FormData(); //创建form对象
+						param.append('files', blob); //通过append向form对象添加数据
+						_this.useUpload(param, function(response) {
+							_this.uploadpicyingye = true;
+							_this.uploadyingyeurl = response.data.result[0].filePath;
+							_this.btnuploadmsgyy = "已上传";
+						})
+					});
 
+				} else if(flag == "farenfanmian") { //法人反面
 					let file = _this.filepicfarenfan;
-					let param = new FormData(); //创建form对象
-					param.append('files', file); //通过append向form对象添加数据
-					_this.useUpload(param, function(response) {
-						_this.uploadpicfarenfan = true;
-						_this.btnuploadmsgfarenfan="已上传";
-					})
+					_this.$compressPic(file, function(blob) {
+						let param = new FormData(); //创建form对象
+						param.append('files', blob); //通过append向form对象添加数据
+						_this.useUpload(param, function(response) {
+							_this.uploadpicfarenfan = true;
+							_this.btnuploadmsgfarenfan = "已上传";
+						})
+					});
+
 				}
 			},
 			submitGeren() {
@@ -448,7 +466,7 @@
 					_this.$toast("请先上传身份证反面照片");
 					return;
 				}
-				if(!_this.checkIdCard(_this.sfzcardNo)){
+				if(!_this.checkIdCard(_this.sfzcardNo)) {
 					_this.$toast("请确认身份证号码正确");
 					return;
 				}
@@ -509,10 +527,10 @@
 							let pdfDownUrl = "/api/loan/downloadLoanContract?templateId=3&customerNo=" + customerNo;
 							_this.$ajaxGet(pdfDownUrl, "", function(respdf) {
 								console.log("pdfDownUrl suc:" + JSON.stringify(respdf))
-								if(!respdf.data.success&&respdf.data.success!=undefined) {
-										_this.$toast(resd.data.message);
-										return;
-									}
+								if(!respdf.data.success && respdf.data.success != undefined) {
+									_this.$toast(resd.data.message);
+									return;
+								}
 								let url = _this.$getHost() + '/pdf/web/viewer.html?' + _this.$getHost() + '/download/contract/' + customerNo + ".pdf";
 								//url = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
 								_this.$router.push({
@@ -547,23 +565,23 @@
 
 			},
 			qiyenext1() {
-				if(this.checkNull(this.customerName)){
+				if(this.checkNull(this.customerName)) {
 					this.$toast("请输入企业姓名");
 					return;
 				}
-				if(this.checkNull(this.licenseNo)){
+				if(this.checkNull(this.licenseNo)) {
 					this.$toast("请输入企业营业执照号");
 					return;
 				}
-				if(this.checkNull(this.legalName)){
+				if(this.checkNull(this.legalName)) {
 					this.$toast("请输入企业法人姓名");
 					return;
 				}
-				if(!this.checkIdCard(this.legalIdCard)){
+				if(!this.checkIdCard(this.legalIdCard)) {
 					this.$toast("请确认身份证号码正确");
 					return;
 				}
-				if(this.checkNull(this.proname)){
+				if(this.checkNull(this.proname)) {
 					this.$toast("请输入经办人姓名");
 					return;
 				}
@@ -662,10 +680,10 @@
 							let pdfDownUrl = "/api/loan/downloadLoanContract?templateId=3&customerNo=" + customerNo;
 							_this.$ajaxGet(pdfDownUrl, "", function(respdf) {
 								console.log("pdfDownUrl suc:" + JSON.stringify(respdf))
-								if(!respdf.data.success&&respdf.data.success!=undefined) {
-										_this.$toast(resd.data.message);
-										return;
-									}
+								if(!respdf.data.success && respdf.data.success != undefined) {
+									_this.$toast(resd.data.message);
+									return;
+								}
 								let url = _this.$getHost() + '/pdf/web/viewer.html?' + _this.$getHost() + '/download/contract/' + customerNo + ".pdf";
 								//url = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
 								_this.$router.push({
@@ -717,7 +735,7 @@
 			},
 			sureback() {
 				let _this = this;
-				_this.setlocalstory("comeHomeFlag",true);
+				_this.setlocalstory("comeHomeFlag", true);
 				_this.$router.push('/');
 				pushHistory();
 			}
@@ -745,7 +763,7 @@
 		width: calc(100% - 1rem);
 		margin: .5rem auto;
 	}
-
+	
 	.idpic {
 		margin: .5rem 0;
 		.fileinput-button {
@@ -756,17 +774,18 @@
 			margin: 0 auto;
 			position: relative;
 			border-radius: 5px;
-			height:4rem;
-			span{
-				width:100%;
-				height:100%;
-				display:block;
-				text-align:center;
+			height: 4rem;
+			span {
+				width: 100%;
+				height: 100%;
+				display: block;
+				text-align: center;
 			}
 			.img-loc {
-				display: inline-block; vertical-align: middle;
-				width:100%;
-				height:100%;
+				display: inline-block;
+				vertical-align: middle;
+				width: 100%;
+				height: 100%;
 			}
 		}
 		p {
@@ -774,7 +793,7 @@
 			line-height: 1rem;
 		}
 	}
-
+	
 	.fileinput-button input {
 		position: absolute;
 		right: 0px;
@@ -783,63 +802,61 @@
 		width: 100%;
 		height: 100%;
 	}
-
+	
 	.btn-chose {
 		width: 70%;
 		margin: 0 auto;
 	}
-
+	
 	.submit_img {
 		width: 100%;
 	}
-
+	
 	.company {
 		>a {
 			border-bottom: 1px solid rgba(225, 225, 225, 1);
 		}
 	}
-
-
-
+	
 	.content {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
 	}
-
+	
 	.switch-width {
 		width: 60%;
 	}
-
+	
 	.label-text {
 		margin-top: 8px;
 		color: blue;
 	}
-
+	
 	.fa-loc {
 		position: absolute;
 		top: 190px;
 		right: 20px;
 		z-index: 2;
 	}
-
+	
 	.fa-color {
 		color: blue;
 	}
-
+	
 	.but-login-filter {
 		opacity: 0.5;
 		color: black;
 	}
-
+	
 	.cont-sec {
 		margin-top: 10px;
 	}
-
+	
 	.password-width {
 		width: 70%;
 	}
-
+	
 	.fir-input {
 		float: left;
 		line-height: 30px;
@@ -849,7 +866,7 @@
 		border-right-width: 0px;
 		border-bottom-color: gainsboro
 	}
-
+	
 	.sec-input {
 		float: left;
 		line-height: 30px;
@@ -859,11 +876,11 @@
 		border-right-width: 0px;
 		border-bottom-color: gainsboro
 	}
-
+	
 	.divinput {
 		line-height: 55px;
 	}
-
+	
 	.divinput input {
 		line-height: 40px;
 		border: none;

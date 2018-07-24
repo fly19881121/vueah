@@ -8,30 +8,15 @@
 		<div class="idpic">
 			<div class="fileinput-button">
 				<span>
-	          	<img :src="picIdZheng" class="img-loc" width="100%" />
+	          	<img :src="addpicsrc" class="img-loc" width="100%" />
 	          </span>
 				<input type="file" ref="fileIdZheng" v-on:change="getpic">
 			</div>
 			<p>请上传身份证人面像</p>
 			<div class="btn-chose">
-				<mt-button size="small" type="primary" class="submit_img" v-on:click="uploadpic">确定添加</mt-button>
+				<mt-button size="small" type="primary" class="submit_img" v-on:click="compress">确定添加</mt-button>
 			</div>
 		</div>
-		
-		
-		
-		<!--<div class="pb50">
-			<div class="idpic">
-				<div class="fileinput-button">
-	        <span>
-	        	<img :src="addpicsrc" class="img-loc"/>
-	        </span>
-					<input type="file" ref="file" v-on:change="getpic">
-				</div>
-				<p>请选择个人征信报告</p>
-			</div>
-			<mt-button size="large" type="primary" class="button-al" v-on:click="uploadpic">确定添加</mt-button>
-		</div>-->
 	</div>
 </template>
 <script>
@@ -52,7 +37,7 @@
 			},
 			getpic() {
 				let _this = this;
-				let filepic = _this.$refs.file.files.item(0);
+				let filepic = _this.$refs.fileIdZheng.files.item(0);
 				let param = new FormData(); //创建form对象
 
 				let url = window.URL.createObjectURL(filepic);
@@ -61,12 +46,17 @@
 				_this.addpicsrc = url;
 
 			},
-			uploadpic() {
+			compress(){
 				let _this = this;
 				let file = _this.filePic;
-
+				_this.$compressPic(file,function(blob){
+					_this.uploadpic(blob);
+				});
+			},
+			uploadpic(blob) {
+				let _this = this;
 				let param = new FormData(); //创建form对象
-				param.append('files', file); //通过append向form对象添加数据
+				param.append('files', blob); //通过append向form对象添加数据
 
 				_this.$ajaxPost('/api/attachment/uploadAttachmentBatch ', param, function(response) {
 					console.log("suc:" + JSON.stringify(response))

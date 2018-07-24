@@ -12,7 +12,7 @@ import 'lib-flexible/flexible.js'
 import func from '../static/js/func.js'
 Vue.use(func);
 Vue.use(Mint)
-//FastClick.attach(document.body)
+FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 
