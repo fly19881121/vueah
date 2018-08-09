@@ -59,7 +59,13 @@
 				this.$router.go(-1); //返回上一层
 			},
 			next: function(e) {
-				this.$router.push('/product')
+				let _this = this;
+				let customerType=_this.getlocalstory("customerType");
+				if(customerType==1||customerType==2){
+					_this.$router.push('/product')
+				}else{
+					_this.$toast('您没有申请产品的权限');
+				}
 			}
 		}
 	}
