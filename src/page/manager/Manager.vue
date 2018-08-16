@@ -130,14 +130,14 @@ export default {
     flex:1;
     padding:15px 10px 0;
     h6{
-      font-size:20px;
+      font-size:15px;
       padding:0 0 10px 0;
     }
   }
   .user-gofor{
     flex:1;
     padding:20px 10px 0;
-        font-size: 20px;
+    font-size: 15px;
     text-align: right;
   }
 }

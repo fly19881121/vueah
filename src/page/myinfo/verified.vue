@@ -478,7 +478,7 @@
 				_this.$ajaxPost('/api/customer/getCustomerAnxinSign', par, function(res) {
 					console.log("getCustomerAnxinSign suc:" + JSON.stringify(res))
 					if(!res.data.success) {
-						_this.$toast(res2.data.message);
+						_this.$toast(res.data.message);
 						return;
 					}
 					customerNo = res.data.result.customerNo; //安心签编号
@@ -493,7 +493,7 @@
 					_this.$ajaxPost('/api/customer/addCustomerAuthInfo', par2, function(responseAdd) {
 						console.log("addCustomerAuthInfo responseAdd:" + JSON.stringify(responseAdd))
 						if(!responseAdd.data.success) {
-							_this.$toast(res2.data.message);
+							_this.$toast(responseAdd.data.message);
 							return;
 						}
 						let objectId = responseAdd.data.result.objectId;
@@ -520,7 +520,7 @@
 
 						_this.$ajaxPost('/dcapi/defineForm/addOrModifyDefineForm ', parApply, function(resform) {
 							if(!resform.data.success) {
-								_this.$toast(res2.data.message);
+								_this.$toast(resform.data.message);
 								return;
 							}
 
@@ -528,7 +528,7 @@
 							_this.$ajaxGet(pdfDownUrl, "", function(respdf) {
 								console.log("pdfDownUrl suc:" + JSON.stringify(respdf))
 								if(!respdf.data.success && respdf.data.success != undefined) {
-									_this.$toast(resd.data.message);
+									_this.$toast(respdf.data.message);
 									return;
 								}
 								let url = _this.$getHost() + '/pdf/web/viewer.html?' + _this.$getHost() + '/download/contract/' + customerNo + ".pdf";
@@ -673,7 +673,7 @@
 
 						_this.$ajaxPost('/dcapi/defineForm/addOrModifyDefineForm ', par3, function(res3) {
 							if(!res3.data.success) {
-								_this.$toast(res2.data.message);
+								_this.$toast(res3.data.message);
 								return;
 							}
 
@@ -681,7 +681,7 @@
 							_this.$ajaxGet(pdfDownUrl, "", function(respdf) {
 								console.log("pdfDownUrl suc:" + JSON.stringify(respdf))
 								if(!respdf.data.success && respdf.data.success != undefined) {
-									_this.$toast(resd.data.message);
+									_this.$toast(respdf.data.message);
 									return;
 								}
 								let url = _this.$getHost() + '/pdf/web/viewer.html?' + _this.$getHost() + '/download/contract/' + customerNo + ".pdf";

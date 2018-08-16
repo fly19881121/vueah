@@ -78,8 +78,6 @@ Vue.prototype.$ajaxGet = function(url, parmer, success, fail) {
 			success(response);
 		})
 		.catch(function(error) {
-			alert(url+"-error:"+error)
-			alert("parmer："+JSON.stringify(parmer1))
 			fail(error);
 		});
 }
@@ -94,8 +92,6 @@ Vue.prototype.$ajaxPost = function(url, parmer, success, fail) {
 			success(response);
 		})
 		.catch(function(error) {
-			alert(url+"-error:"+error);
-			alert("parmer："+JSON.stringify(parmer1))
 			fail(error);
 		});
 }

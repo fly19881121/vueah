@@ -8,6 +8,7 @@
 		</mt-header>
 
 		<div class="pb50">
+			<p class="p-text">点击选择银行卡</p>
 			<div class="maindivbank" v-for="item in prolist" v-bind:key="item.id">
 				<div class="div-all" @click='back(item)'>
 					<div>
@@ -132,5 +133,8 @@
 	
 	.div-bankdesc {
 		line-height: 1rem;
+	}
+	.p-text{
+		text-align: center;
 	}
 </style>

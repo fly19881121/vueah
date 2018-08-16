@@ -13,6 +13,7 @@ module.exports = {
 		proxyTable: {
 			'/api': {
 				//target: 'http://api.douban.com/',
+				//target: 'https://qf.awservice.net',
 				target: 'https://ladybird.awservice.net', // 请换成你的地址 测试
 				//target: 'https://qf.awservice.net', //生产
 				changeOrigin: true,

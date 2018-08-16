@@ -60,7 +60,7 @@
 					name: '中国建设银行',
 					method: this.onDateChangeEtc
 				}],
-				showcode: false,
+//				showcode: false,
 				smsCode: "",
 				tradeNo: "",
 				divCode: false,
@@ -89,12 +89,10 @@
 					console.log("applyBind suc:" + JSON.stringify(res))
 					if(res.data.success) {
 						_this.tradeNo = res.data.result
-						if(_this.showcode) {
-							_this.divCode = true;
-							_this.divInfo = false;
-						} else {
-							_this.sureBank();
-						}
+						_this.divCode = true;
+						_this.divInfo = false;
+					}else{
+						_this.$toast(res.data.message)
 					}
 				}, function(e) {
 					console.log("applyBind fail:" + JSON.stringify(e))
@@ -103,14 +101,11 @@
 			},
 			sureBank() {
 				let _this = this;
-				if(_this.showcode && _this.smsCode == "") {
+				if(_this.smsCode == "") {
 					_this.$toast("请先填写手机验证码")
 					return false;
 				}
-				if(!_this.showcode) {
-					_this.smsCode = "000000";
-				}
-				//
+				
 				let paramsub = {
 					"tradeNo": _this.tradeNo,
 					"smsCode": _this.smsCode
@@ -177,22 +172,6 @@
 			}, function(e) {
 				console.log("queryBankName fail:" + JSON.stringify(e))
 			});
-
-			//判断是否需要验证码
-			let param = {
-				"productId": _this.getlocalstory("productId"),
-				"customerSignType": 0,
-				"signType": 0
-			}
-			_this.$ajaxPost('/api/loanProduct/queryProductSignRule ', param, function(res) {
-				console.log("queryProductSignRule suc:" + JSON.stringify(res))
-				if(res.data.result) {
-					_this.showcode = true;
-				}
-			}, function(e) {
-				console.log("224 fail:" + JSON.stringify(e))
-			});
-
 		}
 
 	}

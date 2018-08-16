@@ -39,24 +39,37 @@
 			getpic() {
 				let _this = this;
 				let filepic = _this.$refs.fileIdZheng.files.item(0);
-				_this.$compressPic(filepic,function(blob){
+				_this.$compressPic(filepic, function(blob) {
 					let url = window.URL.createObjectURL(blob);
 
-				_this.filePic = blob;
-				_this.addpicsrc = url;
+					_this.filePic = blob;
+					_this.addpicsrc = url;
 				});
-				
-				
-				
+
 				let param = new FormData(); //创建form对象
 
-				
-
 			},
-			compress(){
+			compress() {
+
 				let _this = this;
+				let param = {
+					"productId": '15',
+					"customerSignType": 0,
+					"signType": 0
+				}
+				_this.$ajaxPost('/api/loanProduct/queryProductSignRule ', param, function(res) {
+					console.log("queryProductSignRule suc:" + JSON.stringify(res))
+					if(res.data.result) {
+						_this.showcode = true;
+					}
+				}, function(e) {
+					console.log("224 fail:" + JSON.stringify(e))
+				});
+
+				return;
+
 				let file = _this.filePic;
-				_this.$compressPic(file,function(blob){
+				_this.$compressPic(file, function(blob) {
 					_this.uploadpic(blob);
 				});
 			},

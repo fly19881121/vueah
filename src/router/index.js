@@ -218,7 +218,7 @@ const router = new Router({
 let indexScrollTop = 0
 let allowBack = true
 router.beforeEach((to, from, next) => {
-	let customerState = window.localStorage.getItem("customerState");
+//	let customerState = window.localStorage.getItem("customerState");
 	//console.log("customerState:" + customerState)
 	// 路由进入下一个路由对象前，判断是否需要登陆
 	// 在路由meta对象中由个requireAuth字段，只要此字段为true，必须做鉴权处理

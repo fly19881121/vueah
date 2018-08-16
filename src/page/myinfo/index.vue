@@ -95,6 +95,10 @@
 					userId = "88d329fc-be41-42e9-bd29-b5f4db546115"; //对公0005
 					userName = "13802400001"; //对公0005
 					tokenId = "D5045167A74F0BA2FB961BA45E3320B1" //对公0005
+					
+					userId = "45f31bf9-257a-4475-ae86-ee730067be28"; //对公0005
+					userName = "13366669999"; //对公0005
+					tokenId = "8DFC970218A86D1EFDE9CA973499BBBC" //对公0005
 				} else {
 					let _mobile = JSON.parse(_this.utf8to16(_this.base64decode(window.daka.getMobileApp())));
 					//alert(JSON.stringify(_mobile))
@@ -111,8 +115,10 @@
 						"userId": userId
 					}
 				}
+//				alert("login par:"+JSON.stringify(param))
 				_this.$ajaxPost('/router/local/rest', param, function(res) {
 					console.log("login suc:" + JSON.stringify(res))
+//					alert("login suc:"+JSON.stringify(res))
 					let customerState = res.data.result.customerState;
 					_this.setlocalstory("customerState", customerState);
 					_this.setlocalstory("userId", res.data.result.userId);
@@ -137,16 +143,8 @@
 						}
 					}
 				}, function(logine) {
-					_this.$toast("login fail:" + JSON.stringify(logine))
-					console.log("login fail:" + JSON.stringify(logine))
+					alert("login fail:" + logine);
 				});
-
-				//			window.sessionStorage.setItem('USERID', _mobile.userId);
-				//			window.sessionStorage.setItem('TOKEN', _mobile.tokenId);
-				//			window.sessionStorage.setItem('APPVERSION', _mobile.appVersion);
-				//			window.sessionStorage.setItem('LOGINNAME', _mobile.userName);
-				//			window.sessionStorage.setItem('systemVersion', _mobile.systemVersion);
-				//			window.sessionStorage.setItem('SUPPORTNATIVEPAY', _mobile.supportNativePay);
 			} catch(e) {
 				_this.$toast("未获取到用户信息")
 				_this.$router.push('/loginfail');
@@ -155,7 +153,6 @@
 					url: "/loginfail"
 				}
 				window.history.pushState(state, "title", "#");
-				console.log(e);
 			}
 		}
 	}
