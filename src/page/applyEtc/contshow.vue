@@ -114,7 +114,6 @@
 							_this.$toast("申请失败，请重试");
 							return;
 						}
-						if(_this.getlocalstory("caflag")) {
 							//触发风控
 							let parmer = {
 								"method": "aws.mobile.cg.etc.vehicle.risk.trigger",
@@ -132,9 +131,6 @@
 							}, function(e) {
 								console.log("trigger fail:" + JSON.stringify(e))
 							});
-						} else {
-							_this.$router.push('/suc')
-						}
 					}, function(e) {
 						console.log("creditlineApplyAfter fail:" + JSON.stringify(e))
 					});

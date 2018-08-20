@@ -160,11 +160,13 @@
 				_this.removelocalstory("contacts1Info");
 				_this.removelocalstory("contacts2Info");
 				_this.removelocalstory("cano");
-				_this.removelocalstory("caflag");
 				_this.removelocalstory("carTotal");
 				_this.removelocalstory("uploadBankState");
 				_this.removelocalstory("uploadCarRelation");
 				_this.removelocalstory("uploadCreditReport");
+				_this.removelocalstory("uploadBankStateUrl");
+				_this.removelocalstory("uploadCarRelationUrl");
+				_this.removelocalstory("uploadCreditReportUrl");
 
 
 

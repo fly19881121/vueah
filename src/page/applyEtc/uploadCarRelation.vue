@@ -62,6 +62,7 @@
 				_this.$ajaxPost('/api/attachment/uploadAttachmentBatch ', param, function(response) {
 					console.log("suc:" + JSON.stringify(response))
 					if(response.data.success == true) {
+						_this.setlocalstory("uploadCarRelationUrl", response.data.result[0].filePath);
 						_this.setlocalstory("uploadCarRelation","已上传");
 						_this.$router.push('/apply');
 					} else {

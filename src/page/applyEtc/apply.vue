@@ -267,12 +267,14 @@
 				this.removelocalstory("contacts1Info");
 				this.removelocalstory("contacts2Info");
 				this.removelocalstory("cano");
-				this.removelocalstory("caflag");
 				this.removelocalstory("carTotal");
 				this.removelocalstory("uploadBankState");
 				this.removelocalstory("uploadCarRelation");
 				this.removelocalstory("uploadCreditReport");
 				this.removelocalstory("creditSignRule");
+				this.removelocalstory("uploadBankStateUrl");
+				this.removelocalstory("uploadCarRelationUrl");
+				this.removelocalstory("uploadCreditReportUrl");
 			},
 			apply() {
 				let _this = this;
@@ -339,20 +341,17 @@
 								parstr = parstr + parstr1;
 							}
 
-							let str1 = ',{\"config\": {\"required\":\"false\"},\"field_value\":\"https://ladybird.awservice.net/upload//cus tomer_17891/20180702160714055001/201807021607140015.jpg\",\"key\":\"vehicleRelationsh ip\",\"placeholder\":\"[必须]挂靠协议/分期购⻋付款凭证/证明承运关系的其他材料(三选⼀)，可拍摄多张 \",\"sample\":\"https://qf.awservice.net/upload//customer_2/20171013182132431001/2017 10131821320004.jpg\",\"title\":\"⻋辆关系证明\",\"type\":\"file\"}';
-							let str2 = ',{\"config\": {\"required\":\"false\"},\"key\":\"sxsq_grzxbg\",\"placeholder\":\"[可选]仅申请5辆⻋以上 时需要，可拍摄多张 \",\"sample\":\"https://qf.awservice.net/upload//customer_2/20171013182024066001/2017 10131820240003.jpg\",\"title\":\"个⼈征信报告照⽚\",\"type\":\"file\"}';
-							let str3 = ',{\"config\": {\"required\":\"false\"},\"key\":\"sxsq_yinhangliushui\",\"placeholder\":\"[可选]仅申 请5辆⻋以上时需要，可拍摄多张 \",\"sample\":\"https://qf.awservice.net/upload//customer_2/20171013181937287001/2017 10131819370019.jpg\",\"title\":\"银⾏卡流⽔账单\",\"type\":\"file\"}';
+							let str1 = ',{\"config\": {\"required\":\"false\"},\"field_value\":\"'+_this.getlocalstory("uploadCarRelationUrl")+'\",\"key\":\"vehicleRelationsh ip\",\"placeholder\":\"[必须]挂靠协议/分期购⻋付款凭证/证明承运关系的其他材料(三选⼀)，可拍摄多张 \",\"sample\":\"'+_this.getlocalstory("uploadCarRelationUrl")+'\",\"title\":\"⻋辆关系证明\",\"type\":\"file\"}';
+							let str2 = ',{\"config\": {\"required\":\"false\"},\"key\":\"sxsq_grzxbg\",\"placeholder\":\"[可选]仅申请5辆⻋以上 时需要，可拍摄多张 \",\"sample\":\"'+_this.getlocalstory("uploadCreditReportUrl")+'\",\"title\":\"个⼈征信报告照⽚\",\"type\":\"file\"}';
+							let str3 = ',{\"config\": {\"required\":\"false\"},\"key\":\"sxsq_yinhangliushui\",\"placeholder\":\"[可选]仅申 请5辆⻋以上时需要，可拍摄多张 \",\"sample\":\"'+_this.getlocalstory("uploadBankStateUrl")+'\",\"title\":\"银⾏卡流⽔账单\",\"type\":\"file\"}';
 
 							if(_this.carrel) {
-								_this.setlocalstory("caflag", _this.carrel); //触发风控标志
 								parstr = parstr + str1;
 							}
 							if(_this.gerenzhengxin) {
-								_this.setlocalstory("caflag", _this.gerenzhengxin); //触发风控标志
 								parstr = parstr + str2;
 							}
 							if(_this.cardliushui) {
-								_this.setlocalstory("caflag", _this.cardliushui); //触发风控标志
 								parstr = parstr + str3;
 							}
 							parstr = parstr + "]";

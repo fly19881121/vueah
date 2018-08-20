@@ -61,6 +61,8 @@
 				_this.$ajaxPost('/api/attachment/uploadAttachmentBatch ', param, function(response) {
 					console.log("suc:" + JSON.stringify(response))
 					if(response.data.success == true) {
+						console.log(response.data.result[0].filePath)
+						_this.setlocalstory("uploadBankStateUrl", response.data.result[0].filePath);
 						_this.setlocalstory("uploadBankState", "已上传");
 						_this.$router.push('/apply');
 					} else {
