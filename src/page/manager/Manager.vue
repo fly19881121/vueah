@@ -91,7 +91,7 @@ export default {
           name: '联系客服',
           link: 'manager',
           isLink: false,
-          value: '021-00000000'
+          value: '4000-122-360'
         },
         {
           name: '关于我们',
